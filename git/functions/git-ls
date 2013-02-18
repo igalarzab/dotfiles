@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# Pretty log in one line per commit.
+#
+# Author: @holman
+#
+
+HASH="%C(yellow)%h%Creset"
+RELATIVE_TIME="%Cgreen<%ar>%Creset"
+AUTHOR="%C(blue)[%cn]%Creset"
+REFS="%C(red)%d%Creset"
+SUBJECT="%s"
+
+FORMAT="$HASH $SUBJECT $AUTHOR $RELATIVE_TIME $REFS"
+
+git log --graph --pretty=format:"${FORMAT}" $* --abbrev-commit --date=relative |
+    less -FXRS
