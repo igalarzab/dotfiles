@@ -2,7 +2,7 @@
 ZSH=$HOME/.dotfiles/zsh/ohmyzsh.git
 
 # Set name of the theme to load.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
 
 # Aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -27,6 +27,6 @@ ZSH_THEME="robbyrussell"
 # COMPLETION_WAITING_DOTS="true"
 
 # Plugins to load (custom plugins may be added to ~/.oh-my-zsh/custom/plugins/)
-plugins=(git)
+plugins=(brew django extract git-extras git-flow osx pip python vagrant virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
