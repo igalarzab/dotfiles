@@ -4,10 +4,6 @@ ZSH=$HOME/.dotfiles/zsh/ohmyzsh.git
 # Set name of the theme to load.
 ZSH_THEME="agnoster"
 
-# Aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 

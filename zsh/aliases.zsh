@@ -17,3 +17,6 @@ alias lla="ls -lA"
 
 alias grep="grep --color=auto"
 alias reload='. ~/.zshrc'
+
+# cd into Development folder
+alias d="cd $PROJECTS"
