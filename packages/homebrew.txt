@@ -1,0 +1,8 @@
+coreutils
+git
+gnu-sed
+grc
+hub
+spark
+todo-txt
+wget

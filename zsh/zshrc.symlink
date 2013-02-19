@@ -29,4 +29,27 @@ ZSH_THEME="agnoster"
 # Plugins to load (custom plugins may be added to ~/.oh-my-zsh/custom/plugins/)
 plugins=(brew django extract git-extras git-flow osx pip python vagrant virtualenvwrapper)
 
+# Source oh-my-zsh
 source $ZSH/oh-my-zsh.sh
+
+# Shortcut to this dotfiles
+export DOTFILES=$HOME/.dotfiles
+
+# Projects folder
+export PROJECTS=~/Code/s
+
+# All ZSH files inside dotfiles
+typeset -U config_files
+config_files=($DOTFILES/*/*.zsh)
+
+# Load config files
+for file in ${config_files}
+do
+  source $file
+done
+
+# Save secret crap inside ~/.localrc
+if [[ -a ~/.localrc ]]
+then
+  source ~/.localrc
+fi
