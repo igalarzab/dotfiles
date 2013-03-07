@@ -23,7 +23,7 @@ ZSH_THEME="agnoster"
 # COMPLETION_WAITING_DOTS="true"
 
 # Plugins to load (custom plugins may be added to ~/.oh-my-zsh/custom/plugins/)
-plugins=(brew django extract git-extras git-flow osx pip python vagrant virtualenvwrapper)
+plugins=(brew django extract git-extras git-flow osx pip python vagrant virtualenvwrapper vi-mode)
 
 # Source oh-my-zsh
 source $ZSH/oh-my-zsh.sh
