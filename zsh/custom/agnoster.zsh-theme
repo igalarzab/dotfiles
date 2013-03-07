@@ -91,7 +91,7 @@ prompt_dir() {
 # Virtualenv: Show if we are inside a virtualenv
 prompt_virtualenv() {
   if [[ -n $VIRTUAL_ENV ]]; then
-    prompt_segment cyan black '✪'
+    prompt_segment cyan black 'Ⓥ'
   fi
 }
 
