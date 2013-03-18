@@ -1,4 +1,4 @@
-export PATH="$PATH:$DOTFILES/bin:/usr/local/share/npm/bin/"
+export PATH="/usr/local/bin:$PATH:$DOTFILES/bin:/usr/local/share/npm/bin/"
 export EDITOR='vim'
 
 # Colors
