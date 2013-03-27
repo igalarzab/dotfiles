@@ -40,3 +40,6 @@
 [submodule "zsh/ohmyzsh.git"]
 	path = zsh/ohmyzsh.git
 	url = git://github.com/robbyrussell/oh-my-zsh.git
+[submodule "vim/vim.symlink/bundle/vim-scala.git"]
+	path = vim/vim.symlink/bundle/vim-scala.git
+	url = git://github.com/derekwyatt/vim-scala.git
