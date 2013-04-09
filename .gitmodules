@@ -18,7 +18,7 @@
 	url = git://github.com/garbas/vim-snipmate.git
 [submodule "vim/vim.symlink/bundle/snipmate-snippets.git"]
 	path = vim/vim.symlink/bundle/snipmate-snippets.git
-	url = git://github.com/honza/snipmate-snippets.git
+	url = git://github.com/scrooloose/snipmate-snippets.git
 [submodule "vim/vim.symlink/bundle/salt-vim.git"]
 	path = vim/vim.symlink/bundle/salt-vim.git
 	url = git://github.com/saltstack/salt-vim.git
