@@ -33,16 +33,22 @@ load-plugins=
 # can either give multiple identifier separated by comma (,) or put this option
 # multiple time (only on the command line, not in the configuration file where
 # it should appear only once).
+#  - C0103: Invalid name "%s" (should match %s)
+#  - C0111: Missing docstring
+#  - R0201: Method could be a function
+#  - R0901: Too many ancestors
+#  - R0903: Too few public methods
+#  - R0904: Too many public methods
+#  - I0011: Used when an inline option disables a message or a messages category.
+#  - I0012: Used when an inline option disables a message or a messages category.
+#  - W0232: Class has no __init__ method
 #  - W0511: Used when a warning note as FIXME or XXX is detected.
 #  - W0614: Used when an imported module or variable is not used from a 'from X import *'
-#  - C0111: Missing docstring
-#  - I0011: Used when an inline option disables a message or a messages category.
-#  - R0201: Method could be a function
 #  - W0703: Catch "Exception"
 #  - W0704: Except doesn't do anything
-#  - C0103: Invalid name "%s" (should match %s)
+#  - E1120: No value passed for parameter 'cls' in function call
 #
-disable=W0511,W0614,C0111,I0011,R0201,W0703,W0704,C0103
+disable=C0103,C0111,R0201,R0901,R0903,R0904,I0011,I0012,W0232,W0511,W0614,W0703,W0704,E1120
 
 
 [REPORTS]
