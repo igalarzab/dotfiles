@@ -37,6 +37,7 @@
 [submodule "vim/vim.symlink/bundle/minibufexpl.git"]
 	path = vim/vim.symlink/bundle/minibufexpl.git
 	url = git://github.com/fholgado/minibufexpl.vim.git
+	ignore = dirty
 [submodule "zsh/ohmyzsh.git"]
 	path = zsh/ohmyzsh.git
 	url = git://github.com/robbyrussell/oh-my-zsh.git
