@@ -37,8 +37,10 @@ load-plugins=
 #  - C0111: Missing docstring
 #  - R0201: Method could be a function
 #  - R0901: Too many ancestors
+#  - R0902: Too many instance attributes
 #  - R0903: Too few public methods
 #  - R0904: Too many public methods
+#  - R0924: Badly implemented Container
 #  - I0011: Used when an inline option disables a message or a messages category.
 #  - I0012: Used when an inline option disables a message or a messages category.
 #  - W0232: Class has no __init__ method
@@ -48,7 +50,7 @@ load-plugins=
 #  - W0704: Except doesn't do anything
 #  - E1120: No value passed for parameter 'cls' in function call
 #
-disable=C0103,C0111,R0201,R0901,R0903,R0904,I0011,I0012,W0232,W0511,W0614,W0703,W0704,E1120
+disable=C0103,C0111,R0201,R0901,R0902,R0903,R0904,R0924,I0011,I0012,W0232,W0511,W0614,W0703,W0704,E1120
 
 
 [REPORTS]
@@ -171,7 +173,7 @@ zope=no
 # List of members which are set dynamically and missed by pylint inference
 # system, and so shouldn't trigger E0201 when accessed. Python regular
 # expressions are accepted.
-generated-members=REQUEST,acl_users,aq_parent
+generated-members=objects,DoesNotExist
 
 
 [FORMAT]
