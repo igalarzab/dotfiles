@@ -35,38 +35,27 @@ load-plugins=
 # it should appear only once).
 #  - C0103: Invalid name "%s" (should match %s)
 #  - C0111: Missing docstring
+#  - E1120: No value passed for parameter 'cls' in function call
+#  - I0011: Used when an inline option disables a message or a messages category.
+#  - I0012: Used when an inline option disables a message or a messages category.
 #  - R0201: Method could be a function
 #  - R0901: Too many ancestors
 #  - R0902: Too many instance attributes
 #  - R0903: Too few public methods
 #  - R0904: Too many public methods
 #  - R0924: Badly implemented Container
-#  - I0011: Used when an inline option disables a message or a messages category.
-#  - I0012: Used when an inline option disables a message or a messages category.
-#  - W0142: Use * or ** magic
+#  - W0142: Used * or ** magic
 #  - W0232: Class has no __init__ method
 #  - W0511: Used when a warning note as FIXME or XXX is detected.
 #  - W0614: Used when an imported module or variable is not used from a 'from X import *'
 #  - W0703: Catch "Exception"
+#  - W0702: No exception type(s)
 #  - W0704: Except doesn't do anything
-#  - E1120: No value passed for parameter 'cls' in function call
 #
-disable=C0103,C0111,R0201,R0901,R0902,R0903,R0904,R0924,I0011,I0012,W0142,W0232,W0511,W0614,W0703,W0704,E1120
+disable=C0103,C0111,R0201,R0901,R0902,R0903,R0904,R0924,I0011,I0012,W0232,W0511,W0614,W0703,W0704,E1120,W0142,W0702
 
 
 [REPORTS]
-
-# Set the output format. Available formats are text, parseable, colorized, msvs
-# (visual studio) and html
-output-format=colorized
-
-# Include message's id in output
-include-ids=yes
-
-# Put messages in a separate file for each module / package specified on the
-# command line instead of printing them on stdout. Reports (if any) will be
-# written in a file name "pylint_global.[txt|html]".
-files-output=no
 
 # Tells whether to display a full report or only the messages
 reports=yes
@@ -174,7 +163,7 @@ zope=no
 # List of members which are set dynamically and missed by pylint inference
 # system, and so shouldn't trigger E0201 when accessed. Python regular
 # expressions are accepted.
-generated-members=objects,DoesNotExist
+generated-members=objects,DoesNotExist,[a-zA-Z]+_id
 
 
 [FORMAT]
