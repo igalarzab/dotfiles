@@ -57,6 +57,18 @@ disable=C0103,C0111,R0201,R0901,R0902,R0903,R0904,R0924,I0011,I0012,W0232,W0511,
 
 [REPORTS]
 
+# Set the output format. Available formats are text, parseable, colorized, msvs
+# (visual studio) and html
+output-format=colorized
+
+# Include message's id in output
+include-ids=yes
+
+# Put messages in a separate file for each module / package specified on the
+# command line instead of printing them on stdout. Reports (if any) will be
+# written in a file name "pylint_global.[txt|html]".
+files-output=no
+
 # Tells whether to display a full report or only the messages
 reports=yes
 
@@ -162,7 +174,7 @@ zope=no
 
 # List of members which are set dynamically and missed by pylint inference
 # system, and so shouldn't trigger E0201 when accessed. Python regular
-# expressions are accepted.
+# expressions are accepted. Most of them are Django specific.
 generated-members=objects,DoesNotExist,[a-zA-Z]+_id
 
 
