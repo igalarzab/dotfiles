@@ -1,5 +1,6 @@
 coreutils
 git
+go
 gnu-sed
 grc
 hub

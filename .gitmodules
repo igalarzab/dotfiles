@@ -44,3 +44,6 @@
 [submodule "vim/vim.symlink/bundle/vim-scala.git"]
 	path = vim/vim.symlink/bundle/vim-scala.git
 	url = git://github.com/derekwyatt/vim-scala.git
+[submodule "vim/vim.symlink/bundle/go.git"]
+	path = vim/vim.symlink/bundle/go.git
+	url = git://github.com/Blackrush/vim-gocode.git
