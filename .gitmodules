@@ -47,3 +47,6 @@
 [submodule "vim/vim.symlink/bundle/go.git"]
 	path = vim/vim.symlink/bundle/go.git
 	url = git://github.com/Blackrush/vim-gocode.git
+[submodule "vim/vim.symlink/bundle/markdown.git"]
+	path = vim/vim.symlink/bundle/markdown.git
+	url = git://github.com/tpope/vim-markdown.git
