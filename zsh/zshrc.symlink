@@ -7,6 +7,9 @@ export ZSH=$DOTFILES/zsh/ohmyzsh.git
 # Projects folder
 export PROJECTS=~/Code/s
 
+# Company folder
+export COMPANY=~/Code/t
+
 # Set custom theme
 ZSH_CUSTOM=$DOTFILES/zsh/custom/
 

@@ -16,12 +16,19 @@ alias ll="ls -l"
 alias la="ls -A"
 alias lla="ls -lA"
 
+# MacVIM
+if [ -f "/Applications/MacVim.app/Contents/MacOS/Vim" ]
+then
+    alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+fi
+
 # Generic aliases
 alias grep="grep --color=auto"
 alias reload='. ~/.zshrc'
 
 # cd into Development folder
-alias d="cd $PROJECTS"
+alias d="cd $COMPANY"
+alias s="cd $PROJECTS"
 
 # Fucking auto-complete :D
 alias knife="nocorrect knife"
