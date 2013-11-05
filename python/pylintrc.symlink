@@ -38,11 +38,12 @@ load-plugins=
 #  - C0321: More than one statement on a single line
 #  - E1002: Use of super on an old style class
 #  - E1111: Instance of X has no Y member
-#  - E1103: nstance of X has no Y member (but some types could not be inferred)
+#  - E1103: Instance of X has no Y member (but some types could not be inferred)
 #  - E1120: No value passed for parameter 'cls' in function call
 #  - I0011: Used when an inline option disables a message or a messages category.
 #  - I0012: Used when an inline option disables a message or a messages category.
 #  - R0201: Method could be a function
+#  - R0801: Duplication of code
 #  - R0901: Too many ancestors
 #  - R0902: Too many instance attributes
 #  - R0903: Too few public methods
@@ -60,7 +61,7 @@ load-plugins=
 #  - W0702: No exception type(s)
 #  - W0704: Except doesn't do anything
 #
-disable=C0103,C0111,C0321,R0201,R0901,R0902,R0903,R0904,R0913,R0924,I0011,I0012,W0232,W0201,W0212,W0511,W0613,W0614,W0703,W0704,E1002,E1101,E1103,E1120,W0142,W0702
+disable=C0103,C0111,C0321,R0201,R0801,R0901,R0902,R0903,R0904,R0913,R0924,I0011,I0012,W0232,W0201,W0212,W0511,W0613,W0614,W0703,W0704,E1002,E1101,E1103,E1120,W0142,W0702
 
 
 [REPORTS]
