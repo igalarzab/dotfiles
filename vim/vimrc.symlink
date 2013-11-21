@@ -24,6 +24,7 @@ let g:pymode_folding = 0                               " Disable python folding
 let g:pymode_run_key = '<leader>pr'                    " Key for run python code
 let g:pymode_doc_key = '<leader>pd'                    " Show documentation
 let g:pymode_lint_checker = 'pylint'                   " Check with pylint and pep8
+let g:pymode_lint_ignore = 'E0110'
 
 " Syntastic (disable python check)
 let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['python'] }
@@ -88,7 +89,7 @@ set undolevels=1000             " Use many muchos levels of undo
 
 " Crap settings
 set formatoptions+=cqron1       " Set auto-crap of lines
-set textwidth=80                " Set 80 chars to the width
+set textwidth=100               " Set 100 chars to the width
 set fileformats=unix,mac,dos    " Autodetect end of line format
 
 " Ignore extensions
