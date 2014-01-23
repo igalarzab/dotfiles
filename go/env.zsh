@@ -1,2 +1,3 @@
-export GOPATH=~/.golang
-export PATH=$PATH:$GOPATH/bin
+export GOPATH=$GOPATH:~/.golang
+export GOROOT=`go env GOROOT`
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
