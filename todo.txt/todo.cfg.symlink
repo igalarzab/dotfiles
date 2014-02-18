@@ -1,7 +1,7 @@
 # == FILE LOCATIONS ===
 
 # Your todo.txt directory
-DIRECTORY="$HOME/Dropbox/Backup/TODO"
+DIRECTORY="$HOME/Dropbox/Backup/todo"
 
 if [ -d "$DIRECTORY" ];
 then

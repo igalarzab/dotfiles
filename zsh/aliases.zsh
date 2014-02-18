@@ -29,6 +29,7 @@ alias reload='. ~/.zshrc'
 # cd into Development folder
 alias d="cd $COMPANY"
 alias s="cd $PROJECTS"
+alias m="cd ~/Code/mercabitcoin"
 
 # Fucking auto-complete :D
 alias knife="nocorrect knife"

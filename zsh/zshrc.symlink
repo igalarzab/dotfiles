@@ -1,5 +1,5 @@
 # Path
-export PATH=/usr/local/bin/:/usr/local/share/npm/bin:$DOTFILES/bin:$PATH
+export PATH=/usr/local/bin/:/usr/local/share/npm/bin:$DOTFILES/bin:/usr/texbin/:$PATH
 
 # Shortcut to this dotfiles
 export DOTFILES=$HOME/.dotfiles
