@@ -19,12 +19,6 @@
 [submodule "vim/vim.symlink/bundle/snipmate-snippets.git"]
 	path = vim/vim.symlink/bundle/snipmate-snippets.git
 	url = git://github.com/scrooloose/snipmate-snippets.git
-[submodule "vim/vim.symlink/bundle/salt-vim.git"]
-	path = vim/vim.symlink/bundle/salt-vim.git
-	url = git://github.com/saltstack/salt-vim.git
-[submodule "vim/vim.symlink/bundle/vim-less.git"]
-	path = vim/vim.symlink/bundle/vim-less.git
-	url = git://github.com/groenewege/vim-less.git
 [submodule "vim/vim.symlink/bundle/supertab.git"]
 	path = vim/vim.symlink/bundle/supertab.git
 	url = git://github.com/ervandew/supertab.git
@@ -41,9 +35,6 @@
 [submodule "zsh/ohmyzsh.git"]
 	path = zsh/ohmyzsh.git
 	url = git://github.com/robbyrussell/oh-my-zsh.git
-[submodule "vim/vim.symlink/bundle/vim-scala.git"]
-	path = vim/vim.symlink/bundle/vim-scala.git
-	url = git://github.com/derekwyatt/vim-scala.git
 [submodule "vim/vim.symlink/bundle/go.git"]
 	path = vim/vim.symlink/bundle/go.git
 	url = git://github.com/Blackrush/vim-gocode.git
