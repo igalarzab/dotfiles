@@ -33,3 +33,6 @@ alias m="cd ~/Code/mercabitcoin"
 
 # Fucking auto-complete :D
 alias knife="nocorrect knife"
+
+# Copy data to the NAS
+alias nasync="rsync --size-only --progress"
