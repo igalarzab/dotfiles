@@ -19,15 +19,21 @@ map ,se :setlocal spell spelllang=en_us<CR>
 call pathogen#infect()
 call pathogen#helptags()
 
-" Python-Mode (python improvements)
-let g:pymode_folding = 0                               " Disable python folding
-let g:pymode_run_key = '<leader>pr'                    " Key for run python code
-let g:pymode_doc_key = '<leader>pd'                    " Show documentation
-let g:pymode_lint_checker = 'pylint'                   " Check with pylint and pep8
-let g:pymode_lint_ignore = 'E0110'
-
 " Syntastic (disable python check)
-let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['python'] }
+let g:syntastic_python_checkers = ['pylint', 'pep8']
+let g:syntastic_aggregate_errors = 1
+" let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_id_checkers = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_error_symbol = '⚑'
+let g:syntastic_style_warning_symbol = '⚑'
+let g:syntastic_auto_loc_list = 2
+
+" Jedi
+let g:jedi#use_splits_not_buffers = "left"
+let g:jedi#popup_on_dot = 0
 
 " Super-Tab
 au FileType python set omnifunc=pythoncomplete#Complete
@@ -133,6 +139,8 @@ if has("autocmd")
         \   execute "normal g'\"" |
         \ endif
 endif
+
+autocmd FileType python setlocal completeopt-=preview
 
 " Strip withespaces with ,s
 function! StripWhitespace ()
