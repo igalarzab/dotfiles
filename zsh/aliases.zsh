@@ -22,6 +22,12 @@ then
     alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 fi
 
+# GNU Tar
+if [ -f "/usr/local/opt/gnu-tar/libexec/gnubin/tar" ]
+then
+    export PATH=/usr/local/opt/gnu-tar/libexec/gnubin:$PATH
+fi
+
 # Generic aliases
 alias grep="grep --color=auto"
 alias reload='. ~/.zshrc'
