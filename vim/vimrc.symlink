@@ -125,8 +125,6 @@ colorscheme solarized
 " ---------------------------------------------------------------------------
 
 " Highlight whitespaces with a red background
-set list
-set listchars=tab:>.,extends:#,nbsp:.
 if has("syntax") || has("gui_running")
     highlight WhitespaceEOL ctermbg=red guibg=red
     match WhitespaceEOL /\s\+$/
