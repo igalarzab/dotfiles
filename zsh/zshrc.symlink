@@ -8,10 +8,10 @@ export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh/ohmyzsh.git
 
 # Projects folder
-export PROJECTS=~/Code/s
+export PROJECTS=~/Development/projects
 
 # Company folder
-export COMPANY=~/Code/t
+export COMPANY=~/Development/ticketea
 
 # Set custom theme
 ZSH_CUSTOM=$DOTFILES/zsh/custom/
