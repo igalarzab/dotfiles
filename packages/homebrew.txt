@@ -3,7 +3,6 @@ git
 go
 gnu-sed
 grc
-hub
-spark
+mercurial
 todo-txt
 wget

@@ -1,2 +1,0 @@
-json
-cloudapp_api
