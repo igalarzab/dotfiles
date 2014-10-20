@@ -1,0 +1,31 @@
+{
+	"color_scheme": "Packages/User/Tomorrow-Night (SL).tmTheme",
+	"folder_exclude_patterns":
+	[
+		".git",
+		"__pycache__",
+		".vagrant"
+	],
+	"font_face": "Monaco for Powerline",
+	"font_size": 14,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"rulers":
+	[
+		80,
+		100,
+		120
+	],
+	"shift_tab_unindent": true,
+	"soda_classic_tabs": true,
+	"tab_size": 4,
+	"theme": "Soda Light 3.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"word_wrap": true
+}

@@ -5,3 +5,8 @@ todo.txt/todo.symlink/*.txt
 
 python/ipython.symlink/profile_default/history.sqlite
 python/ipython.symlink/profile_default/startup/README
+
+sublime/config/Package Control.cache
+sublime/config/Package Control.last-run
+sublime/config/Package Control.system-ca-bundle
+sublime/config/Tomorrow*.tmTheme

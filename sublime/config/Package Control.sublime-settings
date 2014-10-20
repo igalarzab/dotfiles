@@ -1,0 +1,15 @@
+{
+	"installed_packages":
+	[
+		"GitGutter",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-pep8",
+		"SublimeLinter-php",
+		"SublimeLinter-pylint",
+		"Theme - Soda",
+		"Tomorrow Color Schemes",
+		"TrailingSpaces",
+		"Vintageous"
+	]
+}

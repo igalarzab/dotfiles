@@ -41,3 +41,6 @@ alias knife="nocorrect knife"
 
 # Copy data to the NAS
 alias nasync="rsync --size-only --progress"
+
+# Ticketea
+alias tkt="~/Dropbox/Backups/ticketea/ticketea.py"
