@@ -2,8 +2,10 @@
 	"installed_packages":
 	[
 		"GitGutter",
+		"IcedCoffeeScript",
 		"SideBarEnhancements",
 		"SublimeLinter",
+		"SublimeLinter-coffee",
 		"SublimeLinter-pep8",
 		"SublimeLinter-php",
 		"SublimeLinter-pylint",
