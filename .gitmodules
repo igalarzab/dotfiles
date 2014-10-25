@@ -31,3 +31,6 @@
 [submodule "vim/vim.symlink/bundle/airline.git"]
 	path = vim/vim.symlink/bundle/airline.git
 	url = https://github.com/bling/vim-airline
+[submodule "vim/vim.symlink/bundle/supertab.git"]
+	path = vim/vim.symlink/bundle/supertab.git
+	url = https://github.com/ervandew/supertab.git
