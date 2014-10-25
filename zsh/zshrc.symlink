@@ -13,6 +13,10 @@ export PROJECTS=~/Development/projects
 # Company folder
 export COMPANY=~/Development/ticketea
 
+# Language
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # Set custom theme
 ZSH_CUSTOM=$DOTFILES/zsh/custom/
 
