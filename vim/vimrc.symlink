@@ -15,14 +15,13 @@ map ,se :setlocal spell spelllang=en_us<CR>
 " Plugins
 " ----------------------------------------------------------------------------
 
-" Pathogen (plugins under ~/.vim/bundle)
+" Pathogen
 call pathogen#infect()
 call pathogen#helptags()
 
-" Syntastic (disable python check)
+" Syntastic
 let g:syntastic_python_checkers = ['pylint', 'pep8']
 let g:syntastic_aggregate_errors = 1
-" let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_id_checkers = 1
 let g:syntastic_auto_loc_list = 2
@@ -31,10 +30,22 @@ let g:syntastic_auto_loc_list = 2
 let g:jedi#use_splits_not_buffers = "left"
 let g:jedi#popup_on_dot = 0
 
-" Super-Tab
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
+" Multi-cursors
+let g:multi_cursor_start_key='<C-d>'
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-s>'
+let g:multi_cursor_quit_key='<Esc>'
 
+" Golang
+let g:go_fmt_command = "goimports"
+
+" Airline
+let g:airline_theme='dark'
+let g:airline_powerline_fonts = 1
+
+" Solarized
+let g:solarized_termcolors=256
 
 " ---------------------------------------------------------------------------
 "  General configuration
@@ -109,11 +120,10 @@ au FileType html,htmldjango,javascript,css setlocal sw=2 ts=2 sts=2
 filetype indent plugin on
 
 " Syntax highlighting and color scheme (solarized)
-syntax enable
-set t_Co=256
-let g:solarized_termcolors=256
-set background=dark
 colorscheme solarized
+set background=dark
+set t_Co=256
+syntax enable
 
 
 " ---------------------------------------------------------------------------
