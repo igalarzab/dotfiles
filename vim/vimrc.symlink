@@ -49,6 +49,7 @@ let g:neocomplete#max_list = 5
 let g:neocomplete#max_keyword_width = 50
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_enable_fuzzy_completion=0
+set completeopt-=preview
 
 " Solarized
 let g:solarized_termcolors=256
