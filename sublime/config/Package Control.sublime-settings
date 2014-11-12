@@ -1,8 +1,10 @@
 {
 	"installed_packages":
 	[
+		"Git",
 		"GitGutter",
 		"IcedCoffeeScript",
+		"Seti_UI",
 		"SideBarEnhancements",
 		"SublimeLinter",
 		"SublimeLinter-coffee",
