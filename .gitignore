@@ -5,6 +5,7 @@ todo.txt/todo.symlink/*.txt
 
 python/ipython.symlink/profile_default/history.sqlite
 python/ipython.symlink/profile_default/startup/README
+python/ipython.symlink/profile_default/static/
 
 sublime/config/Package Control.cache
 sublime/config/Package Control.last-run
