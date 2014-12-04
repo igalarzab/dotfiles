@@ -8,11 +8,12 @@
 		".vagrant"
 	],
 	"font_face": "Monaco for Powerline",
-	"font_size": 14,
+	"font_size": 13,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
+		"Seti_UI",
 		"Vintage"
 	],
 	"line_padding_bottom": 1,
