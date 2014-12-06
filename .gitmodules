@@ -34,3 +34,6 @@
 [submodule "vim/vim.symlink/bundle/supertab.git"]
 	path = vim/vim.symlink/bundle/supertab.git
 	url = https://github.com/ervandew/supertab.git
+[submodule "vim/vim.symlink/bundle/rust.git"]
+	path = vim/vim.symlink/bundle/rust.git
+	url = https://github.com/wting/rust.vim.git

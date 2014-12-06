@@ -107,6 +107,9 @@ set shortmess=filtIoOA          " Shorten messages
 set report=0                    " Tell us about changes
 set nostartofline               " Don't jump to the start of line when scrolling
 
+" Clipboard
+set clipboard=unnamed
+
 " File settings
 set modeline                    " Activate the modeline
 set modelines=5                 " To the first and last 5 lines
