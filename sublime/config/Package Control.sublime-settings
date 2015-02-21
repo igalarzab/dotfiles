@@ -1,11 +1,16 @@
 {
+	"in_process_packages":
+	[
+	],
 	"installed_packages":
 	[
 		"Git",
 		"GitGutter",
+		"GoSublime",
 		"IcedCoffeeScript",
 		"Markdown Preview",
 		"nginx",
+		"Package Control",
 		"Seti_UI",
 		"SideBarEnhancements",
 		"SublimeLinter",

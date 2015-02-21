@@ -6,9 +6,15 @@ todo.txt/todo.symlink/*.txt
 python/ipython.symlink/profile_default/history.sqlite
 python/ipython.symlink/profile_default/startup/README
 python/ipython.symlink/profile_default/static/
+python/ipython.symlink/README
+
+sublime/config/GoSublime-aux.sublime-settings
+sublime/config/GoSublime/
 
 sublime/config/Package Control.cache
 sublime/config/Package Control.last-run
 sublime/config/Package Control.system-ca-bundle
+sublime/config/Package Control.merged-ca-bundle
+sublime/config/Package Control.user-ca-bundle
 
 doc/tags
