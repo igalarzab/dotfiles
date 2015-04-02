@@ -1,5 +1,9 @@
 {
     "env": {
-        "GOPATH": "/Users/igalarzab/.golang/global"
+        "GOPATH": "~/.golang/global",
+        "GOROOT": "/usr/local/Cellar/go/1.4.2/libexec",
+        "PATH": "$HOME/.golang/global/bin:$PATH"
     },
+    "fmt_tab_width": 4,
+    "fmt_cmd": ["goimports"]
 }

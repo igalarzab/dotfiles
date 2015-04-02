@@ -6,6 +6,7 @@
 	[
 		"Git",
 		"GitGutter",
+		"GoImports",
 		"GoSublime",
 		"IcedCoffeeScript",
 		"Markdown Preview",
@@ -15,6 +16,9 @@
 		"SideBarEnhancements",
 		"SublimeLinter",
 		"SublimeLinter-coffee",
+		"SublimeLinter-contrib-golint",
+		"SublimeLinter-contrib-gotype",
+		"SublimeLinter-contrib-govet",
 		"SublimeLinter-pep8",
 		"SublimeLinter-php",
 		"SublimeLinter-pylint",
