@@ -37,3 +37,6 @@
 [submodule "vim/vim.symlink/bundle/rust.git"]
 	path = vim/vim.symlink/bundle/rust.git
 	url = https://github.com/wting/rust.vim.git
+[submodule "vim/vim.symlink/bundle/nerdcommenter.git"]
+	path = vim/vim.symlink/bundle/nerdcommenter.git
+	url = https://github.com/scrooloose/nerdcommenter
