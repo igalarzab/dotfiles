@@ -3,7 +3,10 @@
 # Will look for the android-sdk installation in HomeBrew
 #
 
+if (( $+commands[java_home] ))
+then
 JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+fi
 
 if (( $+commands[brew] ))
 then
