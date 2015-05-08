@@ -1,3 +1,0 @@
-checkoutmanager
-pip-tools
-logcat-color

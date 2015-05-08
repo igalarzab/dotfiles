@@ -2,7 +2,8 @@ coreutils
 git
 go
 gnu-sed
-grc
 mercurial
-todo-txt
+vim --with-lua
+watch
 wget
+youtube-dl

@@ -30,12 +30,6 @@ defaults write com.apple.CrashReporter DialogType -string "none"
 echo "Check for software updates daily, not just once per week"
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
-echo "Disable Notification Center and remove the menu bar icon"
-launchctl unload \
-  -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist \
-  2> /dev/null
-
-
 echo "Disable local Time Machine snapshots"
 sudo tmutil disablelocal
 
