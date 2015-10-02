@@ -1,0 +1,18 @@
+{
+    "anaconda_tooltip_theme": "light",
+    "enable_docstrings_tooltip": false,
+    "auto_python_builder_enabled": false,
+    "pep8": true,
+    "pep8_max_line_length": 140,
+    "pep257": false,
+    "use_pylint": false,
+    "pylint_rcfile": "~/.pylintrc",
+    "validate_imports": true,
+    "complete_parameters": true,
+    "complete_all_parameters": false,
+    "display_signatures": false,
+    "anaconda_gutter_marks": true,
+    "anaconda_gutter_theme": "simple",
+    "anaconda_linter_mark_style": "outline",
+    "anaconda_linter_underlines": true,
+}
