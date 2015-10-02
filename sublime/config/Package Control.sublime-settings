@@ -1,9 +1,11 @@
 {
+	"bootstrapped": true,
 	"in_process_packages":
 	[
 	],
 	"installed_packages":
 	[
+		"Anaconda",
 		"Git",
 		"GitGutter",
 		"GoImports",
@@ -12,6 +14,8 @@
 		"Markdown Preview",
 		"nginx",
 		"Package Control",
+		"requirementstxt",
+		"Sass",
 		"Seti_UI",
 		"SideBarEnhancements",
 		"SublimeLinter",
@@ -19,7 +23,6 @@
 		"SublimeLinter-contrib-golint",
 		"SublimeLinter-contrib-gotype",
 		"SublimeLinter-contrib-govet",
-		"SublimeLinter-pep8",
 		"SublimeLinter-php",
 		"SublimeLinter-pylint",
 		"Theme - Soda",

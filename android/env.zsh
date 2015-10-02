@@ -8,8 +8,8 @@ then
 JAVA_HOME=`/usr/libexec/java_home`
 fi
 
-if (( $+commands[brew] && $+commands[android] ))
+if (( $+commands[android] ))
 then
-    export ANDROID_HOME="`brew --prefix android-sdk`"
+    export ANDROID_HOME="/usr/local/opt/android-sdk"
     export ANDROID_SDK_ROOT=$ANDROID_HOME
 fi

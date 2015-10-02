@@ -33,7 +33,6 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#auto_initialization = 0
 
-
 " Multi-cursors
 let g:multi_cursor_start_key='<C-d>'
 let g:multi_cursor_next_key='<C-d>'
@@ -50,6 +49,9 @@ let g:neocomplete#max_keyword_width = 50
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_enable_fuzzy_completion=0
 set completeopt-=preview
+
+" Neosnippet
+let g:neosnippet#snippets_directory='~/.vim/snippets'
 
 " Solarized
 let g:solarized_termcolors=256

@@ -1,6 +1,6 @@
 {
     "user": {
-        "debug": false,
+        "debug": true,
         "delay": 0.25,
         "error_color": "D02000",
         "gutter_theme": "Packages/SublimeLinter/gutter-themes/Default/Default.gutter-theme",
@@ -32,7 +32,7 @@
                 "args": [],
                 "excludes": [],
                 "ignore": "",
-                "max-line-length": null,
+                "max-line-length": 100,
                 "select": ""
             },
             "php": {
@@ -47,7 +47,7 @@
                 "enable": "",
                 "excludes": [],
                 "paths": [],
-                "rcfile": "",
+                "rcfile": "~/.pylintrc",
                 "show-codes": false
             }
         },

@@ -40,3 +40,6 @@
 [submodule "vim/vim.symlink/bundle/nerdcommenter.git"]
 	path = vim/vim.symlink/bundle/nerdcommenter.git
 	url = https://github.com/scrooloose/nerdcommenter
+[submodule "vim/vim.symlink/bundle/neosnippet.git"]
+	path = vim/vim.symlink/bundle/neosnippet.git
+	url = https://github.com/Shougo/neosnippet.vim

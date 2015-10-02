@@ -6,7 +6,9 @@
 		".git",
 		"__pycache__",
 		".vagrant",
-		".sass-cache"
+		".sass-cache",
+		"node_modules",
+		"genassets"
 	],
 	"font_face": "Monaco for Powerline",
 	"font_size": 13,
@@ -14,8 +16,8 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Vintage",
-		"Seti_UI"
+		"Seti_UI",
+		"Vintage"
 	],
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
