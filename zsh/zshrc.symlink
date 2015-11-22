@@ -30,7 +30,7 @@ DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
 # Plugins to load (custom plugins may be added to ~/.oh-my-zsh/custom/plugins/)
-plugins=(brew colored-man colorize django extract fabric gitfast git-extras git-flow golang knife osx pip python redis-cli vagrant virtualenvwrapper wd)
+plugins=(brew colored-man colorize django extract fabric git-extras git-flow golang knife osx pip python redis-cli vagrant virtualenvwrapper wd)
 
 # Source oh-my-zsh
 source $ZSH/oh-my-zsh.sh
