@@ -1,8 +1,8 @@
-# Path
-export PATH=/usr/local/bin:/usr/local/share/npm/bin:$DOTFILES/bin:/usr/texbin:$PATH
-
 # Shortcut to this dotfiles
 export DOTFILES=$HOME/.dotfiles
+
+# Path
+export PATH=/usr/local/bin:/usr/local/share/npm/bin:$DOTFILES/bin:/usr/texbin:$PATH
 
 # Path to your oh-my-zsh configuration.
 export ZSH=$DOTFILES/zsh/ohmyzsh.git
