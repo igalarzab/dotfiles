@@ -1,9 +1,13 @@
 coreutils
-git
-go
 gnu-sed
+gnupg
+go
+md5sha1sum
 mercurial
+node
+tree
 vim --with-lua
 watch
 wget
 youtube-dl
+
