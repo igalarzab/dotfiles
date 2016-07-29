@@ -1,0 +1,65 @@
+"*":
+  "atom-material-ui":
+    depth: true
+    rippleAccentColor: true
+    showTabIcons: "Show on all tabs"
+  core:
+    audioBeep: false
+    disabledPackages: [
+      "about"
+      "background-tips"
+      "bookmarks"
+      "deprecation-cop"
+      "go-to-line"
+      "metrics"
+      "open-on-github"
+      "styleguide"
+      "welcome"
+      "language-python"
+    ]
+    ignoredNames: [
+      ".git"
+      ".tx"
+      ".DS_Store"
+      "*.pyc"
+      ".gitignore"
+      "__pycache__"
+    ]
+    projectHome: "~/Development"
+    themes: [
+      "nucleus-dark-ui"
+      "atom-dark-fusion-syntax"
+    ]
+  editor:
+    autoIndentOnPaste: false
+    fontFamily: "Monaco for Powerline"
+    fontSize: 16
+    invisibles: {}
+    preferredLineLength: 100
+    tabLength: 4
+  "exception-reporting":
+    userId: "4a37235a-e117-0b9b-9c87-2f3364facc68"
+  "git-diff":
+    showIconsInEditorGutter: true
+  "go-plus":
+    goPath: "~/.golang/global"
+  linter:
+    gutterPosition: "Left"
+    showErrorPanel: false
+    showErrorTabProject: false
+    statusIconScope: "File"
+  "linter-php": {}
+  "linter-pylint":
+    executable: "~/.virtualenvs/atom/bin/pylint"
+    pythonPath: "~/.virtualenvs/atom"
+    rcFile: "~/.pylintrc"
+  "markdown-preview": {}
+  "merge-conflicts": {}
+  "one-dark-ui": {}
+  "spell-check": {}
+  "tree-view":
+    hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
+  "vim-mode": {}
+  welcome:
+    showOnStartup: false
