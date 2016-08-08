@@ -16,12 +16,6 @@ alias ll="ls -l"
 alias la="ls -A"
 alias lla="ls -lA"
 
-# MacVIM
-if [ -f "/Applications/MacVim.app/Contents/MacOS/Vim" ]
-then
-    alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-fi
-
 # GNU Tar
 if [ -f "/usr/local/opt/gnu-tar/libexec/gnubin/tar" ]
 then
@@ -36,11 +30,5 @@ alias reload='. ~/.zshrc'
 alias d="cd $COMPANY"
 alias s="cd $PROJECTS"
 
-# Fucking auto-complete :D
-alias knife="nocorrect knife"
-
 # Copy data to the NAS
 alias nasync="rsync --size-only --progress"
-
-# Ticketea
-alias tkt="~/Dropbox/Backups/ticketea/ticketea.py"

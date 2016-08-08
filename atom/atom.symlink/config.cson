@@ -36,6 +36,7 @@
     fontSize: 16
     invisibles: {}
     preferredLineLength: 100
+    softWrap: true
     tabLength: 4
   "exception-reporting":
     userId: "4a37235a-e117-0b9b-9c87-2f3364facc68"
@@ -57,6 +58,8 @@
   "merge-conflicts": {}
   "one-dark-ui": {}
   "spell-check": {}
+  "sync-settings":
+    _analyticsUserId: "3c1ae906-b17c-4623-8c38-79b04ad1318a"
   "tree-view":
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true

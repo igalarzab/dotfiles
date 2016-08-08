@@ -11,7 +11,7 @@ export ZSH=$DOTFILES/zsh/ohmyzsh.git
 export PROJECTS=~/Development/projects
 
 # Company folder
-export COMPANY=~/Development/ticketea
+export COMPANY=~/Development/tw
 
 # Language
 export LC_ALL=en_US.UTF-8
@@ -30,7 +30,7 @@ DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
 # Plugins to load (custom plugins may be added to ~/.oh-my-zsh/custom/plugins/)
-plugins=(brew colored-man colorize django extract fabric git-extras git-flow golang knife osx pip python redis-cli vagrant virtualenvwrapper wd)
+plugins=(brew colored-man colorize django extract git-extras git-flow golang osx pip python redis-cli vagrant virtualenvwrapper wd)
 
 # Source oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -51,6 +51,9 @@ then
   source ~/.localrc
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
+# iTerm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# SDKman integration (must be at the end)
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
