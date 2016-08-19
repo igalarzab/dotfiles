@@ -24,6 +24,7 @@
       "*.pyc"
       ".gitignore"
       "__pycache__"
+      "target"
     ]
     projectHome: "~/Development"
     themes: [
@@ -33,7 +34,6 @@
   editor:
     autoIndentOnPaste: false
     fontFamily: "Monaco for Powerline"
-    fontSize: 16
     invisibles: {}
     preferredLineLength: 100
     softWrap: true
@@ -42,6 +42,8 @@
     userId: "4a37235a-e117-0b9b-9c87-2f3364facc68"
   "git-diff":
     showIconsInEditorGutter: true
+  "go-debug":
+    panelInitialVisible: false
   "go-plus":
     goPath: "~/.golang/global"
   linter:
@@ -57,6 +59,9 @@
   "markdown-preview": {}
   "merge-conflicts": {}
   "one-dark-ui": {}
+  "package-sync":
+    createOnChange: true
+    forceOverwrite: true
   "spell-check": {}
   "sync-settings":
     _analyticsUserId: "3c1ae906-b17c-4623-8c38-79b04ad1318a"
@@ -66,3 +71,5 @@
   "vim-mode": {}
   welcome:
     showOnStartup: false
+  whitespace:
+    ensureSingleTrailingNewline: false
