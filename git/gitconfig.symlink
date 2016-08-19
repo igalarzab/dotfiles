@@ -45,6 +45,8 @@
     added     = green
     changed   = yellow
     untracked = red
+[color "diff"]
+    whitespace = red reverse
 [mergetool]
     keepBackup = false
 [difftool]
