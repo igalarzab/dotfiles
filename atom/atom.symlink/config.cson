@@ -34,6 +34,7 @@
   editor:
     autoIndentOnPaste: false
     fontFamily: "Monaco for Powerline"
+    fontSize: 16
     invisibles: {}
     preferredLineLength: 100
     softWrap: true
