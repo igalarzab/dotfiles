@@ -1,6 +1,6 @@
 # Sample gitconfig
 [user]
-    name         = Jose Ignacio Galarza
+    name         = Jose Galarza
     email        = igalarzab@gmail.com
     signingkey   = 9B2489CA
     helper       = osxkeychain
@@ -14,11 +14,14 @@
     st       = status -s
     ci       = commit
     br       = branch
+    diff     = diff --compaction-heuristic
     grep     = grep -Ii
     ready    = rebase -i @{u}
     ignored  = ls-files --others -i --exclude-standard
-    find     = !git ls-files | grep -i --color
+    please   = push --force-with-lease
+    commend  = commit --amend --no-edit
 
+    find     = !git ls-files | grep -i --color
     aliases  = !git config -l | grep alias | cut -c 7-
     smodpull = submodule foreach git pull
 
