@@ -47,6 +47,7 @@
     panelInitialVisible: false
   "go-plus":
     goPath: "~/.golang/global"
+    panelDisplayMode: "closed"
   linter:
     gutterPosition: "Left"
     showErrorPanel: false
@@ -74,3 +75,7 @@
     showOnStartup: false
   whitespace:
     ensureSingleTrailingNewline: false
+".editorconfig.source":
+  editor:
+    preferredLineLength: 100
+    tabLength: 4

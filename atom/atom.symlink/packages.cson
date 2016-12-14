@@ -3,6 +3,7 @@ packages: [
   "atom-grails"
   "autocomplete-go"
   "builder-go"
+  "editorconfig"
   "ex-mode"
   "git-blame"
   "go-config"
