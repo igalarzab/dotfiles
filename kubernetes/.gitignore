@@ -1,0 +1,2 @@
+minikube.symlink/*
+!minikube.symlink/config
