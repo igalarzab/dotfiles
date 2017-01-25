@@ -14,7 +14,6 @@
     st       = status -s
     ci       = commit
     br       = branch
-    diff     = diff --compaction-heuristic
     grep     = grep -Ii
     ready    = rebase -i @{u}
     ignored  = ls-files --others -i --exclude-standard
@@ -58,6 +57,7 @@
 [apply]
     whitespace = nowarn
 [merge]
+    conflictstyle = diff3
     tool = vimdiff
 [mergetool]
     keepBackup = false
@@ -71,3 +71,9 @@
     default = simple
 [pull]
     ff = only
+[commit]
+	verbose = true
+[diff]
+	indentHeuristic = true
+[submodule]
+	fetchJobs = 4

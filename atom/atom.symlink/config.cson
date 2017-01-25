@@ -16,6 +16,7 @@
       "styleguide"
       "welcome"
       "language-python"
+      "language-gfm"
     ]
     ignoredNames: [
       ".git"

@@ -16,6 +16,8 @@ packages: [
   "gorename"
   "language-groovy"
   "language-latex"
+  "language-markdown"
+  "language-terraform"
   "linter"
   "linter-php"
   "linter-pylint"
