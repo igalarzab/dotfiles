@@ -1,0 +1,17 @@
+1password
+android-file-transfer
+atom
+caffeine
+clipy
+docker
+iterm2
+mpv
+skype
+polymail
+slack
+spectacle
+spotify
+synthesia
+the-unarchiver
+transmission
+whatsapp
