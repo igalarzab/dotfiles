@@ -2,9 +2,11 @@ coreutils
 gnu-sed
 gnupg
 go
+icdiff
 md5sha1sum
 mercurial
 node
+pinentry
 tree
 vim --with-lua
 watch

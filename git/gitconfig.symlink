@@ -20,6 +20,7 @@
     please   = push --force-with-lease
     commend  = commit --amend --no-edit
     cammend  = commit --amend --no-edit --all
+    stashall = stash save --include-untracked
 
     find     = !git ls-files | grep -i --color
     aliases  = !git config -l | grep alias | cut -c 7-
@@ -57,6 +58,7 @@
 [apply]
     whitespace = nowarn
 [merge]
+    ff = only
     conflictstyle = diff3
     tool = vimdiff
 [mergetool]
@@ -69,11 +71,22 @@
     protocol = https
 [push]
     default = simple
+    followTags = true
 [pull]
     ff = only
 [commit]
+    gpgSign = true
 	verbose = true
 [diff]
+    tool = icdiff
 	indentHeuristic = true
 [submodule]
-	fetchJobs = 4
+    fetchJobs = 4
+[status]
+    showUntrackedFiles = all
+[transfer]
+    fsckobjects = true
+[difftool "icdiff"]
+  cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
+[pager]
+  difftool = true

@@ -35,7 +35,7 @@
   editor:
     autoIndentOnPaste: false
     fontFamily: "Monaco for Powerline"
-    fontSize: 16
+    fontSize: 17
     invisibles: {}
     preferredLineLength: 100
     softWrap: true
@@ -49,16 +49,13 @@
   "go-plus":
     goPath: "~/.golang/global"
     panelDisplayMode: "closed"
-  linter:
-    gutterPosition: "Left"
-    showErrorPanel: false
-    showErrorTabProject: false
-    statusIconScope: "File"
+  linter: {}
   "linter-php": {}
   "linter-pylint":
-    executable: "~/.virtualenvs/atom/bin/pylint"
+    executablePath: "~/.virtualenvs/atom/bin/pylint"
     pythonPath: "~/.virtualenvs/atom"
     rcFile: "~/.pylintrc"
+  "linter-ui-default": {}
   "markdown-preview": {}
   "merge-conflicts": {}
   "one-dark-ui": {}
