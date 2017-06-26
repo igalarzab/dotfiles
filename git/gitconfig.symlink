@@ -75,7 +75,7 @@
 [pull]
     ff = only
 [commit]
-    gpgSign = true
+    #gpgSign = true
 	verbose = true
 [diff]
     tool = icdiff
