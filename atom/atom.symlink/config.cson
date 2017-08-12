@@ -27,6 +27,7 @@
       "__pycache__"
       "target"
     ]
+    packagesWithKeymapsDisabled: []
     projectHome: "~/Development"
     themes: [
       "nucleus-dark-ui"
@@ -49,6 +50,8 @@
     goPath: "~/.golang/global"
     panelDisplayMode: "closed"
   linter: {}
+  "linter-eslint":
+    fixOnSave: true
   "linter-php": {}
   "linter-pylint":
     executablePath: "~/.virtualenvs/atom/bin/pylint"

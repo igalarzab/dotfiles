@@ -1,9 +1,12 @@
+atom/atom.symlink/github.cson
 atom/atom.symlink/projects.cson
 
-vim/vim.symlink/.netrwhist
-vim/vim.symlink/spell
+mpv/watch_later
 
 python/ipython.symlink/profile_default/history.sqlite
 python/ipython.symlink/profile_default/startup/README
 python/ipython.symlink/profile_default/static/
 python/ipython.symlink/README
+
+vim/vim.symlink/.netrwhist
+vim/vim.symlink/spell
