@@ -12,6 +12,7 @@ packages: [
   "language-terraform"
   "linter"
   "linter-eslint"
+  "linter-js-yaml"
   "linter-pylint"
   "linter-ui-default"
   "MagicPython"
@@ -21,5 +22,6 @@ packages: [
   "project-manager"
   "release-notes"
   "split-diff"
+  "terraform-fmt"
   "vim-mode"
 ]

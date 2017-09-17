@@ -34,7 +34,6 @@
       "atom-dark-fusion-syntax"
     ]
   editor:
-    autoIndentOnPaste: false
     fontFamily: "Monaco for Powerline"
     invisibles: {}
     preferredLineLength: 100
