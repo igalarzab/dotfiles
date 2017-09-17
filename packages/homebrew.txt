@@ -3,6 +3,7 @@ gnu-sed
 gnupg
 go
 icdiff
+kubectx --with-short-names
 md5sha1sum
 mercurial
 node
@@ -12,4 +13,3 @@ vim --with-lua
 watch
 wget
 youtube-dl
-
