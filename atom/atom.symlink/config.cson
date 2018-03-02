@@ -38,7 +38,6 @@
     invisibles: {}
     preferredLineLength: 100
     softWrap: true
-    tabLength: 4
   "exception-reporting":
     userId: "4a37235a-e117-0b9b-9c87-2f3364facc68"
   "git-diff":
@@ -46,7 +45,24 @@
   "go-debug":
     panelInitialVisible: false
   "go-plus":
+    autocomplete: {}
     goPath: "~/.golang/global"
+    guru: {}
+    lint:
+      args: [
+        "--vendor"
+        "--disable-all"
+        "--enable=vet"
+        "--enable=vetshadow"
+        "--enable=golint"
+        "--enable=ineffassign"
+        "--enable=goconst"
+        "--tests"
+        "--json"
+        "--exclude=should\\shave\\scomment"
+      ]
+    panel:
+      displayMode: "closed"
     panelDisplayMode: "closed"
   linter: {}
   "linter-eslint":
