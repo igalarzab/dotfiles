@@ -1,3 +1,4 @@
+autojump
 coreutils
 gnu-sed
 gnupg
@@ -6,10 +7,12 @@ icdiff
 kubectx --with-short-names
 md5sha1sum
 mercurial
+neovim
 node
 pinentry
+pyenv
+pyenv-virtualenv
 tree
-vim --with-lua
 watch
 wget
 youtube-dl
