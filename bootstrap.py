@@ -14,16 +14,19 @@ import os
 SELF_PATH = os.path.dirname(os.path.abspath(__file__))
 
 
-def create_symlinks():
+def create_symlinks(source_extension, target_folder, hidden=False):
     'Create the symlinks on user home'
-    symlinks = glob.glob('*/*.symlink')
+    symlinks = glob.glob('*/' + source_extension)
     always_overwrite = False
 
     for symlink in symlinks:
-	origin = os.path.join(SELF_PATH, symlink)
+        origin = os.path.join(SELF_PATH, symlink)
+        filename = os.path.splitext(os.path.basename(symlink))[0]
 
-        filename = '.' + os.path.splitext(os.path.basename(symlink))[0]
-        destine = os.path.expanduser(os.path.join('~', filename))
+        if hidden:
+            filename = '.' + filename
+
+        destine = os.path.expanduser(os.path.join(target_folder, filename))
 
         if os.path.lexists(destine):
 
@@ -47,7 +50,7 @@ def create_symlinks():
 def confirm_overwrite(path):
     'Ask the user to overwrite a file'
     while True:
-        answer = raw_input('%s exists, overwrite it? (a/y/n) ' %
+        answer = input('%s exists, overwrite it? (a/y/n) ' %
                            os.path.basename(path))
 
         if answer in ('y', 'n', 'a'):
@@ -58,4 +61,5 @@ def confirm_overwrite(path):
 
 if __name__ == '__main__':
     os.chdir(SELF_PATH)
-    create_symlinks()
+    create_symlinks('*.symlink', '~', True)
+    create_symlinks('*.configsymlink', '~/.config')
