@@ -1,5 +1,13 @@
 alias kc=kubectl
 
+kcs() {
+    kubectl --namespace=kube-system $@
+}
+
+kca() {
+    kubectl $@ --all-namespaces
+}
+
 if [ $commands[stern] ]; then
   source <(stern --completion=zsh)
 
@@ -7,8 +15,3 @@ if [ $commands[stern] ]; then
     stern --all-namespaces --since 10m --tail 10 $@
   }
 fi
-
-
-kcs() {
-    kubectl --namespace=kube-system $@
-}
