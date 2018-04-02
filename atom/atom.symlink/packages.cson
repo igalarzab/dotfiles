@@ -16,7 +16,7 @@ packages: [
   "linter-eslint"
   "linter-js-yaml"
   "linter-mjml"
-  "linter-pylint"
+  "linter-pylama"
   "linter-ui-default"
   "MagicPython"
   "mjml-preview"
