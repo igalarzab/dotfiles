@@ -1,8 +1,8 @@
 alias viclean='find . -iname ".*.sw*" -delete'
 
-# MacVIM
-if [ -f "/Applications/MacVim.app/Contents/MacOS/Vim" ]
+# NeoVIM
+if (( $+commands[nvim] ))
 then
-    alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+    alias vim=nvim
 fi
 

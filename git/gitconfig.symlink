@@ -8,7 +8,7 @@
     user         = igalarzab
 [core]
     excludesfile = ~/.gitignore
-    editor       = vim
+    editor       = nvim
 [alias]
     co       = checkout
     st       = status -s

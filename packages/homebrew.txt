@@ -1,5 +1,8 @@
 autojump
 coreutils
+ctags-exuberant
+fd
+fzf
 gnu-sed
 gnupg
 go
