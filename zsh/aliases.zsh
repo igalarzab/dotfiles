@@ -19,10 +19,3 @@ alias lla="ls -lA"
 # Generic aliases
 alias grep="grep --color=auto"
 alias reload='. ~/.zshrc'
-
-# cd into Development folder
-alias d="cd $COMPANY"
-alias s="cd $PROJECTS"
-
-# Copy data to the NAS
-alias nasync="rsync --size-only --progress"
