@@ -138,8 +138,8 @@ let g:fzf_action = {
 nnoremap <Leader>tr :NERDTreeToggle<CR>
 let g:NERDTreeCascadeSingleChildDir=1
 let g:NERDTreeCascadeOpenSingleChildDir=1
-let g:NERDTreeMapOpenSplit='ctrl-h'
-let g:NERDTreeMapOpenVSplit='ctrl-v'
+let g:NERDTreeMapOpenSplit='h'
+let g:NERDTreeMapOpenVSplit='v'
 
 " Tagbar
 nnoremap <Leader>ta :TagbarToggle<CR>
