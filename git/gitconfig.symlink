@@ -15,12 +15,10 @@
     ci       = commit
     br       = branch
     grep     = grep -Ii
-    ready    = rebase -i @{u}
     ignored  = ls-files --others -i --exclude-standard
     please   = push --force-with-lease
     commend  = commit --amend --no-edit
     cammend  = commit --amend --no-edit --all
-    stashall = stash save --include-untracked
     todo     = grep -IiE "TODO|FIXME"
 
     find     = !git ls-files | grep -i --color
@@ -31,16 +29,9 @@
     unassume = update-index --no-assume-unchanged
     assumed  = !git ls-files -v | grep ^h | cut -c 3-
 
-    credit   = !$HOME/.dotfiles/git/functions/git-credit
-    wtf      = !$HOME/.dotfiles/git/functions/git-wtf
-    rank     = !$HOME/.dotfiles/git/functions/git-rank-contributers
-    merged   = !$HOME/.dotfiles/git/functions/git-local-merged
-    rbpull   = !$HOME/.dotfiles/git/functions/git-reup
-
-    count    = shortlog -sn
-    filelog  = log -u
-    ls       = !$HOME/.dotfiles/git/functions/git-ls
-    ll       = !$HOME/.dotfiles/git/functions/git-ll
+    ls       = !$DOTFILES/git/functions/git-ls
+    ll       = !$DOTFILES/git/functions/git-ll
+    wtf      = !$DOTFILES/git/functions/git-wtf
 [color]
     ui     = true
     diff   = auto
@@ -76,7 +67,6 @@
 [pull]
     ff = only
 [commit]
-    #gpgSign = true
 	verbose = true
 [diff]
     tool = icdiff
