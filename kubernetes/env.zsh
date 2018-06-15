@@ -9,5 +9,5 @@ kca() {
 }
 
 klogs () {
-    stern --all-namespaces --since 10m --tail 10 $@
+    stern --all-namespaces --since 10m --tail 100 $@
 }
