@@ -1,7 +1,0 @@
-atom/atom.symlink/github.cson
-atom/atom.symlink/projects.cson
-
-mpv/mpv.configsymlink/watch_later
-
-vim/nvim.configsymlink/plugged/
-vim/nvim.configsymlink/.netrwhist
