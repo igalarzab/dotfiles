@@ -1,2 +1,2 @@
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:~/.golang/global/bin
 
