@@ -1,1 +1,1 @@
-export GOPATH=~/.golang/global
+export GOPATH=~/.golang/
