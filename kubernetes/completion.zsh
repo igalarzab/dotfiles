@@ -3,8 +3,8 @@ if (( $+commands[stern] )); then
 fi
 
 # Set the iterm2 badge
-if [[ -z "${ITERM_SHELL_INTEGRATION}" ]]; then
-    if (( $+commands[kubectl] )); then
+if (( $+commands[kubectl] )); then
+    function iterm2_print_user_vars() {
         iterm2_set_user_var kubeContext $(kubectl config current-context)
-    fi
+    }
 fi
