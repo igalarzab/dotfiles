@@ -12,7 +12,7 @@ def rename(path, name):
         if filename.startswith('.'):
             continue
 
-        dest_name = '{filename} {idx}{extension}'.format(
+        dest_name = '{filename}{idx}{extension}'.format(
             filename=name,
             idx=str(idx).zfill(padding),
             extension=os.path.splitext(filename)[1].lower(),
