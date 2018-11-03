@@ -30,11 +30,11 @@ Plug 'wellle/targets.vim'                                     " Add additional t
 
 " Languages
 Plug 'hashivim/vim-terraform'                                 " Terraform integration
-Plug 'sheerun/vim-polyglot'                                   " Linting support for multiple languages
+" Plug 'sheerun/vim-polyglot'                                   " Syntax support for multiple languages
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}   " Auto Completion
-Plug 'w0rp/ale'                                               " Linter
 Plug 'zchee/deoplete-go', {'do': 'make'}                      " Auto Completion: Go
 Plug 'zchee/deoplete-jedi'                                    " Auto Completion: Python
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}              " Go
 
 call plug#end()                                               " Finished!
 
@@ -149,6 +149,11 @@ let g:terraform_fmt_on_save=1
 
 " Neoplete
 let g:deoplete#enable_at_startup=1
+
+" vim-go
+let g:go_auto_sameids = 1
+let g:go_auto_type_info = 1
+let g:go_metalinter_autosave = 0
 
 " ---------------------------------------------------------------------------
 " Format configuration

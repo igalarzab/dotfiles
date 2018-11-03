@@ -1,4 +1,3 @@
-export PIPENV_SHELL_COMPAT=1
 export PIPENV_SHELL_FANCY=1
 
 _togglePipenvShell() {
