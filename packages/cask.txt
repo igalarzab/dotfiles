@@ -1,8 +1,8 @@
 caffeine
 clipy
 docker
+iina
 iterm2
-mpv
 skype
 slack
 spectacle
