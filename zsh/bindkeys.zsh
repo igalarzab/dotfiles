@@ -2,8 +2,6 @@
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 
-bindkey '^R' history-incremental-search-backward
-
 # Better history
 # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
 autoload -U up-line-or-beginning-search
