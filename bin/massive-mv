@@ -4,7 +4,7 @@ import os
 import sys
 
 def rename(path, name):
-    filenames = os.listdir(path)
+    filenames = sorted(os.listdir(path))
     padding = len(str(len(filenames)))
     idx = 1
 
