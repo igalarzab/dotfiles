@@ -29,12 +29,13 @@ Plug 'tpope/vim-fugitive'                                     " Git plugin
 Plug 'wellle/targets.vim'                                     " Add additional text objects
 
 " Languages
-Plug 'hashivim/vim-terraform'                                 " Terraform integration
-" Plug 'sheerun/vim-polyglot'                                   " Syntax support for multiple languages
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}   " Auto Completion
-Plug 'zchee/deoplete-go', {'do': 'make'}                      " Auto Completion: Go
-Plug 'zchee/deoplete-jedi'                                    " Auto Completion: Python
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}              " Go
+Plug 'hashivim/vim-terraform'                                 " Terraform integration
+
+" Auto Completion
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}   " Auto Completion
+Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}         " Auto Completion: Go
+Plug 'zchee/deoplete-jedi'                                    " Auto Completion: Python
 
 call plug#end()                                               " Finished!
 
@@ -151,9 +152,12 @@ let g:terraform_fmt_on_save=1
 let g:deoplete#enable_at_startup=1
 
 " vim-go
-let g:go_auto_sameids = 1
+autocmd BufWritePre *.go :GoBuild
 let g:go_auto_type_info = 1
-let g:go_metalinter_autosave = 0
+let g:go_metalinter_autosave = 1
+let g:go_fmt_command = "goimports"
+let g:go_metalinter_autosave_enabled = ["vet", "golint", "errcheck"]
+
 
 " ---------------------------------------------------------------------------
 " Format configuration

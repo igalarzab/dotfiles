@@ -1,3 +1,6 @@
+#krew
+export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin"
+
 alias kc=kubectl
 
 kcs() {
