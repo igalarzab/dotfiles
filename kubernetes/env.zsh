@@ -2,6 +2,7 @@
 export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin"
 
 alias kc=kubectl
+alias kctx=kubectx
 
 kcs() {
     kubectl --namespace=kube-system $@
