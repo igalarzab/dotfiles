@@ -1,9 +1,0 @@
-.apm/
-.node-gyp/
-blob-store/
-compile-cache/
-packages/
-storage/
-
-github.cson
-projects.cson

@@ -3,7 +3,7 @@
 # Bootstrap script
 # ===========================================
 #
-#  Jose Ignacio Galarza <igalarzab@gmail.com>
+#  Jose Galarza <igalarzab@gmail.com>
 #
 
 import glob
