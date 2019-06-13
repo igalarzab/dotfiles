@@ -1,6 +1,6 @@
 The MIT License
 
-Copyright (c) Jose Ignacio Galarza, @igalarzab, http://sysvar.net
+Copyright (c) Jose Galarza, @igalarzab
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
