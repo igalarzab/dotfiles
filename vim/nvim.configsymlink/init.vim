@@ -53,6 +53,9 @@ set termguicolors               " Colors!
 syntax on                       " Activate syntax
 colorscheme onehalfdark         " Use the cool dark theme
 
+" Key remaps
+imap § <esc>
+
 " Format settings
 set nowrap                      " No wrap lines
 set tabstop=4                   " A tab is four spaces
