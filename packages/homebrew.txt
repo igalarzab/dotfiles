@@ -2,14 +2,13 @@ autojump
 coreutils
 ctags-exuberant
 fd
+fish
 fzf
 gnu-sed
 gnupg
 go
 icdiff
-kubectx --with-short-names
-md5sha1sum
-mercurial
+kubectx
 neovim
 node
 pinentry
