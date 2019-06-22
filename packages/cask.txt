@@ -1,7 +1,6 @@
 alfred
 bartender
 caption
-clipy
 docker
 iina
 intellij-idea
