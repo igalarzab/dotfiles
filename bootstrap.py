@@ -8,6 +8,7 @@
 
 import glob
 import os
+import six
 
 
 # Path to this file
@@ -50,8 +51,7 @@ def create_symlinks(source_extension, target_folder, hidden=False):
 def confirm_overwrite(path):
     'Ask the user to overwrite a file'
     while True:
-        answer = input('%s exists, overwrite it? (a/y/n) ' %
-                           os.path.basename(path))
+        answer = six.moves.input('%s exists, overwrite it? (a/y/n) ' % os.path.basename(path))
 
         if answer in ('y', 'n', 'a'):
             break
@@ -61,5 +61,6 @@ def confirm_overwrite(path):
 
 if __name__ == '__main__':
     os.chdir(SELF_PATH)
+
     create_symlinks('*.symlink', '~', True)
     create_symlinks('*.configsymlink', '~/.config')
