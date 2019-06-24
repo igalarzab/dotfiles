@@ -1,14 +1,12 @@
 # On mac, if coreutils are installed...
-if (( $+commands[gls] ))
-then
-  alias ls="gls --color=tty"
-fi
+if type -q gls
+  #alias ls="gls --color"
+end
 
 # On mac, if coreutils are installed...
-if (( $+commands[gsed] ))
-then
+if type -q gsed
   alias sed="gsed"
-fi
+end
 
 # ls aliases
 alias l="ls"
@@ -18,4 +16,4 @@ alias lla="ls -lA"
 
 # Generic aliases
 alias grep="grep --color=auto"
-alias reload='. ~/.zshrc'
+

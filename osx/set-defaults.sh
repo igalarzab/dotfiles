@@ -39,36 +39,23 @@ sudo pmset -a sms 0
 echo "Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)"
 defaults write com.apple.screencapture type -string "png"
 
-echo "Set HOME as the default location for new Finder windows"
-defaults write com.apple.finder NewWindowTarget -string "PfDe"
-defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
-
 echo "Allow text selection in Quick Look"
 defaults write com.apple.finder QLEnableTextSelection -bool true
 
 echo "When performing a search, search the current folder by default"
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
-echo "Disable the warning when changing a file extension"
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-
-echo "Show File Extensions"
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-
 echo "Avoid creating .DS_Store files on network volumes"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 echo "Hide directories in $HOME"
-chflags hidden ~/VirtualBox ~/Library ~/Dropbox
+chflags hidden ~/Google\ Drive ~/Library
 
 echo "Show indicator lights for open applications in the Dock"
 defaults write com.apple.dock show-process-indicators -bool true
 
 echo "Disable Dashboard"
 defaults write com.apple.dashboard mcx-disabled -bool true
-
-echo "Don't show Dashboard as a Space"
-defaults write com.apple.dock dashboard-in-overlay -bool true
 
 echo "Don't automatically rearrange Spaces based on most recent use"
 defaults write com.apple.dock mru-spaces -bool false
@@ -91,9 +78,6 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 echo "Set a blazingly fast keyboard repeat rate"
 defaults write NSGlobalDomain KeyRepeat -float 0.000000000001
-
-echo "Enable AirDrop over Ethernet and on unsupported Macs running Lion"
-defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
 echo "Prevent Time Machine from prompting to use new hard drives as backup volume"
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true

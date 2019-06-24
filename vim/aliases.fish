@@ -1,8 +1,7 @@
 alias viclean='find . -iname ".*.sw*" -delete'
 
 # NeoVIM
-if (( $+commands[nvim] ))
-then
+if type -q nvim
     alias vim=nvim
-fi
+end
 

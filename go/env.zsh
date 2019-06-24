@@ -1,1 +1,0 @@
-export GOPATH=~/.golang/
