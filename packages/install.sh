@@ -4,12 +4,17 @@
 HOMEBREW=0
 GEM=0
 NPM=0
+PIP=0
+
+# Other vars
+PYTHON_VERSION=3.7.3
 
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     HOMEBREW=1
     GEM=1
     NPM=1
+    PIP=1
 else
     echo "OS not supported"
     exit 1
@@ -35,5 +40,16 @@ fi
 if [[ "$NPM" == "1" ]]; then
     for app in $(cat npm.txt); do
         npm install -g $app
+    done
+fi
+
+if [[ "$PIP" == "1" ]]; then
+    pyenv install $PYTHON_VERSION
+    pyenv global $PYTHON_VERSION
+
+    pyenv virtualenv $PYTHON_VERSION neovim
+
+    for app in $(cat pip.txt); do
+        pip install $app
     done
 fi
