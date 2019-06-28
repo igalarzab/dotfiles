@@ -18,5 +18,6 @@ pyenv-virtualenv
 stern
 tree
 watch
+warrensbox/tap/tfswitch
 wget
 youtube-dl
