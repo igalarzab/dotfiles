@@ -1,0 +1,186 @@
+" ---------------------------------------------------------------------------
+"  NeoVIM config
+" ---------------------------------------------------------------------------
+
+let g:loaded_python_provider = 1                                        " Disable Python 2 support
+let g:python3_host_prog = expand('~/.pyenv/versions/neovim/bin/python') " Path of the python binary
+
+
+" ---------------------------------------------------------------------------
+"  Plugins
+" ---------------------------------------------------------------------------
+
+call plug#begin('~/.config/nvim/plugged')                     " Start list of plugin
+
+" UI
+Plug 'sonph/onehalf', {'rtp': 'vim/'}                         " An awesome dark theme
+Plug 'vim-airline/vim-airline'                                " Adds more info to the bottom bar
+
+" Utilities
+Plug 'airblade/vim-gitgutter'                                 " Show Git info in the gutter
+Plug 'editorconfig/editorconfig-vim'                          " Parse .editorconfig files
+Plug 'jiangmiao/auto-pairs'                                   " Add/Delete pairs together
+Plug 'junegunn/fzf'                                           " Fuzzy finder
+Plug 'majutsushi/tagbar'                                      " Show list of tags in the file
+Plug 'scrooloose/nerdtree'                                    " Filesystem tree in the sidebar
+Plug 'scrooloose/nerdcommenter'                               " Comment blocks of code
+Plug 'tpope/vim-sensible'                                     " Sensible defaults
+Plug 'tpope/vim-fugitive'                                     " Git plugin
+Plug 'wellle/targets.vim'                                     " Add additional text objects
+
+" Languages
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}              " Go
+Plug 'hashivim/vim-terraform'                                 " Terraform integration
+
+" Auto Completion
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Auto Completion
+else
+  Plug 'Shougo/deoplete.nvim'                                   " Auto Completion
+  Plug 'roxma/nvim-yarp'                                        " Vim/NeoVIM compatibility
+  Plug 'roxma/vim-hug-neovim-rpc'                               " Vim/NeoVIM compatibility
+endif
+
+Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}         " Auto Completion: Go
+Plug 'zchee/deoplete-jedi'                                    " Auto Completion: Python
+
+call plug#end()                                               " Finished!
+
+
+" ---------------------------------------------------------------------------
+"  General configuration
+" ---------------------------------------------------------------------------
+
+" General
+let mapleader=","               " Lead with ,
+set mouse=a                     " Let's activate the mouse
+
+" Theme
+set termguicolors               " Colors!
+syntax on                       " Activate syntax
+colorscheme onehalfdark         " Use the cool dark theme
+
+" Key remaps
+imap § <esc>
+
+" Format settings
+set nowrap                      " No wrap lines
+set tabstop=4                   " A tab is four spaces
+set softtabstop=4               " Also softtab
+set expandtab                   " Expands tab
+set backspace=indent,eol,start  " Allow backspacing over everything
+set scrolloff=4                 " Keep 4 lines off the edges of the screen
+set autoindent                  " Always set autoindenting on
+set smartindent                 " Smart indent
+set copyindent                  " Copy the previous indentation
+set number                      " Always show line number
+set relativenumber              " But be relative ones
+set shiftwidth=4                " Four spaces on indenting
+set shiftround                  " Use multiple of swidth when indenting with <>
+set showmatch                   " Set show matching parenthesis
+set ignorecase                  " Ignore case when searching
+set smartcase                   " Ignore case if pattern is all lowercase
+set hlsearch                    " Highlight search terms
+set incsearch                   " Show search matches as you type
+set title                       " Change the terminal's title
+set visualbell                  " Don't beep
+set noerrorbells                " I said don't beep
+set showmode                    " Show actual status
+set showcmd                     " Show commands
+set ruler                       " Show position info
+set laststatus=2                " Show the status line always
+set ch=2                        " Command line height
+set backspace=2                 " Backspacing over everything in insert mode
+set whichwrap+=<,>,h,l,[,]      " Backspace and cursor keys wrap to
+set shortmess=filtIoOA          " Shorten messages
+set report=0                    " Tell us about changes
+set nostartofline               " Don't jump to the start of line when scrolling
+
+" Clipboard
+set clipboard=unnamed           " Use system clipboard
+
+" File settings
+set modelines=0                 " Disable modelines, they are not used anymore
+
+" History settings
+set history=1000                " Remember more commands and search history
+set undolevels=1000             " Use many muchos levels of undo
+
+" Crap settings
+set formatoptions+=cqron1       " Set auto-crap of lines
+set textwidth=120               " Set 120 chars to the width
+set fileformats=unix,mac,dos    " Autodetect end of line format
+
+" Menu formatting
+set wildmode=list:longest,full
+set wildchar=<TAB>
+set wildignore=*.swp,*.bak,*.pyc,*.pyo,*.class,*.o
+
+
+" ---------------------------------------------------------------------------
+"  Shorcuts
+" ---------------------------------------------------------------------------
+
+" ,w -> Strip whitespaces
+nnoremap <Leader>ws :%s/ \+$//gc<CR>
+
+" ,ss -> Spellcheck in Spanish
+nnoremap <Leader>ss :setlocal spell spelllang=es<CR>
+
+" ,se -> Spellcheck in English
+nnoremap <Leader>se :setlocal spell spelllang=en<CR>
+
+
+" ---------------------------------------------------------------------------
+" Plugin configuration
+" ---------------------------------------------------------------------------
+
+" Airline
+let g:airline_powerline_fonts = 1
+
+" FZF
+nnoremap <C-p> :FZF<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-h': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" NERDTree
+nnoremap <Leader>tr :NERDTreeToggle<CR>
+let g:NERDTreeCascadeSingleChildDir=1
+let g:NERDTreeCascadeOpenSingleChildDir=1
+let g:NERDTreeMapOpenSplit='h'
+let g:NERDTreeMapOpenVSplit='v'
+
+" Tagbar
+nnoremap <Leader>ta :TagbarToggle<CR>
+
+" Terraform
+let g:terraform_fmt_on_save=1
+
+" Neoplete
+let g:deoplete#enable_at_startup=1
+
+" vim-go
+autocmd BufWritePre *.go :GoBuild
+let g:go_auto_type_info = 1
+let g:go_metalinter_autosave = 1
+let g:go_fmt_command = "goimports"
+let g:go_metalinter_autosave_enabled = ["vet", "golint", "errcheck"]
+
+
+" ---------------------------------------------------------------------------
+" Format configuration
+" ---------------------------------------------------------------------------
+
+" Turn on spell checking for commit messages and automatic wrapping
+augroup filetype_gitcommit
+  autocmd!
+  autocmd Filetype gitcommit setlocal spell textwidth=72
+augroup END
+
+" Turn on spell checking for Markdown files
+augroup filetype_markdown
+  autocmd!
+  autocmd Filetype markdown setlocal spell
+augroup END

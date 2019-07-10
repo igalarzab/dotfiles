@@ -62,5 +62,10 @@ def confirm_overwrite(path):
 if __name__ == '__main__':
     os.chdir(SELF_PATH)
 
+    try:
+        os.mkdir(os.path.expanduser('~/.config'))
+    except FileExistsError:
+        pass  # The .config dir already exists
+
     create_symlinks('*.symlink', '~', True)
     create_symlinks('*.configsymlink', '~/.config')
