@@ -1,6 +1,9 @@
 #!/bin/bash
 
+set -e
+
 # Choose what package managers to use depending on the OS
+APK=0
 HOMEBREW=0
 GEM=0
 NPM=0
@@ -11,13 +14,27 @@ PYTHON_VERSION=3.7.3
 
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
+    APK=0
     HOMEBREW=1
     GEM=1
+    NPM=1
+    PIP=1
+elif [[ "$OSTYPE" == "linux-musl" ]]; then
+    APK=1
+    HOMEBREW=0
+    GEM=0
     NPM=1
     PIP=1
 else
     echo "OS not supported"
     exit 1
+fi
+
+if [[ "$APK" == "1" ]]; then
+    for app in $(cat apk.txt); do
+	echo "Installing $app..."
+        apk add $app
+    done
 fi
 
 
@@ -33,7 +50,11 @@ fi
 
 if [[ "$GEM" == "1" ]]; then
     for app in $(cat gem.txt); do
-        sudo gem install $app
+        if [ "$EUID" -ne 0 ]; then
+	    sudo gem install $app;
+	else
+	    gem install $app;
+	fi
     done
 fi
 
