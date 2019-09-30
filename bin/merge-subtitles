@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mkdir -p output/
+
+for f in *.mkv; do
+    filename="${f%.*}"
+    printf "\033[0;31mConverting $filename...\033[0m\n"
+    mkvmerge -o output/$filename.mkv $filename.mkv --language "0:eng" --track-name "0:English" $filename.srt
+done
+
