@@ -9,14 +9,15 @@
 import glob
 import os
 import six
+import subprocess
 
 
 # Path to this file
 SELF_PATH = os.path.dirname(os.path.abspath(__file__))
 
 
-def create_symlinks(source_extension, target_folder, hidden=False):
-    'Create the symlinks on user home'
+def create_symlinks(source_extension, target_folder, *, hidden=False, extension=None):
+    created_symlinks = []
     symlinks = glob.glob('*/' + source_extension)
     always_overwrite = False
 
@@ -28,6 +29,9 @@ def create_symlinks(source_extension, target_folder, hidden=False):
             filename = '.' + filename
 
         destine = os.path.expanduser(os.path.join(target_folder, filename))
+
+        if extension:
+            destine = destine + '.' + extension
 
         if os.path.lexists(destine):
 
@@ -46,6 +50,14 @@ def create_symlinks(source_extension, target_folder, hidden=False):
 
         # Create the symlink
         os.symlink(origin, destine)
+        created_symlinks.append(destine)
+
+    return created_symlinks
+
+
+def run_agents(agents):
+    for agent in agents:
+        subprocess.run(['launchctl', 'load', '-F', agent])
 
 
 def confirm_overwrite(path):
@@ -67,5 +79,8 @@ if __name__ == '__main__':
     except FileExistsError:
         pass  # The .config dir already exists
 
-    create_symlinks('*.symlink', '~', True)
+    create_symlinks('*.symlink', '~', hidden=True)
     create_symlinks('*.configsymlink', '~/.config')
+
+    agents = create_symlinks('*.launchagent', '~/Library/LaunchAgents', extension='plist')
+    run_agents(agents)

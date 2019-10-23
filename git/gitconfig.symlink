@@ -2,7 +2,7 @@
 [user]
     name         = Jose Galarza
     email        = igalarzab@gmail.com
-    signingkey   = 9B2489CA
+    signingkey   = 4F77BEBE9B2489CA
     helper       = osxkeychain
 [github]
     user         = igalarzab
@@ -68,7 +68,7 @@
     ff = only
 [commit]
     verbose = true
-    gpgsign = false
+    gpgsign = true
 [diff]
     tool = icdiff
     indentHeuristic = true

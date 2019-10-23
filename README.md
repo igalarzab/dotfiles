@@ -28,3 +28,5 @@ There's a few special files in the hierarchy.
 - **topic/\*.symlink**: Any files ending in `*.symlink` get symlinked into your `$HOME`. This is so you can keep all of
   those versioned in your dotfiles but still keep those autoloaded files in your home directory.
 - **topic/\*.configsymlink**: Any files ending in `*.configsymlink` get symlinked into your `$HOME/.config`.
+- **topic/\*.launchagent**: Any files ending in `*.launchagent` get symlinked into your `$HOME/Library/LaunchAgents` and
+  load with `launchctl`.
