@@ -74,3 +74,6 @@ if [[ "$PIP" == "1" ]]; then
         pip install $app
     done
 fi
+
+# Update autocomplete
+fish_update_completions

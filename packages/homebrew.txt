@@ -13,6 +13,7 @@ kubectx
 neovim
 node
 pinentry
+pinentry-mac
 pyenv
 pyenv-virtualenv
 stern
