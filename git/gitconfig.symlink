@@ -67,10 +67,11 @@
 [pull]
     ff = only
 [commit]
-	verbose = true
+    verbose = true
+    gpgsign = false
 [diff]
     tool = icdiff
-	indentHeuristic = true
+    indentHeuristic = true
 [submodule]
     fetchJobs = 4
 [status]
@@ -81,3 +82,5 @@
   cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
 [pager]
   difftool = true
+[includeIf "gitdir:~/Development/tw/"]
+    path = ~/.gitconfigtw
