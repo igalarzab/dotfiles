@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Removes all the sound tracks of the videos in the folder
+#
+# Author: @igalarzab
+#
+
+set -e
+
+for f in $1; do
+    ffmpeg -i "$f" -vcodec copy -an "$f.2"
+    mv "$f.2" "$f"
+done
+

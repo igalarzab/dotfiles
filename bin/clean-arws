@@ -1,5 +1,5 @@
 #!/bin/bash
-# List all the JPG and ARW files and deletes all the ARW that without a JPG correspondence
+# List all the JPG and ARW files and deletes all the ARW without a JPG correspondence
 #
 # Author: @igalarzab
 #
