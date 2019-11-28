@@ -8,7 +8,7 @@
 set -e
 
 for f in $1; do
-    ffmpeg -i "$f" -vcodec copy -an "$f.2"
-    mv "$f.2" "$f"
+    ffmpeg -i "$f" -vcodec copy -an "2.$f"
+    mv "2.$f" "$f"
 done
 
