@@ -68,7 +68,7 @@
     ff = only
 [commit]
     verbose = true
-    gpgsign = true
+    gpgsign = false
 [diff]
     tool = icdiff
     indentHeuristic = true

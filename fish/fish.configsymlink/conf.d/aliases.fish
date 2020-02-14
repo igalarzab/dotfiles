@@ -8,6 +8,9 @@ if type -q gsed
   alias sed="gsed"
 end
 
+# Add aliases to watch
+alias watch="watch "
+
 # ls aliases
 alias l="ls"
 alias ll="ls -l"
