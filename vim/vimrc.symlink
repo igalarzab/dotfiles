@@ -31,6 +31,8 @@ Plug 'wellle/targets.vim'                                     " Add additional t
 " Languages
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}              " Go
 Plug 'hashivim/vim-terraform'                                 " Terraform integration
+Plug 'HerringtonDarkholme/yats.vim'                           " Typescript syntax
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}    " Typescript features
 
 " Auto Completion
 if has('nvim')
