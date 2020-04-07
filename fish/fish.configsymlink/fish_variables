@@ -2,7 +2,7 @@
 # VERSION: 3.0
 SETUVAR FZF_COMPLETE:3
 SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dheight\x2060\x25\x20\x2d\x2dlayout\x3dreverse\x20\x2d\x2dpreview\x20\x27\x28highlight\x20\x2dO\x20ansi\x20\x2dl\x20\x7b\x7d\x202\x3e\x20/dev/null\x20\x7c\x7c\x20cat\x20\x7b\x7d\x20\x7c\x7c\x20tree\x20\x2dL\x203\x20\x2dC\x20\x7b\x7d\x29\x202\x3e\x20/dev/null\x20\x7c\x20head\x20\x2d200\x27
-SETUVAR FZF_LEGACY_KEYBINDINGS:1
+SETUVAR FZF_LEGACY_KEYBINDINGS:0
 SETUVAR FZF_PREVIEW_DIR_CMD:ls
 SETUVAR FZF_PREVIEW_FILE_CMD:head\x20\x2dn\x2010
 SETUVAR FZF_TMUX_HEIGHT:40\x25
@@ -10,6 +10,7 @@ SETUVAR Z_DATA_DIR:/Users/jose\x2egalarza/\x2elocal/share/z
 SETUVAR __fish_init_2_39_8:\x1d
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_init_3_x:\x1d
+SETUVAR __fish_initialized:3100
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:005fd7
@@ -21,6 +22,7 @@ SETUVAR fish_color_error:ff0000
 SETUVAR fish_color_escape:00a6b2
 SETUVAR fish_color_history_current:\x2d\x2dbold
 SETUVAR fish_color_host:normal
+SETUVAR fish_color_host_remote:yellow
 SETUVAR fish_color_match:\x2d\x2dbackground\x3dbrblue
 SETUVAR fish_color_normal:normal
 SETUVAR fish_color_operator:00a6b2
@@ -29,6 +31,7 @@ SETUVAR fish_color_quote:999900
 SETUVAR fish_color_redirection:00afff
 SETUVAR fish_color_search_match:bryellow\x1e\x2d\x2dbackground\x3dbrblack
 SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
+SETUVAR fish_color_status:red
 SETUVAR fish_color_user:brgreen
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
 SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell
