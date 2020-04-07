@@ -1,4 +1,3 @@
-autojump
 coreutils
 ctags-exuberant
 fd
@@ -17,6 +16,7 @@ pinentry-mac
 pyenv
 pyenv-virtualenv
 stern
+the_silver_searcher
 tree
 watch
 warrensbox/tap/tfswitch
