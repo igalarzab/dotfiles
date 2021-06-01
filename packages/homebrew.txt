@@ -10,7 +10,7 @@ hub
 icdiff
 kubectx
 neovim
-node
+node@14
 pinentry
 pinentry-mac
 pyenv

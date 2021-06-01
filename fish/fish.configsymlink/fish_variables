@@ -1,12 +1,13 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR FZF_COMPLETE:3
-SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dheight\x2060\x25\x20\x2d\x2dlayout\x3dreverse\x20\x2d\x2dpreview\x20\x27\x28highlight\x20\x2dO\x20ansi\x20\x2dl\x20\x7b\x7d\x202\x3e\x20/dev/null\x20\x7c\x7c\x20cat\x20\x7b\x7d\x20\x7c\x7c\x20tree\x20\x2dL\x203\x20\x2dC\x20\x7b\x7d\x29\x202\x3e\x20/dev/null\x20\x7c\x20head\x20\x2d200\x27
+SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dheight\x2060\x25\x20\x2d\x2dlayout\x3dreverse\x20\x2d\x2dpreview\x20\x27highlight\x20\x2dO\x20ansi\x20\x2dl\x20\x7b\x7d\x202\x3e\x20/dev/null\x20\x7c\x7c\x20cat\x20\x7b\x7d\x20\x7c\x7c\x20tree\x20\x2dL\x203\x20\x2dC\x20\x7b\x7d\x20\x7c\x7c\x20head\x20\x2d200\x27
 SETUVAR FZF_FIND_FILE_COMMAND:ag\x20\x2dg\x20\x2e\x20\x24dir\x202\x3e\x20/dev/null
 SETUVAR FZF_LEGACY_KEYBINDINGS:0
 SETUVAR FZF_PREVIEW_DIR_CMD:ls
 SETUVAR FZF_PREVIEW_FILE_CMD:head\x20\x2dn\x2010
 SETUVAR FZF_TMUX_HEIGHT:40\x25
+SETUVAR --export PYENV_ROOT:/Users/jose\x2egalarza/\x2epyenv
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
 SETUVAR Z_DATA:/Users/jose\x2egalarza/\x2elocal/share/z/data
@@ -45,6 +46,7 @@ SETUVAR fish_pager_color_completion:\x1d
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_user_paths:/Users/jose\x2egalarza/\x2epyenv/bin\x1e/Users/jose\x2egalarza/\x2epyenv/bin\x1e/Users/jose\x2egalarza/\x2epyenv/bin\x1e/Users/jose\x2egalarza/\x2epyenv/bin\x1e/Users/jose\x2egalarza/\x2epyenv/bin\x1e/Users/jose\x2egalarza/\x2epyenv//bin\x1e/Users/jose\x2egalarza/\x2epyenv/bin\x1e/Users/jose\x2egalarza/\x2epyenv//bin\x1e/Users/jose\x2egalarza/\x2epyenv/bin\x1e/Users/jose\x2egalarza/\x2epyenv/bin\x1e/Users/jose\x2egalarza/\x2epyenv//bin\x1e/Users/jose\x2egalarza/\x2epyenv/bin\x1e/Users/jose\x2egalarza/\x2epyenv//bin\x1e/Users/jose\x2egalarza/\x2epyenv//bin
 SETUVAR pure_begin_prompt_with_current_directory:true
 SETUVAR pure_color_command_duration:pure_color_warning
 SETUVAR pure_color_current_directory:pure_color_primary

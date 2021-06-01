@@ -17,4 +17,4 @@ spotify
 the-unarchiver
 transmission
 whatsapp
-zoomus
+zoom
