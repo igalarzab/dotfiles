@@ -60,10 +60,6 @@ def run_agents(agents):
         subprocess.run(['launchctl', 'load', '-F', agent])
 
 
-def run_command(command):
-    subprocess.run(command.split(' '))
-
-
 def confirm_overwrite(path):
     'Ask the user to overwrite a file'
     while True:

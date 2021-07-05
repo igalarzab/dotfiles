@@ -12,7 +12,7 @@ qlcolorcode
 qlstephen
 qlmarkdown
 qlvideo
-spectacle
+rectangle
 spotify
 the-unarchiver
 transmission

@@ -10,7 +10,7 @@ NPM=0
 PIP=0
 
 # Other vars
-PYTHON_VERSION=3.7.3
+PYTHON_VERSION=3.9.6
 
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
