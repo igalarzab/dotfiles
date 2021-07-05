@@ -1,15 +1,7 @@
 # On mac, if coreutils are installed...
-if type -q gls
-  #alias ls="gls --color"
-end
-
-# On mac, if coreutils are installed...
 if type -q gsed
   alias sed="gsed"
 end
-
-# Add aliases to watch
-alias watch="watch "
 
 # ls aliases
 alias l="ls"

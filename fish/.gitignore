@@ -1,5 +1,3 @@
-fish.configsymlink/functions/fisher.fish
-
 fish.configsymlink/fisher/
-!fish.configsymlink/fisher/fishfile
+fish.configsymlink/fish_variables
 

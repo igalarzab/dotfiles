@@ -1,6 +1,6 @@
 # Language
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+export LC_ALL=en_GB.UTF-8
+export LANG=en_GB.UTF-8
 
 # Shortcut to this dotfiles
 export DOTFILES=$HOME/.dotfiles
@@ -16,4 +16,5 @@ for cfg_file in $DOTFILES/*/*.fish
 end
 
 # Path
-set -gx PATH $PATH $DOTFILES/bin
+fish_add_path /usr/local/sbin
+fish_add_path $DOTFILES/bin
