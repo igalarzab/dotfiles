@@ -1,6 +1,7 @@
 bat
 coreutils
 ctags-exuberant
+deno
 fd
 fish
 fzf
@@ -16,6 +17,7 @@ pinentry
 pinentry-mac
 pyenv
 pyenv-virtualenv
+ripgrep
 stern
 the_silver_searcher
 tree

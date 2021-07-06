@@ -1,1 +1,5 @@
 neovim
+pyright
+stylelint-lsp
+vscode-langservers-extracted
+yaml-language-server

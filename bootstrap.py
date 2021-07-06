@@ -8,7 +8,6 @@
 
 import glob
 import os
-import six
 import subprocess
 
 
@@ -63,7 +62,7 @@ def run_agents(agents):
 def confirm_overwrite(path):
     'Ask the user to overwrite a file'
     while True:
-        answer = six.moves.input('%s exists, overwrite it? (a/y/n) ' % os.path.basename(path))
+        answer = input('%s exists, overwrite it? (a/y/n) ' % os.path.basename(path))
 
         if answer in ('y', 'n', 'a'):
             break
@@ -85,4 +84,4 @@ if __name__ == '__main__':
     agents = create_symlinks('*.launchagent', '~/Library/LaunchAgents', extension='plist')
     run_agents(agents)
 
-    print('Remember to install fisher')
+    print('Remember to install fisher and packer.nvim')
