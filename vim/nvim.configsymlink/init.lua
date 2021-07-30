@@ -156,11 +156,11 @@ require('lualine').setup({
 
 -- LSP
 local nlsp = require('lspconfig')
-nlsp.denols.setup({})
 nlsp.gopls.setup({})
 nlsp.jsonls.setup({})
 nlsp.pyright.setup({})
 nlsp.stylelint_lsp.setup({})
+nlsp.tsserver.setup({})
 nlsp.yamlls.setup({})
 
 -- LSP - Formatting and auto-save
