@@ -47,6 +47,7 @@ require('packer').startup(function()
     -- Editor plugins
     use('editorconfig/editorconfig-vim')
     use('windwp/nvim-autopairs')
+    use('sbdchd/neoformat')
 end)
 
 
