@@ -209,6 +209,7 @@ g.nvim_tree_show_icons = {git = 1, folders = 1, files = 1, folder_arrows = 1}
 api.nvim_set_keymap('n', '<Leader>tr', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- TreeSitter config
+require('nvim-tree').setup()
 require('nvim-treesitter.configs').setup({
     ensure_installed = 'maintained',
     highlight = {enable = true},
