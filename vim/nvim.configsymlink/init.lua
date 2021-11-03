@@ -201,15 +201,19 @@ api.nvim_set_keymap('n', '<C-p>', ':Telescope find_files<CR>', { noremap = true,
 api.nvim_set_keymap('n', '<C-g>', ':Telescope live_grep<CR>', { noremap = true, silent = true })
 
 -- Tree Browser
-g.nvim_tree_ignore = {'.git', 'node_modules', '.cache'}
 g.nvim_tree_gitignore = 1
 g.nvim_tree_group_empty = 1
 g.nvim_tree_special_files = {}
-g.nvim_tree_show_icons = {git = 1, folders = 1, files = 1, folder_arrows = 1}
+g.nvim_tree_show_icons = { git = 1, folders = 1, files = 1, folder_arrows = 1 }
 api.nvim_set_keymap('n', '<Leader>tr', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+require('nvim-tree').setup({
+    filters = {
+        dotfiles = false,
+        custom = {'.git', 'node_modules'}
+    }
+})
 
 -- TreeSitter config
-require('nvim-tree').setup()
 require('nvim-treesitter.configs').setup({
     ensure_installed = 'maintained',
     highlight = {enable = true},
