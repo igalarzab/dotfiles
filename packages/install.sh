@@ -10,7 +10,7 @@ NPM=0
 PIP=0
 
 # Other vars
-PYTHON_VERSION=3.9.6
+PYTHON_VERSION=3.10.0
 
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -39,13 +39,19 @@ fi
 
 
 if [[ "$HOMEBREW" == "1" ]]; then
+    # Install homebrew first
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
     for app in $(cat homebrew.txt); do
         brew install $app
     done
 
     for app in $(cat cask.txt); do
-        brew cask install $app
+        brew install $app
     done
+
+    sudo bash -c 'echo /usr/local/bin/fish >> /etc/shells'
+    chsh -s /usr/local/bin/fish
 fi
 
 if [[ "$GEM" == "1" ]]; then
@@ -65,15 +71,15 @@ if [[ "$NPM" == "1" ]]; then
 fi
 
 if [[ "$PIP" == "1" ]]; then
-    pyenv install $PYTHON_VERSION
+    pyenv install -s $PYTHON_VERSION
     pyenv global $PYTHON_VERSION
-
-    pyenv virtualenv $PYTHON_VERSION neovim
 
     for app in $(cat pip.txt); do
         pip install $app
     done
+
+    pyenv virtualenv $PYTHON_VERSION neovim
+
 fi
 
-# Update autocomplete
-fish_update_completions
+ echo 'Remember to install fisher and packer.nvim'

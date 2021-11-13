@@ -1,12 +1,9 @@
 alfred
 bartender
-caption
 docker
 iina
 intellij-idea
 iterm2
-java
-jdownloader
 keepassxc
 qlcolorcode
 qlstephen
@@ -14,7 +11,6 @@ qlmarkdown
 qlvideo
 rectangle
 spotify
+temurin
 the-unarchiver
-transmission
 whatsapp
-zoom

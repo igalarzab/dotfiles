@@ -83,5 +83,3 @@ if __name__ == '__main__':
 
     agents = create_symlinks('*.launchagent', '~/Library/LaunchAgents', extension='plist')
     run_agents(agents)
-
-    print('Remember to install fisher and packer.nvim')

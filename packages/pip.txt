@@ -1,3 +1,2 @@
 awscli
 pipenv
-httpie
