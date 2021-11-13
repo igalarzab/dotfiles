@@ -14,7 +14,7 @@ g.loaded_python_provider = 0
 g.loaded_perl_provider = 0
 
 -- Use pyenv for python3 support
-g.python3_host_prog = '~/.pyenv/versions/py3nvim/bin/python'
+g.python3_host_prog = '~/.pyenv/versions/neovim/bin/python'
 
 
 ---------------------------------------------------------------------------

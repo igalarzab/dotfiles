@@ -47,7 +47,7 @@ if [[ "$HOMEBREW" == "1" ]]; then
     done
 
     for app in $(cat cask.txt); do
-        brew install $app
+        brew install --cask $app
     done
 
     sudo bash -c 'echo /usr/local/bin/fish >> /etc/shells'
@@ -73,13 +73,11 @@ fi
 if [[ "$PIP" == "1" ]]; then
     pyenv install -s $PYTHON_VERSION
     pyenv global $PYTHON_VERSION
+    pyenv virtualenv $PYTHON_VERSION neovim
 
     for app in $(cat pip.txt); do
         pip install $app
     done
-
-    pyenv virtualenv $PYTHON_VERSION neovim
-
 fi
 
- echo 'Remember to install fisher and packer.nvim'
+ echo 'Remember to install fisher and packer.nvim and run fish_update_completions'

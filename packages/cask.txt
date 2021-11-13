@@ -1,10 +1,11 @@
 alfred
-bartender
 docker
+fantastical
 iina
 intellij-idea
 iterm2
 keepassxc
+notion
 qlcolorcode
 qlstephen
 qlmarkdown
@@ -13,4 +14,5 @@ rectangle
 spotify
 temurin
 the-unarchiver
+visual-studio-code
 whatsapp

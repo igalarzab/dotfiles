@@ -3,12 +3,14 @@ coreutils
 fd
 fish
 fzf
+git
 gnu-sed
 gnupg
 go
 hub
 httpie
 icdiff
+jq
 neovim
 node@16
 pinentry-mac
