@@ -33,14 +33,8 @@ defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 echo "Disable local Time Machine snapshots"
 sudo tmutil disablelocal
 
-echo "Disable the sudden motion sensor as it's not useful for SSDs"
-sudo pmset -a sms 0
-
 echo "Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)"
 defaults write com.apple.screencapture type -string "png"
-
-echo "Allow text selection in Quick Look"
-defaults write com.apple.finder QLEnableTextSelection -bool true
 
 echo "When performing a search, search the current folder by default"
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
@@ -48,20 +42,8 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 echo "Avoid creating .DS_Store files on network volumes"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
-echo "Hide directories in $HOME"
-chflags hidden ~/Google\ Drive ~/Library
-
 echo "Show indicator lights for open applications in the Dock"
 defaults write com.apple.dock show-process-indicators -bool true
-
-echo "Disable Dashboard"
-defaults write com.apple.dashboard mcx-disabled -bool true
-
-echo "Don't automatically rearrange Spaces based on most recent use"
-defaults write com.apple.dock mru-spaces -bool false
-
-echo "Add a context menu item for showing the Web Inspector in web views"
-defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 echo "Use plain text mode for new TextEdit documents"
 defaults write com.apple.TextEdit RichText -int 0
@@ -82,8 +64,8 @@ defaults write NSGlobalDomain KeyRepeat -float 0.000000000001
 echo "Prevent Time Machine from prompting to use new hard drives as backup volume"
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
-echo "Always open everything in Finder's list view."
-defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+echo "Always open everything in Finder's column view."
+defaults write com.apple.Finder FXPreferredViewStyle clmv
 
 # Kill affected applications
 for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer; do killall "$app" > /dev/null 2>&1; done
