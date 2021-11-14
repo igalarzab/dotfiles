@@ -1,5 +1,5 @@
 # autojump
-set -g Z_CMD "j"                   # Jump with j instead of z
+set -U Z_CMD "j"                   # Jump with j instead of z
 
 # fzf
 bind \cp '_fzf_search_directory'   # Activate FZF with Ctrl+p (for files search)
