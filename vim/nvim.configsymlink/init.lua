@@ -27,11 +27,23 @@ require('packer').startup(function()
 
     -- NeoVim helpers
     use('neovim/nvim-lspconfig')
-    use('glepnir/lspsaga.nvim')
+    use({
+        'tami5/lspsaga.nvim',
+        branch = 'nvim51' -- TODO: Remove when upgrading to nvim <= 0.6
+    })
     use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
 
-    -- Auto-Completion
-    use('hrsh7th/nvim-compe')
+    -- Auto Completion
+    use({'hrsh7th/nvim-cmp', requires = {
+        {'hrsh7th/cmp-buffer'},
+        {'hrsh7th/cmp-nvim-lsp'},
+        {'hrsh7th/cmp-nvim-lua'},
+        {'hrsh7th/cmp-path'},
+        {'L3MON4D3/LuaSnip'},
+        {'saadparwaiz1/cmp_luasnip'}
+    }})
+
+    -- File Finder
     use({'nvim-telescope/telescope.nvim', requires = {
         {'nvim-lua/popup.nvim'},
         {'nvim-lua/plenary.nvim'},
@@ -97,7 +109,7 @@ opt.undolevels = 1000                   -- Same for undos
 -- Autocomplete Menus
 opt.wildmode = 'list:longest,full'      -- AutoComplete menus more useful
 opt.wildchar = 9                        -- Iterate with the tab through them
-o.completeopt = 'menuone,noselect'      -- Completion popups
+o.completeopt = 'menu,menuone,noselect' -- Completion popups
 
 -- Menus
 opt.showmode = true                     -- Show status
@@ -116,24 +128,38 @@ opt.whichwrap:append('<,>,h,l,[,]')     -- Move between lines with the arrows
 -- Auto Pairs
 require('nvim-autopairs').setup()
 
-require('nvim-autopairs.completion.compe').setup({
-    map_cr = true,
-    map_complete = true
-})
+-- Luasnip
+local luasnip = require('luasnip')
 
 -- Completion
-require('compe').setup({
-    enabled = true,
-    source = {
-        path = true,
-        buffer = true,
-        tags = true,
-        spell = true,
-        calc = true,
-        nvim_lsp = true,
-        nvim_lua = true,
-        treesitter = true,
+local cmp = require('cmp')
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end
     },
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'luasnip' },
+        { name = 'path' },
+        { name = 'nvim_lua' },
+    },
+    mapping = {
+        ['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+        ['<Tab>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end,
+    }
 })
 
 -- Git Signs
@@ -158,12 +184,21 @@ require('lualine').setup({
 
 -- LSP
 local nlsp = require('lspconfig')
-nlsp.gopls.setup({})
-nlsp.jsonls.setup({})
-nlsp.pyright.setup({})
-nlsp.stylelint_lsp.setup({})
-nlsp.tsserver.setup({})
-nlsp.yamlls.setup({})
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local on_attach = function(_, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+end
+local servers = {
+    'eslint', 'gopls', 'jsonls', 'pyright', 'stylelint_lsp',
+    'tsserver', 'yamlls'
+}
+
+for _, lsp in ipairs(servers) do
+    nlsp[lsp].setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }
+end
 
 -- LSP - Formatting and auto-save
 api.nvim_set_keymap("n", "<Leader>ff", ":lua vim.lsp.buf.formatting()<CR>", { noremap = true, silent = true })
@@ -240,4 +275,3 @@ api.nvim_set_keymap('n', '<Leader>se', ':setlocal spell spelllang=en<CR>', { nor
 
 -- ,ss -> Spellcheck in Spanish
 api.nvim_set_keymap('n', '<Leader>ss', ':setlocal spell spelllang=es<CR>', { noremap = true })
-
