@@ -43,6 +43,7 @@ require('packer').startup(function()
     use({'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}})
     use({'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons', opt = true}})
     use({'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}})
+    use('phaazon/hop.nvim')
 
     -- Editor plugins
     use('editorconfig/editorconfig-vim')
@@ -220,6 +221,11 @@ require('nvim-treesitter.configs').setup({
     incremental_selection = {enable = true},
     indent = {enable = true},
 })
+
+-- Hop
+require('hop').setup()
+vim.api.nvim_set_keymap('n', '<Leader><Leader>w', ":HopWord<CR>", { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader><Leader>c', ":HopChar1<CR>", { noremap = true, silent = true})
 
 
 ---------------------------------------------------------------------------
