@@ -3,11 +3,11 @@ coreutils
 fd
 fish
 fzf
+gh
 git
 gnu-sed
 gnupg
 go
-hub
 httpie
 icdiff
 jq
