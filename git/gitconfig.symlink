@@ -32,6 +32,7 @@
     ls       = !$DOTFILES/git/functions/git-ls
     ll       = !$DOTFILES/git/functions/git-ll
     wtf      = !$DOTFILES/git/functions/git-wtf
+    pr       = !gh pr create
 [color]
     ui     = true
     diff   = auto
