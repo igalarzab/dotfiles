@@ -83,7 +83,7 @@
   cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
 [pager]
   difftool = true
-[includeIf "gitdir:~/Development/tw/"]
+[includeIf "gitdir:~/Development/wise/"]
     path = ~/.gitconfigtw
 [gpg]
 	program = gpg
