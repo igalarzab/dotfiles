@@ -56,6 +56,7 @@ require('packer').startup(function()
     use({'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons', opt = true}})
     use({'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}})
     use('phaazon/hop.nvim')
+    use('ray-x/lsp_signature.nvim')
 
     -- Editor plugins
     use('editorconfig/editorconfig-vim')
@@ -228,6 +229,9 @@ api.nvim_set_keymap('n', '<Leader>gs', ':Lspsaga signature_help<CR>', { noremap 
 api.nvim_set_keymap('n', '<Leader>gd', ':Lspsaga hover_doc<CR>', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<Leader>ga', ':Lspsaga code_action<CR>', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<Leader>ge', ':Lspsaga diagnostic_jump_next<CR>', { noremap = true, silent = true })
+
+-- LSP Signature
+require('lsp_signature').setup()
 
 -- OneDark
 require('onedark').setup()
