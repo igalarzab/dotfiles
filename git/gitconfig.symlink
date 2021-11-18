@@ -87,3 +87,5 @@
     path = ~/.gitconfigtw
 [gpg]
 	program = gpg
+[fetch]
+	prune = true
