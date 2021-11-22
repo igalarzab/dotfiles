@@ -1,0 +1,2 @@
+ssh.symlink/id_*
+ssh.symlink/known_hosts
