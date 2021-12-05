@@ -2,4 +2,5 @@ gnupg.symlink/private-keys-v1.d
 gnupg.symlink/*.kbx
 gnupg.symlink/*.gpg
 gnupg.symlink/*.status
+gnupg.symlink/.#*
 gnupg.symlink/sshcontrol

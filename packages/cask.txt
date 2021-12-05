@@ -5,6 +5,7 @@ iina
 intellij-idea
 iterm2
 keepassxc
+monitorcontrol
 notion
 qlcolorcode
 qlmarkdown
