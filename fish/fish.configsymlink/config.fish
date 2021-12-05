@@ -18,3 +18,6 @@ end
 # Path
 fish_add_path /usr/local/sbin
 fish_add_path $DOTFILES/bin
+
+# Disable welcome message
+set fish_greeting
