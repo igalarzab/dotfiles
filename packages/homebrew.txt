@@ -17,6 +17,7 @@ pinentry-mac
 pyenv
 pyenv-virtualenv
 ripgrep
+starship
 the_silver_searcher
 tree
 watch
