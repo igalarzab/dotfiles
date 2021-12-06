@@ -21,3 +21,4 @@ the_silver_searcher
 tree
 watch
 wget
+zoxide
