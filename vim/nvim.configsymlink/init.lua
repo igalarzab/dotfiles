@@ -27,10 +27,7 @@ require('packer').startup(function()
 
     -- NeoVim helpers
     use('neovim/nvim-lspconfig')
-    use({
-        'tami5/lspsaga.nvim',
-        branch = 'nvim51' -- TODO: Remove when upgrading to nvim <= 0.6
-    })
+    use('tami5/lspsaga.nvim')
     use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
 
     -- Auto Completion
@@ -241,12 +238,14 @@ api.nvim_set_keymap('n', '<C-p>', ':Telescope find_files<CR>', { noremap = true,
 api.nvim_set_keymap('n', '<C-g>', ':Telescope live_grep<CR>', { noremap = true, silent = true })
 
 -- Tree Browser
-g.nvim_tree_gitignore = 1
 g.nvim_tree_group_empty = 1
 g.nvim_tree_special_files = {}
 g.nvim_tree_show_icons = { git = 1, folders = 1, files = 1, folder_arrows = 1 }
 api.nvim_set_keymap('n', '<Leader>tr', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 require('nvim-tree').setup({
+    git = {
+        ignore = true,
+    },
     filters = {
         dotfiles = false,
         custom = {'.git', 'node_modules'}
