@@ -174,7 +174,7 @@ require('lualine').setup({
             'branch',
         },
         lualine_x = {
-            { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
+            { 'diagnostics', sources = {"nvim_diagnostic"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
             'filetype',
         },
     },
@@ -234,10 +234,22 @@ require('lsp_signature').setup()
 require('onedark').setup()
 
 -- Telescope
+local actions = require('telescope.actions')
 api.nvim_set_keymap('n', '<C-p>', ':Telescope find_files<CR>', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<C-g>', ':Telescope live_grep<CR>', { noremap = true, silent = true })
 
+require('telescope').setup({
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-h>"] = actions.file_split
+      },
+    },
+  }
+})
+
 -- Tree Browser
+local tree_cb = require('nvim-tree.config').nvim_tree_callback
 g.nvim_tree_group_empty = 1
 g.nvim_tree_special_files = {}
 g.nvim_tree_show_icons = { git = 1, folders = 1, files = 1, folder_arrows = 1 }
@@ -249,7 +261,15 @@ require('nvim-tree').setup({
     filters = {
         dotfiles = false,
         custom = {'.git', 'node_modules'}
-    }
+    },
+    view = {
+        mappings = {
+            list = {
+                { key = "t",     cb = tree_cb("create") },
+                { key = "<C-h>", cb = tree_cb("split") },
+            },
+        },
+    },
 })
 
 -- TreeSitter config
