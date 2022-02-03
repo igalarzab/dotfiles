@@ -33,6 +33,7 @@
     ll       = !$DOTFILES/git/functions/git-ll
     wtf      = !$DOTFILES/git/functions/git-wtf
     pr       = !gh pr create
+    prd      = !gh pr create --draft
 [color]
     ui     = true
     diff   = auto
@@ -89,3 +90,5 @@
 	program = gpg
 [fetch]
 	prune = true
+[init]
+	defaultBranch = main
