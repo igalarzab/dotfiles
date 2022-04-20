@@ -76,6 +76,7 @@ opt.termguicolors = true                -- Color support
 opt.number = true                       -- Show always line numbers
 opt.relativenumber = true               -- But relatives to the current one
 opt.scrolloff = 4                       -- Keep 4 lines off the edges of the screen
+opt.colorcolumn = '100'
 
 -- Indenting
 opt.wrap = false                        -- No wrap lines
@@ -167,7 +168,7 @@ require('gitsigns').setup()
 require('lualine').setup({
     options = {
         icons_enabled = true,
-        theme = 'onedark',
+        theme = 'auto',
     },
     sections = {
         lualine_b = {
@@ -187,8 +188,8 @@ local on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 end
 local servers = {
-    'eslint', 'gopls', 'jsonls', 'pyright', 'stylelint_lsp',
-    'tsserver', 'yamlls'
+    'eslint', 'gopls', 'jsonls', 'pyright', 'rust_analyzer', 'stylelint_lsp',
+    'tsserver', 'yamlls', 
 }
 
 for _, lsp in ipairs(servers) do
@@ -231,7 +232,7 @@ api.nvim_set_keymap('n', '<Leader>ge', ':Lspsaga diagnostic_jump_next<CR>', { no
 require('lsp_signature').setup()
 
 -- OneDark
-require('onedark').setup()
+require('onedark').load()
 
 -- Telescope
 local actions = require('telescope.actions')
