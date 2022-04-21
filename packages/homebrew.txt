@@ -2,7 +2,6 @@ bat
 bash-completion2
 coreutils
 fd
-fish
 fzf
 gh
 git
@@ -17,8 +16,6 @@ node@16
 pinentry-mac
 pyenv
 pyenv-virtualenv
-ripgrep
-the_silver_searcher
 tree
 watch
 wget

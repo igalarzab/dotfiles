@@ -7,10 +7,6 @@ iterm2
 keepassxc
 monitorcontrol
 notion
-qlcolorcode
-qlmarkdown
-qlstephen
-qlvideo
 rectangle
 spotify
 temurin

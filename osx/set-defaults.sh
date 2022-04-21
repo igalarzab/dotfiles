@@ -68,5 +68,5 @@ echo "Always open everything in Finder's column view."
 defaults write com.apple.Finder FXPreferredViewStyle clmv
 
 # Kill affected applications
-for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer; do killall "$app" > /dev/null 2>&1; done
+for app in Finder Dock SystemUIServer; do killall "$app" > /dev/null 2>&1; done
 echo "Done. Note that some of these changes require a logout/restart to take effect."

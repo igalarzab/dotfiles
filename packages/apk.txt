@@ -1,6 +1,0 @@
-fish
-git
-npm
-openssh
-python3
-vim

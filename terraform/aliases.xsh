@@ -1,0 +1,1 @@
+aliases['tf'] = ['terraform']

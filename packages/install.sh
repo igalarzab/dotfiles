@@ -3,40 +3,24 @@
 set -e
 
 # Choose what package managers to use depending on the OS
-APK=0
 HOMEBREW=0
 GEM=0
 NPM=0
 PIP=0
 
 # Other vars
-PYTHON_VERSION=3.10.0
+PYTHON_VERSION=3.10.4
 
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    APK=0
     HOMEBREW=1
     GEM=1
-    NPM=1
-    PIP=1
-elif [[ "$OSTYPE" == "linux-musl" ]]; then
-    APK=1
-    HOMEBREW=0
-    GEM=0
     NPM=1
     PIP=1
 else
     echo "OS not supported"
     exit 1
 fi
-
-if [[ "$APK" == "1" ]]; then
-    for app in $(cat apk.txt); do
-	echo "Installing $app..."
-        apk add $app
-    done
-fi
-
 
 if [[ "$HOMEBREW" == "1" ]]; then
     # Install homebrew first
