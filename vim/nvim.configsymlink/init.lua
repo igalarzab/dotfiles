@@ -59,6 +59,9 @@ require('packer').startup(function()
     use('editorconfig/editorconfig-vim')
     use('windwp/nvim-autopairs')
     use('sbdchd/neoformat')
+
+    -- Extra languages
+    use('abhishekmukherg/xonsh-vim')
 end)
 
 
@@ -275,7 +278,7 @@ require('nvim-tree').setup({
 
 -- TreeSitter config
 require('nvim-treesitter.configs').setup({
-    ensure_installed = 'maintained',
+    ensure_installed = 'all',
     highlight = {enable = true},
     incremental_selection = {enable = true},
     indent = {enable = true},
