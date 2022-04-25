@@ -1,5 +1,5 @@
 bat
-bash-completion2
+bash-completion@2
 coreutils
 fd
 fzf
@@ -7,16 +7,13 @@ gh
 git
 gnu-sed
 gnupg
-go
 httpie
 icdiff
 jq
 neovim
-node@16
 pinentry-mac
-pyenv
-pyenv-virtualenv
 tree
 watch
 wget
 zoxide
+xonsh

@@ -19,6 +19,7 @@ def create_symlinks(source_extension, target_folder, *, hidden=False, extension=
     created_symlinks = []
     symlinks = glob.glob('*/' + source_extension)
     always_overwrite = False
+    answer = 'n'
 
     for symlink in symlinks:
         origin = os.path.join(SELF_PATH, symlink)
@@ -83,3 +84,5 @@ if __name__ == '__main__':
 
     agents = create_symlinks('*.launchagent', '~/Library/LaunchAgents', extension='plist')
     run_agents(agents)
+
+    print("Now, to finish, run the packages/install.sh script")
