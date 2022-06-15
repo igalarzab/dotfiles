@@ -254,9 +254,6 @@ require('telescope').setup({
 
 -- Tree Browser
 local tree_cb = require('nvim-tree.config').nvim_tree_callback
-g.nvim_tree_group_empty = 1
-g.nvim_tree_special_files = {}
-g.nvim_tree_show_icons = { git = 1, folders = 1, files = 1, folder_arrows = 1 }
 api.nvim_set_keymap('n', '<Leader>tr', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 require('nvim-tree').setup({
     git = {
@@ -265,6 +262,18 @@ require('nvim-tree').setup({
     filters = {
         dotfiles = false,
         custom = {'.git', 'node_modules'}
+    },
+    renderer = {
+        group_empty = true,
+        special_files = {},
+        icons = {
+            show = {
+                folder = true,
+                file = true,
+                folder_arrow = true,
+                git = true
+            },
+        },
     },
     view = {
         mappings = {
