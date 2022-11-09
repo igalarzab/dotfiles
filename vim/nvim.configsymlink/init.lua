@@ -186,7 +186,7 @@ require('lualine').setup({
 
 -- LSP
 local nlsp = require('lspconfig')
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 end
@@ -288,7 +288,6 @@ require('nvim-tree').setup({
 -- TreeSitter config
 require('nvim-treesitter.configs').setup({
     ensure_installed = 'all',
-    highlight = {enable = true},
     incremental_selection = {enable = true},
     indent = {enable = true},
 })
