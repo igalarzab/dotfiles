@@ -25,7 +25,9 @@ $PATH.add(p'/usr/local/bin', front=False, replace=True)
 $PATH.add(pf'{$DOTFILES}/bin', front=False, replace=True)
 
 # Add extra dirs for completions
-$BASH_COMPLETIONS.append('/usr/local/etc/bash_completion.d/')
+$BASH_COMPLETIONS = [
+    '/usr/local/etc/bash_completion',
+]
 
 # Load all the xsh files into the shell
 for f in g`$DOTFILES/*/*.xsh`:
