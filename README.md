@@ -29,3 +29,19 @@ simply add a `java` directory and put files in there. There's a few special file
 - **topic/\*.configsymlink**: Any files ending in `*.configsymlink` get symlinked into your `$HOME/.config`.
 - **topic/\*.launchagent**: Any files ending in `*.launchagent` get symlinked into your `$HOME/Library/LaunchAgents` and
   load with `launchctl` (in OSX).
+
+
+## Config
+
+You should be able to extend your config without having to modify the files of the repo. For example, for configuring
+your git information, just create a `~/.gitconfig-local` file with the following content:
+
+```
+[user]
+    name         = John Doe
+    email        = john.doe@example.com
+    signingkey   = my-key-id
+    helper       = osxkeychain
+[github]
+    user         = john.doe
+```

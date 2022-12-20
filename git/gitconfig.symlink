@@ -1,11 +1,11 @@
 # Sample gitconfig
 [user]
-    name         = Jose Galarza
-    email        = igalarzab@gmail.com
-    signingkey   = 4F77BEBE9B2489CA
+    name         = TODO
+    email        = TODO@example.com
+    signingkey   = TODO 
     helper       = osxkeychain
 [github]
-    user         = igalarzab
+    user         = TODO 
 [core]
     excludesfile = ~/.gitignore
     editor       = nvim
@@ -84,11 +84,11 @@
   cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
 [pager]
   difftool = true
-[includeIf "gitdir:~/Development/wise/"]
-    path = ~/.gitconfigtw
 [gpg]
 	program = gpg
 [fetch]
 	prune = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
+[include]
+    path = ~/.gitconfig-local
