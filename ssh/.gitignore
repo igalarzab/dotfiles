@@ -1,2 +1,3 @@
 ssh.symlink/id_*
-ssh.symlink/known_hosts
+ssh.symlink/known_hosts*
+ssh.symlink/authorized_keys*
