@@ -1,0 +1,44 @@
+---
+
+- name: Update system packages 
+  become: yes
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Upgrade all packages
+  become: yes
+  apt: upgrade=dist
+
+- name: Setup locales
+  become: yes
+  locale_gen: name=en_GB.UTF-8 state=present
+
+- name: Set the right timezone
+  become: yes
+  timezone: name=Asia/Tokyo
+
+- name: Install basic packages
+  become: yes
+  apt: pkg={{ item }} state=present
+  with_items:
+    - bat
+    - curl
+    - fd-find
+    - fzf
+    - icdiff
+    - jq
+    - mosh
+    - neovim
+    - tree
+
+- name: Install zoxide
+  block:
+    - name: Download zoxide
+      register: zoxide_download
+      get_url:
+        url: https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh
+        dest: /tmp/zoxide_install.sh
+    
+    - name: Install zoxide binary
+      become: yes
+      when: zoxide_download is changed
+      command: cat /tmp/zoxide_install.sh | bash

@@ -1,0 +1,31 @@
+---
+
+- name: Add the neovim apt repository
+  become: yes
+  apt_repository:
+    repo: ppa:neovim-ppa/stable
+
+- name: Install neovim 
+  become: yes
+  apt: pkg=neovim state=present update_cache=yes
+
+- name: Install neovim GEM package
+  become: yes
+  gem:
+    name: neovim
+    state: latest
+    norc: yes
+    user_install: yes
+
+- name: Install packer for neovim 
+  register: packer_download 
+  git:
+    repo: https://github.com/wbthomason/packer.nvim
+    dest: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+    depth: 1
+
+- name: Install neovim packer packages
+  when: packer_download is changed
+  become: yes
+  command: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+

@@ -1,0 +1,46 @@
+---
+
+- name: Install dev packages
+  become: yes
+  apt: pkg={{ item }} state=present
+  with_items:
+    - git
+    - python3-pip
+    - ruby
+    - ruby-dev
+
+- name: Install gh tool (github)
+  block:
+    - name: Download Github PGP key
+      become: yes
+      get_url:
+        url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+        dest: /usr/share/keyrings/githubcli-archive-keyring.gpg
+
+    - name: Add Github CLI apt repository
+      become: yes
+      apt_repository:
+        repo: "deb [arch={{ansible_architecture}} signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
+        state: present
+
+    - name: Install gh package
+      become: yes
+      apt: pkg=gh state=present update_cache=yes
+
+- name: Install httpie
+  block:
+    - name: Download httpie PGP key
+      become: yes
+      get_url:
+        url: https://packages.httpie.io/deb/KEY.gpg
+        dest: /etc/apt/trusted.gpg.d/httpie.asc
+
+    - name: Add httpie apt repository
+      become: yes
+      apt_repository:
+        repo: "deb https://packages.httpie.io/deb ./" 
+        state: present
+
+    - name: Install httpie package
+      become: yes
+      apt: pkg=httpie state=present update_cache=yes

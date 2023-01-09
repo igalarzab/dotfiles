@@ -1,0 +1,11 @@
+---
+
+- name: Install xonsh
+  pip:
+    name: xonsh[full]
+
+- name: Set xonsh as the user shell
+  become: yes
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /usr/local/bin/xonsh

@@ -1,0 +1,7 @@
+---
+
+- name: Generate Github ssh key
+  openssh_keypair:
+    path: "~/.ssh/id_github"
+    type: ed25519
+    state: present

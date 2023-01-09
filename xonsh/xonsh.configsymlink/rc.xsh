@@ -24,6 +24,7 @@ $HISTCONTROL = 'ignoredups'
 $PATH.add(p'/usr/local/bin', front=False, replace=True)
 $PATH.add(p'/opt/homebrew/bin', front=False, replace=True)
 $PATH.add(pf'{$DOTFILES}/bin', front=False, replace=True)
+$PATH.add(pf'{$HOME}/.local/bin', front=False, replace=True)
 
 # Load all the xsh files into the shell
 for f in g`$DOTFILES/*/*.xsh`:

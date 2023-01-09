@@ -1,0 +1,8 @@
+---
+
+- import_tasks: base.yml
+- import_tasks: swap.yml
+- import_tasks: shell.yml
+- import_tasks: ssh.yml
+- import_tasks: neovim.yml
+- import_tasks: dev-utils.yml

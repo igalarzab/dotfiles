@@ -1,0 +1,7 @@
+---
+
+- name: Configure dev-node
+  hosts: local
+  connection: local
+  roles:
+    - common
