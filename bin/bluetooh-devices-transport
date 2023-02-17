@@ -1,0 +1,51 @@
+#! /usr/local/bin/xonsh
+
+import sys
+
+from enum import Enum
+from typing import NamedTuple 
+
+
+class Device(NamedTuple):
+    name: str
+    id: str
+
+
+class Operation(Enum):
+    pair = 'pair'
+    unpair = 'unpair'
+
+    @classmethod
+    def has_value(cls, value):
+        return value in cls._value2member_map_
+
+
+DEVICES: list[Device] = [
+    Device('trackpad', '3c-a6-f6-bd-81-02'),
+    Device('keyboard', 'ac-49-db-f3-af-de'),
+]
+
+def change_device_connection(device: Device, operation: Operation):
+    connected = $(blueutil --is-connected @(device.id)) == '1\n'
+
+    if connected and operation == Operation.unpair:
+        !(blueutil --unpair @(device.id))
+        print(f'The {device.name} has been disconnected')
+    elif not connected and operation == Operation.pair:
+        !(blueutil --pair @(device.id))
+        print(f'The {device.name} has been connected')
+    else:
+        print(f'You cannot {operation.value} the {device.name} again')
+
+
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print(f'Usage: {sys.argv[0]} pair|unpair')
+        sys.exit(-1)
+
+    if not Operation.has_value(sys.argv[1]):
+        print(f'Invalid operation')
+        sys.exit(-1)
+
+    for device in DEVICES:
+        change_device_connection(device, Operation[sys.argv[1]])
