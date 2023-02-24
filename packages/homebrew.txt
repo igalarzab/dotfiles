@@ -1,5 +1,6 @@
 asdf
 bat
+blueutil
 coreutils
 fd
 fzf
