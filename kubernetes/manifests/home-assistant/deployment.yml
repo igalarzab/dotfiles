@@ -1,0 +1,49 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-assistant
+  namespace: home-assistant
+  labels:
+    app: home-assistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: home-assistant
+  template:
+    metadata:
+      labels:
+        app: home-assistant
+    spec:
+      containers:
+        - name: home-assistant
+          image: homeassistant/home-assistant:2023.2.5
+          securityContext:
+            privileged: true
+          env:
+          - name: TZ
+            value: Asia/Tokyo
+          ports:
+            - containerPort: 8123
+          volumeMounts:
+            - name: dbus
+              mountPath: /run/dbus
+              readOnly: true
+            - name: mdns
+              mountPath: /run/avahi-daemon/socket
+              readOnly: true
+            - name: config
+              mountPath: /config
+              readOnly: false
+      volumes:
+        - name: dbus
+          hostPath:
+            path: /run/dbus
+        - name: mdns
+          hostPath:
+            path: /run/avahi-daemon/socket
+        - name: config
+          persistentVolumeClaim:
+            claimName: ha-config-claim

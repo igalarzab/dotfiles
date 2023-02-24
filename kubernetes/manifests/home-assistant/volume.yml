@@ -1,0 +1,43 @@
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ha-config-claim
+  namespace: home-assistant
+  labels:
+    app: home-assistant
+spec:
+  volumeName: ha-config
+  storageClassName: local-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ha-config
+  labels:
+    app: home-assistant
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 2Gi
+  local:
+    path: /media/host/home-assistant
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+              - k3s
