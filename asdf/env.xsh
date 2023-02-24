@@ -1,9 +1,5 @@
-sourceFiles = [
-    p'/usr/local/opt/asdf/libexec/asdf.sh',
-    p'/opt/homebrew/opt/asdf/libexec/asdf.sh',
-]
+sourceFile = p'/opt/homebrew/opt/asdf/libexec/asdf.sh'
 
-for f in sourceFiles:
-    if f.exists():
-        source-bash @(f)
-        $PATH.add(p'~/.local/bin', front=False, replace=True)
+if sourceFile.exists():
+    source-bash @(sourceFile)
+    $PATH.add(p'~/.local/bin', front=False, replace=True)

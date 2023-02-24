@@ -81,7 +81,7 @@
 [transfer]
     fsckobjects = true
 [difftool "icdiff"]
-  cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
+  cmd = icdiff --line-numbers $LOCAL $REMOTE
 [pager]
   difftool = true
 [gpg]

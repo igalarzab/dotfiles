@@ -1,4 +1,4 @@
-if $(which nvim 2>/dev/null):
+if !(which nvim):
     aliases['vim'] = ['nvim']
     $EDITOR = 'nvim'
 else:

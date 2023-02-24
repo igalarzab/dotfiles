@@ -1,2 +1,5 @@
-if $(which /usr/libexec/java_home 2>/dev/null):
-    $JAVA_HOME = $(/usr/libexec/java_home)
+javaInstalls = p`/Users/josegalarza/.asdf/installs/java/.*/bin/java`
+
+if len(javaInstalls):
+    # TODO: Not very clean picking just the first one
+    $JAVA_HOME = javaInstalls[0]

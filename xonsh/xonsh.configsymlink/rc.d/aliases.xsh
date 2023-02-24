@@ -11,12 +11,12 @@ aliases['grep'] = ['grep', '--color=auto']
 # GNU Utils
 #
 
-if $(which gsed 2>/dev/null):
+if !(which gsed):
     aliases['sed'] = ['gsed']
 
-if $(which gfind 2>/dev/null):
+if !(which gfind):
     aliases['find'] = ['gfind']
 
-if $(which bat 2>/dev/null):
+if !(which bat):
     $BAT_THEME='OneHalfDark'
     aliases['cat'] = ['bat']

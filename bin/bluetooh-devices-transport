@@ -1,4 +1,4 @@
-#! /usr/local/bin/xonsh
+#! /opt/homebrew/bin/xonsh
 
 import sys
 
