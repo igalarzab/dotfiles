@@ -10,6 +10,7 @@ gnupg
 httpie
 icdiff
 jq
+mosh
 neovim
 pinentry-mac
 tree
