@@ -1,5 +1,5 @@
+asdf
 bat
-bash-completion@2
 coreutils
 fd
 fzf

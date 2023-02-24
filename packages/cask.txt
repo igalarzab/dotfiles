@@ -2,9 +2,7 @@ alfred
 docker
 fantastical
 iina
-intellij-idea
 iterm2
-keepassxc
 monitorcontrol
 notion
 rectangle

@@ -28,72 +28,62 @@ if [[ "$HOMEBREW" == "1" ]]; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    for app in $(cat homebrew.txt); do
+    while read app; do
         brew install $app
-    done
+    done < homebrew.txt
 
-    for app in $(cat cask.txt); do
+    while read app; do
         brew install --cask $app
-    done
-fi
-
-# Enable asdf in the shell script
-if [ -x "$(command -v asdf)" ]; then
-    echo "Enabling asdf in the shell..."
-    . /usr/local/opt/asdf/libexec/asdf.sh
-
-    for plugin in $(cat xpip.txt); do
-        xpip install $plugin
-    done
+    done < cask.txt
 fi
 
 # Change the shell to xonsh
 if [[ -z $(grep xonsh /etc/shells) && -x "$(command -v xonsh)" ]]; then
     echo "Setting xonsh as the default shell..."
 
-    sudo bash -c 'echo /usr/local/bin/xonsh >> /etc/shells'
-    chsh -s /usr/local/bin/xonsh
+    sudo bash -c 'echo /opt/homebrew/bin/xonsh >> /etc/shells'
+    chsh -s /opt/homebrew/bin/xonsh
 fi
 
 # Install asdf plugins
 if [[ "$ASDF" == "1" ]]; then
-    echo "Installing asdf plugins..."
+    echo "Enabling asdf in the shell..."
+    . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
-    for plugin in $(cat asdf.txt); do
-        asdf install $plugin latest
-        asdf global $plugin latest
-        asdf shell $plugin latest
-    done
+    echo "Installing asdf plugins..."
+    while read plugin; do
+        p=($plugin)
+	(asdf plugin-add ${p[0]} ${p[2]}) || true
+        asdf install ${p[0]} ${p[1]}
+        asdf global ${p[0]} ${p[1]}
+        asdf shell ${p[0]} ${p[1]}
+    done < asdf.txt
 fi
 
 # Install ruby packages
 if [[ "$GEM" == "1" ]]; then
     echo "Installing ruby packages ($(which gem))..."
 
-    for app in $(cat gem.txt); do
-        if [ "$EUID" -ne 0 ]; then
-            sudo gem install $app
-        else
-            gem install $app
-        fi
-    done
+    while read app; do
+        sudo gem install $app
+    done < gem.txt
 fi
 
 # Install JS packages
 if [[ "$NPM" == "1" ]]; then
     echo "Installing JS packages ($(which npm))..."
 
-    for app in $(cat npm.txt); do
+    while read app; do
         echo "Installing $app"
         npm install -g $app
-    done
+    done < npm.txt
 fi
 
 # Install python packages
 if [[ "$PIP" == "1" ]]; then
     echo "Installing python packages ($(which pip))..."
 
-    for app in $(cat pip.txt); do
-        pip install $app
-    done
+    while read app; do
+        pip install --upgrade $app
+    done < pip.txt
 fi
