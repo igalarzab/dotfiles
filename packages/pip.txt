@@ -1,5 +1,3 @@
+neovim
 pip
-awscli
-cssselect
-lxml
 pipenv

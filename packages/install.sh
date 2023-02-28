@@ -28,12 +28,12 @@ if [[ "$HOMEBREW" == "1" ]]; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    while read app; do
-        brew install $app
+    while read -r app; do
+        brew install $app < /dev/null
     done < homebrew.txt
 
-    while read app; do
-        brew install --cask $app
+    while read -r app; do
+        brew install --cask $app < /dev/null
     done < cask.txt
 fi
 
@@ -51,7 +51,7 @@ if [[ "$ASDF" == "1" ]]; then
     . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
     echo "Installing asdf plugins..."
-    while read plugin; do
+    while read -r plugin; do
         p=($plugin)
 	(asdf plugin-add ${p[0]} ${p[2]}) || true
         asdf install ${p[0]} ${p[1]}
@@ -60,20 +60,11 @@ if [[ "$ASDF" == "1" ]]; then
     done < asdf.txt
 fi
 
-# Install ruby packages
-if [[ "$GEM" == "1" ]]; then
-    echo "Installing ruby packages ($(which gem))..."
-
-    while read app; do
-        sudo gem install $app
-    done < gem.txt
-fi
-
 # Install JS packages
 if [[ "$NPM" == "1" ]]; then
     echo "Installing JS packages ($(which npm))..."
 
-    while read app; do
+    while read -r app; do
         echo "Installing $app"
         npm install -g $app
     done < npm.txt
@@ -83,7 +74,7 @@ fi
 if [[ "$PIP" == "1" ]]; then
     echo "Installing python packages ($(which pip))..."
 
-    while read app; do
+    while read -r app; do
         pip install --upgrade $app
     done < pip.txt
 fi

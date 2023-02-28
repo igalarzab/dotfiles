@@ -1,11 +1,9 @@
 alfred
-docker
 fantastical
 iina
 iterm2
 monitorcontrol
 notion
 rectangle
-spotify
 the-unarchiver
 whatsapp

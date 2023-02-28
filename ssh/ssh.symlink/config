@@ -1,10 +1,6 @@
 Host *
-    AddKeysToAgent yes
     ServerAliveInterval 60
     ServerAliveCountMax 5
-
-Host github.com
-    AddKeysToAgent yes
 
 Host *.amazonaws.com
     User ubuntu

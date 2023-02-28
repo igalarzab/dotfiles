@@ -9,12 +9,10 @@ local api, cmd, g, opt, o = vim.api, vim.cmd, vim.g, vim.opt, vim.o
 -- Global Config
 ---------------------------------------------------------------------------
 
--- Disable python2 and perl support
+-- Disable python2, perl and ruby support
 g.loaded_python_provider = 0
 g.loaded_perl_provider = 0
-
--- Use pyenv for python3 support
-g.python3_host_prog = '~/.pyenv/versions/neovim/bin/python'
+g.loaded_ruby_provider = 0
 
 
 ---------------------------------------------------------------------------
