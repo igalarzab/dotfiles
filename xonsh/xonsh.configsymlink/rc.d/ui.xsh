@@ -5,5 +5,5 @@ $ENABLE_ASYNC_PROMPT = False
 $XONSH_COLOR_STYLE = 'solarized-dark'
 
 # Trying to kind-of-mimic the "pure" theme of zsh
-$PROMPT = '{YELLOW}{env_name} {#5DC6FB}{short_cwd} {branch_color}{curr_branch}{RESET}\n{BOLD_PURPLE}❯{RESET} '
+$PROMPT = '{YELLOW}{env_name} {#5DC6FB}{short_cwd} {branch_color}{curr_branch}{RESET}{RED}\n{last_return_code_if_nonzero: [{}]} {BOLD_PURPLE}❯{RESET} '
 
