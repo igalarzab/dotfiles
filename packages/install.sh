@@ -9,6 +9,9 @@ GEM=0
 NPM=0
 PIP=0
 
+# Homebrew will not be in the PATH once installed
+PATH=$PATH:/opt/homebrew/bin
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     ASDF=1
     HOMEBREW=1

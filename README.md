@@ -7,7 +7,7 @@ promoted by [@holman](http://github.com/holman).
 ## Install
 
 ```sh
-$ git clone git://github.com/igalarzab/dotfiles ~/.dotfiles`
+$ git clone https://github.com/igalarzab/dotfiles ~/.dotfiles
 $ cd ~/.dotfiles
 $ python bootstrap.py
 $ cd packages
