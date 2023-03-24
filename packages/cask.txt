@@ -1,4 +1,5 @@
 alfred
+cryptomator
 fantastical
 iina
 iterm2
