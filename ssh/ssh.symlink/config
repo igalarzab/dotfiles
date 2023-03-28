@@ -2,18 +2,13 @@ Host *
     ServerAliveInterval 60
     ServerAliveCountMax 5
 
-Host *.amazonaws.com
-    User ubuntu
-    UserKnownHostsFile /dev/null
-    StrictHostKeyChecking no
-    LogLevel FATAL
+Host mimas.lan
+    ControlMaster     auto
+    ControlPath       ~/.ssh/control-%C
+    ControlPersist    yes
 
-Host vagrant
-    HostName 127.0.0.1
-    User vagrant
-    Port 2222
-    IdentityFile ~/.vagrant.d/insecure_private_key
-    IdentitiesOnly yes
-    UserKnownHostsFile /dev/null
-    StrictHostKeyChecking no
-    LogLevel FATAL
+Host *.amazonaws.com
+    User                    ubuntu
+    UserKnownHostsFile      /dev/null
+    StrictHostKeyChecking   no
+    LogLevel                FATAL
