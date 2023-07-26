@@ -14,6 +14,10 @@ g.loaded_python_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
 
+-- Disable netrw 
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
+
 
 ---------------------------------------------------------------------------
 -- Plugins
@@ -251,9 +255,25 @@ require('telescope').setup({
 })
 
 -- Tree Browser
-local tree_cb = require('nvim-tree.config').nvim_tree_callback
 api.nvim_set_keymap('n', '<Leader>tr', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+
+local function tree_on_attach(bufnr)
+  local api = require('nvim-tree.api')
+
+  local function opts(desc)
+    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  -- default mappings
+  api.config.mappings.default_on_attach(bufnr)
+
+  -- custom mappings
+  vim.keymap.set('n', 't', api.fs.create, opts('Create'))
+  vim.keymap.set('n', '<C-h>', api.node.open.horizontal, opts('Open: Horizontal Split'))
+end
+
 require('nvim-tree').setup({
+    on_attach = tree_on_attach,
     git = {
         ignore = true,
     },
@@ -270,14 +290,6 @@ require('nvim-tree').setup({
                 file = true,
                 folder_arrow = true,
                 git = true
-            },
-        },
-    },
-    view = {
-        mappings = {
-            list = {
-                { key = "t",     cb = tree_cb("create") },
-                { key = "<C-h>", cb = tree_cb("split") },
             },
         },
     },
