@@ -30,8 +30,8 @@ for f in g`$DOTFILES/*/*.xsh`:
     source @(f)
 
 # Keeping secrets in ~/.localrc
-if p'~/.localrc'.exists():
-    source @(p'~/.localrc')
+if p'~/.local.xsh'.exists():
+    source @(p'~/.local.xsh')
 
 # Make JSON parsable... a bit hacky, but super convenient to paste JSON in the shell
 builtins.true = True

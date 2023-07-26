@@ -7,8 +7,8 @@ import urllib.request
 GYM_BASE_URL = 'https://information.konamisportsclub.jp/ksc'
 
 GYMS = {
-    'Meguro': '006022',
     'Ebisu': '006023',
+    'Meguro': '006022',
     'Shibuya': '007871',
 }
 
