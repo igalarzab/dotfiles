@@ -1,14 +1,5 @@
+Include config.d/*
+
 Host *
     ServerAliveInterval 60
     ServerAliveCountMax 5
-
-Host mimas.lan
-    ControlMaster     auto
-    ControlPath       ~/.ssh/control-%C
-    ControlPersist    yes
-
-Host *.amazonaws.com
-    User                    ubuntu
-    UserKnownHostsFile      /dev/null
-    StrictHostKeyChecking   no
-    LogLevel                FATAL
