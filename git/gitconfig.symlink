@@ -68,6 +68,7 @@
     followTags = true
 [pull]
     ff = only
+    rebase = true
 [commit]
     verbose = true
     gpgsign = false
