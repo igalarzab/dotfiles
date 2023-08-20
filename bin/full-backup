@@ -1,0 +1,54 @@
+#!/usr/bin/env xonsh
+
+from collections import namedtuple
+
+Dir = namedtuple("Dir", ["orig", "dest"])
+
+DIRS = [
+    Dir(p`~/Library/Mobile Documents/com~apple~CloudDocs/.*`, p"/Volumes/Backups/Drive/"),
+]
+
+def backup_dirs(dirs):
+    print("Backing up dirs...")
+    for dir in dirs:
+        rsync \
+            --compress \
+            --delete-during \
+            --itemize-changes \
+            --links \
+            --numeric-ids \
+            --recursive \
+            --relative \
+            @(dir.orig) \
+            @(dir.dest)
+
+def backup_photos():
+    vox activate osxphotos
+
+    osxphotos \
+        export \
+        /Volumes/Backups/Photos/ \
+        --cleanup \
+        --convert-to-jpeg --jpeg-quality 0.9 \
+        --db "~/Pictures/Photos Library.photoslibrary" \
+        --directory "{folder_album}" \
+        --download-missing \
+        --edited-suffix "" \
+        --exiftool \
+        --exiftool-merge-keywords \
+        --exiftool-merge-persons \
+        --filename "{created.strftime,%Y-%m-%d-%H%M%S}" \
+        --ignore-date-modified \
+        --jpeg-ext jpg \
+        --retry 5 \
+        --skip-bursts \
+        --skip-live \
+        --skip-original-if-edited \
+        --skip-raw \
+        --touch-file \
+        --theme dark \
+        --update
+
+if __name__ == "__main__":
+    backup_dirs(DIRS)
+    backup_photos()

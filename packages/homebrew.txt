@@ -15,6 +15,7 @@ mosh
 neovim
 pinentry-mac
 pstree
+rsnapshot
 tree
 watch
 wget
