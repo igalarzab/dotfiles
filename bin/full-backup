@@ -1,24 +1,27 @@
 #!/usr/bin/env xonsh
 
 from collections import namedtuple
+from os import path
 
-Dir = namedtuple("Dir", ["orig", "dest"])
+Backup = namedtuple("Backup", ["orig", "dest"])
 
 DIRS = [
-    Dir(p`~/Library/Mobile Documents/com~apple~CloudDocs/.*`, p"/Volumes/Backups/Drive/"),
+    Backup(path.expanduser("~/Library/Mobile Documents/com~apple~CloudDocs/"), "/Volumes/Backups/Drive/"),
 ]
 
 def backup_dirs(dirs):
-    print("Backing up dirs...")
     for dir in dirs:
+        print(f"Backing up '{dir.orig}'...")
         rsync \
             --compress \
             --delete-during \
+            --exclude '.DS_Store' \
+            --exclude '.Trash' \
             --itemize-changes \
             --links \
             --numeric-ids \
             --recursive \
-            --relative \
+            --times \
             @(dir.orig) \
             @(dir.dest)
 
