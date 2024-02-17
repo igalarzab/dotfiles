@@ -15,6 +15,7 @@
     ci       = commit
     br       = branch
     grep     = grep -Ii
+    bl       = blame -w -C -C -C
     ignored  = ls-files --others -i --exclude-standard
     please   = push --force-with-lease
     commend  = commit --amend --no-edit
@@ -59,6 +60,7 @@
     keepBackup = false
 [branch]
     autosetuprebase = always
+	sort = -committerdate
 [help]
     autocorrect = 0
 [hub]
@@ -93,3 +95,10 @@
     defaultBranch = main
 [include]
     path = ~/.gitconfig-local
+[rerere]
+	enabled = true
+[column]
+	ui = auto
+[maintenance]
+	repo = /Users/igalarzab/Developer/homelab
+	repo = /Users/igalarzab/Developer/bambu-quick-actions
