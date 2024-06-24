@@ -1,9 +1,14 @@
+1password
+arc
+clocker
 cryptomator
 fantastical
 iina
 iterm2
 monitorcontrol
 notion
+raycast
 rectangle
 the-unarchiver
+visual-studio-code
 whatsapp
