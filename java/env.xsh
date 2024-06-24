@@ -1,4 +1,4 @@
-javaInstalls = p`/Users/josegalarza/.asdf/installs/java/.*/bin/java`
+javaInstalls = p`~/.asdf/installs/java/.*/bin/java`
 
 if len(javaInstalls):
     # TODO: Not very clean picking just the first one

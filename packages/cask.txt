@@ -1,4 +1,3 @@
-alfred
 cryptomator
 fantastical
 iina

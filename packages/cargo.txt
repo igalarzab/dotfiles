@@ -1,2 +1,0 @@
-cargo-edit
-cargo-upgrades

@@ -21,10 +21,10 @@ $XONSH_HISTORY_BACKEND = 'sqlite'
 $HISTCONTROL = 'ignoredups'
 
 # Add homebrew and dotfiles to the default PATH
+$PATH.add(p'/usr/local/bin', front=True, replace=True)
 $PATH.add(p'/opt/homebrew/sbin', front=True, replace=True)
 $PATH.add(p'/opt/homebrew/bin', front=True, replace=True)
-$PATH.add(pf'/usr/local/bin', front=False, replace=True)
-$PATH.add(str($DOTFILES) + '/bin', front=False, replace=True)
+$PATH.add($DOTFILES / 'bin', front=True, replace=True)
 
 # Load all the xsh files into the shell
 for f in g`$DOTFILES/*/*.xsh`:

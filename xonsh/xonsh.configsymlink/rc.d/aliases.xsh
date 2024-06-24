@@ -1,3 +1,5 @@
+import shutil
+
 aliases['..'] = ['cd' , '..']
 
 aliases['l'] = ['ls']
@@ -7,16 +9,12 @@ aliases['lla'] = ['ls', '-la']
 
 aliases['grep'] = ['grep', '--color=auto']
 
-#
-# GNU Utils
-#
-
-if !(which gsed):
+if shutil.which('gsed'):
     aliases['sed'] = ['gsed']
 
-if !(which gfind):
+if shutil.which('gfind'):
     aliases['find'] = ['gfind']
 
-if !(which bat):
+if shutil.which('bat'):
     $BAT_THEME='OneHalfDark'
     aliases['cat'] = ['bat']
