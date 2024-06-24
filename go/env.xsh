@@ -1,3 +1,4 @@
-$GOPATH = p'~/.golang/'
+path = p'~/.golang'
 
-$PATH.add(p'~/.golang/bin', front=True, replace=True)
+$GOPATH = path
+$PATH.add(path / 'bin', front=True, replace=True)

@@ -99,6 +99,3 @@
 	enabled = true
 [column]
 	ui = auto
-[maintenance]
-	repo = /Users/igalarzab/Developer/homelab
-	repo = /Users/igalarzab/Developer/bambu-quick-actions
