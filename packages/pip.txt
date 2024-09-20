@@ -1,4 +1,0 @@
-neovim
-pip
-pipenv
-python-lsp-server

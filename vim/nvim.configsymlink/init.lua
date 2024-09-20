@@ -194,7 +194,7 @@ local on_attach = function(_, bufnr)
 end
 local servers = {
     'eslint', 'gopls', 'jsonls', 'pyright', 'rust_analyzer', 'stylelint_lsp',
-    'tsserver', 'yamlls', 
+    'ts_ls', 'yamlls', 
 }
 
 for _, lsp in ipairs(servers) do
