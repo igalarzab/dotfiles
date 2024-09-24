@@ -50,7 +50,7 @@ require('packer').startup(function()
     }})
 
     -- UI plugins
-    use('navarasu/onedark.nvim')
+    use({'catppuccin/nvim', as = 'catppuccin' })
     use({'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}})
     use({'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons', opt = true}})
     use({'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}})
@@ -236,9 +236,6 @@ api.nvim_set_keymap('n', '<Leader>ge', ':Lspsaga diagnostic_jump_next<CR>', { no
 -- LSP Signature
 require('lsp_signature').setup()
 
--- OneDark
-require('onedark').load()
-
 -- Telescope
 local actions = require('telescope.actions')
 api.nvim_set_keymap('n', '<C-p>', ':Telescope find_files<CR>', { noremap = true, silent = true })
@@ -307,6 +304,17 @@ require('nvim-treesitter.configs').setup({
 require('hop').setup()
 vim.api.nvim_set_keymap('n', '<Leader><Leader>w', ":HopWord<CR>", { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader><Leader>c', ":HopChar1<CR>", { noremap = true, silent = true})
+
+-- Catppuccin
+require('catppuccin').setup({
+    background = {
+        light = 'latte',
+        dark = 'macchiato',
+    },
+    transparent_background = true
+})
+
+vim.cmd.colorscheme 'catppuccin'
 
 
 ---------------------------------------------------------------------------
