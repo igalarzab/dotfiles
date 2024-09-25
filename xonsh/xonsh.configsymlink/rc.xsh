@@ -9,6 +9,9 @@ $XONSH_AUTOPAIR = True
 # Hide errors...
 $XONSH_SHOW_TRACEBACK = False
 
+# Enable vim mode
+$VI_MODE=1
+
 # Path of where the dotfiles are located
 $DOTFILES = p'~/.dotfiles'
 
