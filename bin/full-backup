@@ -14,6 +14,7 @@ def backup_dirs(dirs):
         print(f"Backing up '{dir.orig}'...")
         rsync \
             --compress \
+            --copy-links \
             --delete-during \
             --exclude '.DS_Store' \
             --exclude '.Trash' \
@@ -45,11 +46,11 @@ def backup_photos():
         --jpeg-ext jpg \
         --not-hidden \
         --retry 5 \
+        --person-keyword \
         --skip-bursts \
         --skip-live \
         --skip-original-if-edited \
         --skip-raw \
-        --touch-file \
         --theme dark \
         --update
 

@@ -2,6 +2,7 @@
 arc
 clocker
 cryptomator
+cursor
 fantastical
 iina
 iterm2
@@ -9,5 +10,4 @@ monitorcontrol
 notion
 raycast
 the-unarchiver
-visual-studio-code
 whatsapp
