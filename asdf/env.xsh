@@ -1,5 +1,2 @@
-sourceFile = p'/opt/homebrew/opt/asdf/libexec/asdf.sh'
-
-if sourceFile.exists():
-    source-bash @(sourceFile)
-    $PATH.add(p'~/.local/bin', front=True, replace=True)
+$ASDF_DATA_DIR=p'~/.asdf'
+$PATH.add($ASDF_DATA_DIR / 'shims', front=True, replace=True)
