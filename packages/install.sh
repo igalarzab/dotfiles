@@ -31,13 +31,7 @@ if [[ "$HOMEBREW" == "1" ]]; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    while read -r app; do
-        brew install $app < /dev/null
-    done < homebrew.txt
-
-    while read -r app; do
-        brew install --cask $app < /dev/null
-    done < cask.txt
+    brew bundle
 fi
 
 # Change the shell to xonsh

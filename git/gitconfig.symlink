@@ -98,4 +98,6 @@
 [rerere]
 	enabled = true
 [column]
-	ui = auto
+    ui = auto
+[log]
+    showSignature = true
