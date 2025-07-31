@@ -1,4 +1,7 @@
-path = p'~/.golang'
+import shutil
 
-$GOPATH = path
-$PATH.add(path / 'bin', front=True, replace=True)
+if shutil.which('go', path=':'.join($PATH)):
+    path = p'~/.golang'
+
+    $GOPATH = path
+    $PATH.add(path / 'bin', front=True, replace=True)
