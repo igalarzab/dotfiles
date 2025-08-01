@@ -29,6 +29,9 @@ if [[ "$HOMEBREW" == "1" ]]; then
 
     echo "Installing mise packages..."
     mise install
+
+    echo "Enable mise env..."
+    eval "$(mise env -s bash)"
 fi
 
 # Install JS packages
