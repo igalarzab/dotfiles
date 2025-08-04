@@ -1,2 +1,2 @@
 git.configsymlink/allowed-signers
-git.configsymlink/config-local
+git.configsymlink/config-local*
