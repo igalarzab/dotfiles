@@ -1,0 +1,17 @@
+version = 1
+
+[[steps]]
+plugin = 'link'
+regex  = true
+
+[steps.links]
+'.*/(.*)\.configsymlink' = '~/.config/\1'
+'.*/(.*)\.symlink'       = '~/.\1'
+
+[[steps]]
+plugin = 'shell'
+
+commands = [
+    'brew bundle --file=./packages/Brewfile --no-upgrade',
+    'mise install',
+]
