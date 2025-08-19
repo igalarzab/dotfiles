@@ -13,5 +13,9 @@ SUBJECT="%s"
 
 FORMAT="$HASH $SUBJECT $AUTHOR $RELATIVE_TIME $REFS"
 
-git log --graph --pretty=format:"${FORMAT}" $* --abbrev-commit --date=relative |
-    less -FXRS
+git \
+    -c log.showSignature=false log \
+    --graph \
+    --pretty=format:"${FORMAT}" $* \
+    --abbrev-commit \
+    --date=relative | less -FXRS

@@ -9,6 +9,16 @@ user = TODO
 
 [core]
 editor = nvim
+pager = delta
+
+[delta]
+line-numbers = true
+navigate = true
+hyperlinks = true
+hyperlinks-file-link-format = "vscode://file/{path}:{line}"
+
+[interactive]
+diffFilter = delta --color-only
 
 [alias]
 co = checkout
@@ -18,13 +28,13 @@ br = branch
 
 grep = grep -Ii
 ignored = ls-files --others -i --exclude-standard
+todo = grep -IE "TODO|FIXME|XXX"
+find = !git ls-files | grep -i --color
+aliases = !git config -l | grep alias | cut -c 7-
+
 please = push --force-with-lease
 commend = commit --amend --no-edit
 cammend = commit --amend --no-edit --all
-todo = grep -IE "TODO|FIXME|XXX"
-
-find = !git ls-files | grep -i --color
-aliases = !git config -l | grep alias | cut -c 7-
 
 ls = !$DOTFILES/git/functions/git-ls
 ll = !$DOTFILES/git/functions/git-ll
@@ -32,6 +42,16 @@ wtf = !$DOTFILES/git/functions/git-wtf
 
 pr = !gh pr create
 prd = !gh pr create --draft
+
+[gpg]
+format = ssh
+program = gpg
+
+[gpg "ssh"]
+allowedSignersFile = ~/.config/git/allowed-signers
+
+[pager]
+difftool = true
 
 [color]
 ui = true
@@ -47,67 +67,24 @@ untracked = red
 [color "diff"]
 whitespace = red reverse
 
-[mergetool]
-keepBackup = false
-
-[difftool]
-prompt = false
+[column]
+ui = auto
 
 [apply]
 whitespace = nowarn
-
-[merge]
-ff = only
-conflictstyle = diff3
-tool = vimdiff
 
 [branch]
 autosetuprebase = always
 sort = -committerdate
 
-[help]
-autocorrect = 0
-
-[hub]
-protocol = https
-
-[push]
-default = simple
-followTags = true
-
-[pull]
-ff = only
-rebase = true
-
 [commit]
 verbose = true
-gpgsign = false
 
 [diff]
-tool = icdiff
 indentHeuristic = true
 
-[submodule]
-fetchJobs = 4
-
-[status]
-showUntrackedFiles = all
-
-[transfer]
-fsckobjects = true
-
-[difftool "icdiff"]
-cmd = icdiff --line-numbers $LOCAL $REMOTE
-
-[pager]
-difftool = true
-
-[gpg]
-format = ssh
-program = gpg
-
-[gpg "ssh"]
-allowedSignersFile = ~/.config/git/allowed-signers
+[difftool]
+prompt = false
 
 [fetch]
 prune = true
@@ -115,17 +92,30 @@ prune = true
 [init]
 defaultBranch = main
 
-[include]
-path = ~/.config/git/config-local
+[log]
+showSignature = true
+
+[merge]
+conflictstyle = zdiff3
+
+[mergetool]
+keepBackup = false
+
+[pull]
+ff = only
+rebase = true
+
+[push]
+followTags = true
+
+[status]
+showUntrackedFiles = all
+
+[tag]
+gpgsign = true
 
 [rerere]
 enabled = true
 
-[column]
-ui = auto
-
-[log]
-showSignature = true
-
-[tag]
-gpgsign = true
+[include]
+path = ~/.config/git/config-local
