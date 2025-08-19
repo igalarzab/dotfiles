@@ -1,102 +1,131 @@
-# Sample gitconfig
 [user]
-    name         = TODO
-    email        = TODO@example.com
-    signingkey   = TODO 
-    helper       = osxkeychain
+name = TODO
+email = TODO@example.com
+signingkey = TODO
+helper = osxkeychain
+
 [github]
-    user         = TODO 
+user = TODO
+
 [core]
-    editor       = nvim
+editor = nvim
+
 [alias]
-    co       = checkout
-    st       = status -s
-    ci       = commit
-    br       = branch
-    grep     = grep -Ii
-    bl       = blame -w -C -C -C
-    ignored  = ls-files --others -i --exclude-standard
-    please   = push --force-with-lease
-    commend  = commit --amend --no-edit
-    cammend  = commit --amend --no-edit --all
-    todo     = grep -IE "TODO|FIXME|XXX"
+co = checkout
+st = status -s
+ci = commit
+br = branch
 
-    find     = !git ls-files | grep -i --color
-    aliases  = !git config -l | grep alias | cut -c 7-
-    smodpull = submodule foreach git pull
+grep = grep -Ii
+ignored = ls-files --others -i --exclude-standard
+please = push --force-with-lease
+commend = commit --amend --no-edit
+cammend = commit --amend --no-edit --all
+todo = grep -IE "TODO|FIXME|XXX"
 
-    assume   = update-index --assume-unchanged
-    unassume = update-index --no-assume-unchanged
-    assumed  = !git ls-files -v | grep ^h | cut -c 3-
+find = !git ls-files | grep -i --color
+aliases = !git config -l | grep alias | cut -c 7-
 
-    ls       = !$DOTFILES/git/functions/git-ls
-    ll       = !$DOTFILES/git/functions/git-ll
-    wtf      = !$DOTFILES/git/functions/git-wtf
-    pr       = !gh pr create
-    prd      = !gh pr create --draft
+ls = !$DOTFILES/git/functions/git-ls
+ll = !$DOTFILES/git/functions/git-ll
+wtf = !$DOTFILES/git/functions/git-wtf
+
+pr = !gh pr create
+prd = !gh pr create --draft
+
 [color]
-    ui     = true
-    diff   = auto
-    status = auto
-    branch = auto
+ui = true
+diff = auto
+status = auto
+branch = auto
+
 [color "status"]
-    added     = green
-    changed   = yellow
-    untracked = red
+added = green
+changed = yellow
+untracked = red
+
 [color "diff"]
-    whitespace = red reverse
+whitespace = red reverse
+
 [mergetool]
-    keepBackup = false
+keepBackup = false
+
 [difftool]
-    prompt = false
+prompt = false
+
 [apply]
-    whitespace = nowarn
+whitespace = nowarn
+
 [merge]
-    ff = only
-    conflictstyle = diff3
-    tool = vimdiff
-[mergetool]
-    keepBackup = false
+ff = only
+conflictstyle = diff3
+tool = vimdiff
+
 [branch]
-    autosetuprebase = always
-	sort = -committerdate
+autosetuprebase = always
+sort = -committerdate
+
 [help]
-    autocorrect = 0
+autocorrect = 0
+
 [hub]
-    protocol = https
+protocol = https
+
 [push]
-    default = simple
-    followTags = true
+default = simple
+followTags = true
+
 [pull]
-    ff = only
-    rebase = true
+ff = only
+rebase = true
+
 [commit]
-    verbose = true
-    gpgsign = false
+verbose = true
+gpgsign = false
+
 [diff]
-    tool = icdiff
-    indentHeuristic = true
+tool = icdiff
+indentHeuristic = true
+
 [submodule]
-    fetchJobs = 4
+fetchJobs = 4
+
 [status]
-    showUntrackedFiles = all
+showUntrackedFiles = all
+
 [transfer]
-    fsckobjects = true
+fsckobjects = true
+
 [difftool "icdiff"]
-  cmd = icdiff --line-numbers $LOCAL $REMOTE
+cmd = icdiff --line-numbers $LOCAL $REMOTE
+
 [pager]
-  difftool = true
+difftool = true
+
 [gpg]
-	program = gpg
+format = ssh
+program = gpg
+
+[gpg "ssh"]
+allowedSignersFile = ~/.config/git/allowed-signers
+
 [fetch]
-	prune = true
+prune = true
+
 [init]
-    defaultBranch = main
+defaultBranch = main
+
 [include]
-    path = ~/.config/git/config-local
+path = ~/.config/git/config-local
+
 [rerere]
-	enabled = true
+enabled = true
+
 [column]
-    ui = auto
+ui = auto
+
 [log]
-    showSignature = true
+showSignature = true
+
+[tag]
+gpgsign = true
