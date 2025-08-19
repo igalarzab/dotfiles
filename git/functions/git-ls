@@ -18,4 +18,5 @@ git \
     --graph \
     --pretty=format:"${FORMAT}" $* \
     --abbrev-commit \
+    --color=always \
     --date=relative | less -FXRS

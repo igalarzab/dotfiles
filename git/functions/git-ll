@@ -13,5 +13,8 @@ SUBJECT="%s"
 
 FORMAT="$HASH $SUBJECT $AUTHOR $RELATIVE_TIME $REFS"
 
-git log --pretty=format:"${FORMAT}" $* --decorate --numstat |
-    less -FXRS
+git log \
+    --pretty=format:"${FORMAT}" $* \
+    --decorate \
+    --color=always \
+    --numstat | less -FXRS
