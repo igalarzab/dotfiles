@@ -1,0 +1,285 @@
+#!/usr/bin/env python3
+#
+# Name: SImple DOTfiles (sidot) Script
+# Version: v1.0.0
+# Author: Jose Galarza <igalarzab@gmail.com>
+#
+
+import argparse
+import itertools
+import os
+import re
+import subprocess
+from dataclasses import dataclass
+from enum import Enum
+from pathlib import Path
+from typing import Any, cast
+
+import tomllib
+
+NAME = "sidot"
+DESCRIPTION = "SImple DOTfiles Script"
+AUTHOR = "Jose Galarza <igalarzab@gmail.com>"
+VERSION = "v1.0.0"
+
+
+@dataclass
+class GlobalConfig:
+    steps: list[dict[str, object]]
+    config_path: Path
+    dry_run: bool
+    version: int
+
+
+class Color(Enum):
+    DEFAULT = "\033[0m"
+    RED = "\033[31m"
+    GREEN = "\033[32m"
+    YELLOW = "\033[33m"
+    BLUE = "\033[34m"
+
+
+#
+# Utility Functions
+#
+
+
+def parse_global_config(cfg_path: Path, args: argparse.Namespace) -> GlobalConfig:
+    """Read the configuration file and return a GlobalConfig object"""
+    try:
+        with open(cfg_path, "rb") as cfg_file:
+            cfg = tomllib.load(cfg_file)
+
+        version = int(cfg.get("version", 1))
+
+        match version:
+            case 1:
+                cfg = GlobalConfig(
+                    steps=cfg["steps"],
+                    config_path=cfg_path,
+                    dry_run=args.dry_run if hasattr(args, "dry_run") else False,
+                    version=version,
+                )
+            case _:
+                raise ValueError(f"Unsupported config version: {version}")
+    except Exception as e:
+        raise ValueError(f"Invalid config file in {cfg_path}") from e
+
+    return cfg
+
+
+def parse_args() -> tuple[argparse.ArgumentParser, argparse.Namespace]:
+    """Parse command line arguments"""
+
+    parser = argparse.ArgumentParser(description=f"{NAME} - {DESCRIPTION}")
+    subparsers = parser.add_subparsers(title="subcommands", dest="subcommand")
+
+    parser.add_argument(
+        "--version",
+        "-v",
+        action="store_true",
+        help="Show version information and exit",
+    )
+
+    parser.add_argument(
+        "--config",
+        "-c",
+        type=str,
+        default=str("./sidot.toml"),
+        help="Path to the configuration file (default: ./sidot.toml)",
+    )
+
+    parser_run = subparsers.add_parser("run", help="Bootstrap the dotfiles")
+
+    parser_run.add_argument(
+        "--dry-run",
+        "-d",
+        action="store_true",
+        default=False,
+        help="Enable dry run mode (no changes will be made)",
+    )
+
+    return (parser, parser.parse_args())
+
+
+def printc(text: str, color: Color | None) -> None:
+    """Print text in a specific color"""
+    print(f"{color.value if color else Color.DEFAULT.value}{text}{Color.DEFAULT.value}")
+
+
+#
+# Plugins
+#
+
+
+class Plugin:
+    """Base class for all plugins"""
+
+    def __init__(self, global_config: GlobalConfig) -> None:
+        self.global_config = global_config
+
+    def read_config(self, raw_config: dict[str, object]) -> object:
+        raise NotImplementedError
+
+    def run(self, plugin_config: Any) -> None:
+        raise NotImplementedError
+
+
+class LinkPlugin(Plugin):
+    """Create symlinks based on the provided configuration"""
+
+    @dataclass
+    class Config:
+        links: dict[str, str]
+        regex: bool = True
+        create_parents: bool = True
+
+    def read_config(self, raw_config: dict[str, object]) -> Config:
+        return self.Config(
+            links=cast(dict[str, str], raw_config["links"]),
+            regex=bool(raw_config.get("regex", False)),
+            create_parents=bool(raw_config.get("create_parents", True)),
+        )
+
+    def run(self, plugin_config: Config) -> None:
+        printc("[LINKS] Creating symlinks...", Color.BLUE)
+        pending_links: list[tuple[Path, Path]] = []
+        root_path = self.global_config.config_path.parent
+
+        if plugin_config.regex:
+            all_items = self._all_paths_in(root_path)
+
+            for link_from, link_to in plugin_config.links.items():
+                from_regex = re.compile(link_from)
+
+                for origin_path in all_items:
+                    match = from_regex.fullmatch(str(origin_path))
+
+                    if not match:
+                        continue
+
+                    destination_path = Path(match.expand(link_to)).expanduser()
+                    pending_links.append((origin_path, destination_path))
+        else:
+            for link_from, link_to in plugin_config.links.items():
+                destination_path = Path(link_to).expanduser()
+                pending_links.append((Path(link_from), destination_path))
+
+        for origin, dest in pending_links:
+            if dest.exists():
+                printc(f"[LINKS] Skip existing file: {origin} -> {dest}", Color.YELLOW)
+                continue
+
+            if not dest.parent.exists():
+                if not plugin_config.create_parents:
+                    printc(f"[LINKS] Parent does not exist: {dest.parent}", Color.RED)
+                    continue
+
+                if not self.global_config.dry_run:
+                    printc(f"[LINKS] Created parent dir: {dest.parent}", Color.GREEN)
+                    dest.parent.mkdir(parents=True, exist_ok=True)
+
+            if not self.global_config.dry_run:
+                os.symlink(root_path / origin, dest)
+
+            printc(f"[LINKS] Created symlink: {origin} -> {dest}", Color.GREEN)
+
+    def _all_paths_in(self, parent_path: Path) -> list[Path]:
+        """Get all paths in the directory, excluding hidden ones"""
+        all_paths: list[Path] = []
+
+        for dirpath, dirs, files in os.walk(parent_path):
+            if Path(dirpath).name.startswith("."):
+                continue  # Ignore hidden directories
+
+            for path in itertools.chain(dirs, files):
+                fdir = Path(dirpath) / Path(path)
+                all_paths.append(fdir.relative_to(parent_path))
+
+        return all_paths
+
+
+class ShellPlugin(Plugin):
+    """Run shell commands based on the provided configuration"""
+
+    @dataclass
+    class Config:
+        commands: list[str]
+        working_dir: str | None = None
+        stop_on_error: bool = True
+
+    def read_config(self, raw_config: dict[str, object]) -> Config:
+        return self.Config(
+            commands=cast(list[str], raw_config["commands"]),
+            working_dir=cast(str | None, raw_config.get("working_dir", None)),
+            stop_on_error=bool(raw_config.get("stop_on_error", True)),
+        )
+
+    def run(self, plugin_config: Config) -> None:
+        printc("[SHELL] Running commands...", Color.BLUE)
+        working_dir = self.global_config.config_path.parent
+
+        if plugin_config.working_dir:
+            config_workin_dir = Path(plugin_config.working_dir)
+
+            if config_workin_dir.is_absolute():
+                working_dir = config_workin_dir
+            else:
+                working_dir = working_dir / Path(plugin_config.working_dir)
+
+        for cmd in plugin_config.commands:
+            printc(f"[SHELL] Executing command: {cmd}", Color.GREEN)
+
+            if not self.global_config.dry_run:
+                res = subprocess.run(
+                    cmd,
+                    shell=True,
+                    check=plugin_config.stop_on_error,
+                    cwd=working_dir,
+                )
+
+                if res.returncode == 0:
+                    printc(f"[SHELL] Command succeeded: {cmd}", Color.GREEN)
+                else:
+                    printc(f"[SHELL] Command failed: {cmd}", Color.RED)
+
+
+#
+# Subcommands
+#
+
+
+def subcommand_run(global_config: GlobalConfig) -> None:
+    if global_config.dry_run:
+        printc("[SIDOT] Dry Run mode enabled", Color.BLUE)
+
+    for step in global_config.steps:
+        plugin_name = step.get("plugin", None)
+
+        match plugin_name:
+            case "link":
+                link_plugin = LinkPlugin(global_config)
+                link_plugin.run(link_plugin.read_config(step))
+            case "shell":
+                shell_plugin = ShellPlugin(global_config)
+                shell_plugin.run(shell_plugin.read_config(step))
+            case _:
+                printc(f"[SIDOT] Unknown plugin: {plugin_name}", Color.RED)
+
+
+if __name__ == "__main__":
+    arg_parser, args = parse_args()
+    global_config = parse_global_config(Path(args.config), args)
+
+    if args.version:
+        print(f"{NAME}, {VERSION}, {AUTHOR}")
+        exit(0)
+
+    match args.subcommand:
+        case "run":
+            subcommand_run(global_config)
+        case _:
+            arg_parser.print_help()
+
+
+# vim: set syntax=python:
