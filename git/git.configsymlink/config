@@ -78,6 +78,7 @@ autosetuprebase = always
 sort = -committerdate
 
 [commit]
+gpgsign = true
 verbose = true
 
 [diff]
