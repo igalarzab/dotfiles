@@ -9,9 +9,24 @@ regex  = true
 '.*/(.*)\.symlink'       = '~/.\1'
 
 [[steps]]
-plugin = 'shell'
+plugin        = 'shell'
+description   = 'Installing Homebrew'
+pre-condition = '! which brew >/dev/null 2>&1'
 
 commands = [
+    '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
+]
+
+[[steps]]
+plugin      = 'shell'
+description = 'Installing dependencies and setting defaults'
+
+commands = [
+    './macos/defaults.sh',
+    './xonsh/set-default.sh',
+
     'brew bundle --file=./packages/Brewfile --no-upgrade',
+    'brew cleanup',
+
     'mise install',
 ]

@@ -199,18 +199,22 @@ class ShellPlugin(Plugin):
     @dataclass
     class Config:
         commands: list[str]
-        working_dir: str | None = None
-        stop_on_error: bool = True
+        description: str | None
+        working_dir: str | None
+        pre_condition: str | None
+        stop_on_error: bool
 
     def read_config(self, raw_config: dict[str, object]) -> Config:
         return self.Config(
             commands=cast(list[str], raw_config["commands"]),
+            description=cast(str | None, raw_config.get("description", None)),
             working_dir=cast(str | None, raw_config.get("working_dir", None)),
+            pre_condition=cast(str | None, raw_config.get("pre-condition", None)),
             stop_on_error=bool(raw_config.get("stop_on_error", True)),
         )
 
     def run(self, plugin_config: Config) -> None:
-        printc("[SHELL] Running commands...", Color.BLUE)
+        printc(f"[SHELL] {plugin_config.description or 'Running commands'}", Color.BLUE)
         working_dir = self.global_config.config_path.parent
 
         if plugin_config.working_dir:
@@ -220,6 +224,19 @@ class ShellPlugin(Plugin):
                 working_dir = config_workin_dir
             else:
                 working_dir = working_dir / Path(plugin_config.working_dir)
+
+        # Only run command if the pre-condition is met
+        if plugin_config.pre_condition:
+            res = subprocess.run(
+                plugin_config.pre_condition,
+                shell=True,
+                check=False,
+                cwd=working_dir,
+            )
+
+            if res.returncode != 0:
+                printc("[SHELL] Skipping, pre-condition not met", Color.YELLOW)
+                return
 
         for cmd in plugin_config.commands:
             printc(f"[SHELL] Executing command: {cmd}", Color.GREEN)
