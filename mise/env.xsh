@@ -1,5 +1,3 @@
-import shutil
-
-if shutil.which('mise', path=':'.join($PATH)):
+if !(which mise all> /dev/null):
     execx($(mise activate xonsh))
 

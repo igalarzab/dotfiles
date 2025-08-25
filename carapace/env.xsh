@@ -1,6 +1,4 @@
-import shutil
-
-if shutil.which('carapace', path=':'.join($PATH)):
+if !(which carapace all> /dev/null):
     $CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
     $COMPLETIONS_CONFIRM=True
 

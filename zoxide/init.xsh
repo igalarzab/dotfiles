@@ -1,5 +1,3 @@
-import shutil
-
-if shutil.which('zoxide', path=':'.join($PATH)):
+if !(which zoxide all> /dev/null):
     execx($(zoxide init --cmd j xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 

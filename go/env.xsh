@@ -1,6 +1,4 @@
-import shutil
-
-if shutil.which('go', path=':'.join($PATH)):
+if !(which go all> /dev/null):
     path = p'~/.golang'
 
     $GOPATH = path

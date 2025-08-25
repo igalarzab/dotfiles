@@ -1,6 +1,4 @@
-import shutil
-
-if shutil.which('nvim', path=':'.join($PATH)):
+if !(which nvim all> /dev/null):
     aliases['vim'] = ['nvim']
     $EDITOR = 'nvim'
 else:
