@@ -5,28 +5,21 @@ plugin = 'link'
 regex  = true
 
 [steps.links]
-'.*/(.*)\.configsymlink' = '~/.config/\1'
-'.*/(.*)\.symlink'       = '~/.\1'
+'.*/(.*)\.configsymlink' = '~/.config/\1' # Any file/folder ending in .configsymlink goes in ~/.config
+'.*/(.*)\.symlink'       = '~/.\1'        # Any file/folder ending in .symlink goes in home directory (hidden)
 
 [[steps]]
 plugin        = 'shell'
-description   = 'Installing Homebrew'
 pre-condition = '! which brew >/dev/null 2>&1'
 
-commands = [
-    '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
-]
+[steps.commands]
+'Installing Homebrew' = '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
 
 [[steps]]
-plugin      = 'shell'
-description = 'Installing dependencies and setting defaults'
+plugin = 'shell'
 
-commands = [
-    './macos/defaults.sh',
-    './xonsh/set-default.sh',
-
-    'brew bundle --file=./packages/Brewfile --no-upgrade',
-    'brew cleanup',
-
-    'mise install',
-]
+[steps.commands]
+'Set macOS config'           = './macos/defaults.sh'
+'Set Xonsh as default shell' = './xonsh/set-default.sh'
+'Install Homebrew packages'  = 'brew bundle --file=./packages/Brewfile --no-upgrade && brew cleanup'
+'Install Mise packages'      = 'mise install'
