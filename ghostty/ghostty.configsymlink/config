@@ -1,0 +1,15 @@
+auto-update = download
+auto-update-channel = stable
+
+clipboard-read = allow
+clipboard-write = allow
+confirm-close-surface = false
+copy-on-select = clipboard
+quit-after-last-window-closed = true
+working-directory = home
+window-inherit-working-directory = true
+
+background-opacity = 0.95
+background-blur = 10
+font-size = 20
+theme = catppuccin-macchiato

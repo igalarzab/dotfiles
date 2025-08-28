@@ -138,7 +138,7 @@ class LinkPlugin(Plugin):
     def run(self, plugin_config: Config) -> None:
         printc("[LINKS] Creating symlinks...", Color.BLUE)
         pending_links: list[tuple[Path, Path]] = []
-        root_path = self.global_config.config_path.parent
+        root_path = self.global_config.config_path.parent.resolve()
 
         if plugin_config.regex:
             all_items = self._all_paths_in(root_path)
