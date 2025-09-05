@@ -1,4 +1,5 @@
 [tools]
+go = "1.25.1"
 node = "lts"
 python = "3.13"
 
