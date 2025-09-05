@@ -1,0 +1,51 @@
+apiVersion: kubectl.config.k8s.io/v1beta1
+kind: Preference
+aliases:
+  - name: logsw
+    command: logs
+    options:
+      - name: all-pods
+        default: "true"
+      - name: all-containers
+        default: "true"
+      - name: max-log-requests
+        default: "200"
+      - name: ignore-errors
+        default: "true"
+      - name: follow
+        default: "true"
+      - name: since
+        default: 24h
+  - name: runx 
+    command: run
+    options:
+      - name: stdin
+        default: "true"
+      - name: tty
+        default: "true"
+      - name: rm
+        default: "true"
+      - name: image
+        default: ubuntu
+    appendArgs:
+      - shell
+      - bash
+  - name: execx
+    command: exec
+    options:
+      - name: tty
+        default: "true"
+      - name: stdin
+        default: "true"
+    appendArgs:
+      - --
+      - bash
+defaults:
+  - command: apply
+    options:
+      - name: server-side
+        default: "true"
+  - command: delete
+    options:
+      - name: interactive
+        default: "true"
