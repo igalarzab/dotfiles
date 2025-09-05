@@ -1,5 +1,6 @@
 auto-update = download
 auto-update-channel = stable
+command = /opt/homebrew/bin/xonsh
 
 clipboard-read = allow
 clipboard-write = allow

@@ -2,3 +2,4 @@ ssh.symlink/id_*
 ssh.symlink/known_hosts*
 ssh.symlink/authorized_keys*
 ssh.symlink/control-*
+ssh.symlink/config.d/local.cfg

@@ -6,18 +6,12 @@ $UPDATE_OS_ENVIRON = True
 # Auto-pair symbols (parenthesis, brackets, ...)
 $XONSH_AUTOPAIR = True
 
-# Hide errors...
-$XONSH_SHOW_TRACEBACK = False
-
-# Enable vim mode
-$VI_MODE=1
-
 # Path of where the dotfiles are located
 $DOTFILES = p'~/.dotfiles'
 
-# Set british as my language 
-$LC_ALL = 'en_GB.UTF-8'
-$LANG = 'en_GB.UTF-8'
+# Set US English as the language 
+$LC_ALL = 'en_US.UTF-8'
+$LANG = 'en_US.UTF-8'
 
 # Configure history
 $XONSH_HISTORY_BACKEND = 'sqlite'
@@ -29,11 +23,16 @@ $PATH.add(p'/opt/homebrew/sbin', front=True, replace=True)
 $PATH.add(p'/opt/homebrew/bin', front=True, replace=True)
 $PATH.add($DOTFILES / 'bin', front=True, replace=True)
 
-# Load all the xsh files into the shell
-for f in g`$DOTFILES/*/*.xsh`:
+# Load env.xsh files first
+for f in g`$DOTFILES/*/env.xsh`:
     source @(f)
 
-# Keeping secrets in ~/.localrc
+# Load all other .xsh files
+for f in g`$DOTFILES/*/*.xsh`:
+    if not f.endswith('env.xsh'):
+        source @(f)
+
+# Keeping secrets in ~/.local.xsh
 if p'~/.local.xsh'.exists():
     source @(p'~/.local.xsh')
 

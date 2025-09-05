@@ -14,5 +14,5 @@ xontrib load fzf-widgets
 $fzf_history_binding = "c-r"
 $fzf_file_binding = "c-p"
 
-$FZF_DEFAULT_COMMAND = "/opt/homebrew/bin/fd --type f -c always"
+$FZF_DEFAULT_COMMAND = "fd --type f -c always"
 $FZF_DEFAULT_OPTS = "--height 60% --layout=reverse --ansi"
