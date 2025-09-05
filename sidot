@@ -23,6 +23,7 @@ class GlobalConfig:
     steps: list[dict[str, object]]
     config_path: Path
     dry_run: bool
+    force: bool
     version: int
 
 
@@ -53,6 +54,7 @@ def parse_global_config(cfg_path: Path, args: argparse.Namespace) -> GlobalConfi
                     steps=cfg["steps"],
                     config_path=cfg_path,
                     dry_run=args.dry_run if hasattr(args, "dry_run") else False,
+                    force=args.force if hasattr(args, "force") else False,
                     version=version,
                 )
             case _:
@@ -91,6 +93,14 @@ def parse_args() -> tuple[argparse.ArgumentParser, argparse.Namespace]:
         action="store_true",
         default=False,
         help="Enable dry run mode (no changes will be made)",
+    )
+
+    parser_run.add_argument(
+        "--force",
+        "-f",
+        action="store_true",
+        default=False,
+        help="Force changes (when the plugin supports it)",
     )
 
     return (parser, parser.parse_args())
@@ -160,9 +170,17 @@ class LinkPlugin(Plugin):
                 pending_links.append((Path(link_from), destination_path))
 
         for origin, dest in pending_links:
-            if dest.exists():
-                printc(f"[LINKS] Skip existing file: {origin} -> {dest}", Color.YELLOW)
-                continue
+            if dest.is_symlink() or dest.exists():
+                if not self.global_config.force:
+                    printc(f"[LINKS] Skip existing file: {dest}", Color.YELLOW)
+                    continue
+
+                if not dest.is_symlink():
+                    printc(f"[LINKS] Existing file is not a link: {dest}", Color.RED)
+                    continue
+
+                printc(f"[LINKS] Deleting existing link: {dest}", Color.YELLOW)
+                os.remove(dest)
 
             if not dest.parent.exists():
                 if not plugin_config.create_parents:
