@@ -1,9 +1,3 @@
-# The prompt seems fast enough, but keeping here just in case...
-$ENABLE_ASYNC_PROMPT = False
-
-# Dark theme
-$XONSH_COLOR_STYLE = 'solarized-dark'
-
 def prompt():
     "Trying to kind-of-mimic the 'pure' theme of zsh"
 
@@ -15,4 +9,5 @@ def prompt():
 
     return f'{python_env} {directory} {git_status}\n{err_code} {prompt} '
 
+$ENABLE_ASYNC_PROMPT = False
 $PROMPT = prompt()

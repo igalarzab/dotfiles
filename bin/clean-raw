@@ -3,8 +3,6 @@
 # Delete all the raw files (ARW/CR2) without a JPG/PNG correspondence in the
 # filesystem
 #
-# Author: @igalarzab
-#
 
 import subprocess
 import sys
@@ -39,7 +37,9 @@ def delete_raw_files(directory: str) -> None:
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: clean-raw <directory>")
+        print(f"Usage: {sys.argv[0]} <directory>")
         sys.exit(0)
 
     delete_raw_files(sys.argv[1])
+
+# vim: set syntax=python:

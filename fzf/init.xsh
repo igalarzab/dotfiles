@@ -1,9 +1,7 @@
-from importlib.metadata import version
+import importlib.util
 
 # Check if the package is there, otherwise install it
-try:
-    version("xontrib-fzf-widgets")
-except:
+if not importlib.util.find_spec("xontrib.fzf-widgets"):
     print("Installing xontrib-fzf-widgets...")
     xpip install xontrib-fzf-widgets
 
