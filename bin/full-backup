@@ -94,6 +94,11 @@ if __name__ == "__main__":
         Path("/Volumes/Backups/Drive/"),
     )
 
+    backup_dirs(
+        Path("~/Library/Mobile Documents/iCloud~md~obsidian"),
+        Path("/Volumes/Backups/Obsidian/"),
+    )
+
     backup_photos(
         Path("~/Pictures/Photos Library.photoslibrary"),
         Path("/Volumes/Backups/Photos/"),
