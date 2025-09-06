@@ -1,59 +1,102 @@
-#!/usr/bin/env xonsh
+#!/usr/bin/env python3
+#
+# Full backup of iCloud Drive and Photos Library to an external drive
+#
 
-from collections import namedtuple
-from os import path
+import subprocess
+from pathlib import Path
+from shutil import which
 
-Backup = namedtuple("Backup", ["orig", "dest"])
 
-DIRS = [
-    Backup(path.expanduser("~/Library/Mobile Documents/com~apple~CloudDocs/"), "/Volumes/Backups/Drive/"),
-]
+def backup_dirs(orig: Path, dest: Path) -> None:
+    if which("rsync") is None:
+        print("rsync not found in PATH")
+        return
 
-def backup_dirs(dirs):
-    for dir in dirs:
-        print(f"Backing up '{dir.orig}'...")
-        rsync \
-            --compress \
-            --copy-links \
-            --delete-during \
-            --exclude '.DS_Store' \
-            --exclude '.Trash' \
-            --itemize-changes \
-            --links \
-            --numeric-ids \
-            --recursive \
-            --times \
-            @(dir.orig) \
-            @(dir.dest)
+    orig_path = orig.expanduser().resolve().as_posix() + "/"
+    dest_path = dest.expanduser().resolve().as_posix()
 
-def backup_photos():
-    vox activate osxphotos
+    print(f"Backing up '{orig_path}' → '{dest_path}'")
 
-    osxphotos \
-        export \
-        /Volumes/Backups/Photos/ \
-        --cleanup \
-        --convert-to-jpeg --jpeg-quality 0.9 \
-        --db "~/Pictures/Photos Library.photoslibrary" \
-        --directory "{folder_album}" \
-        --download-missing \
-        --edited-suffix "" \
-        --exiftool \
-        --exiftool-merge-keywords \
-        --exiftool-merge-persons \
-        --filename "{created.strftime,%Y-%m-%d-%H%M%S}" \
-        --ignore-date-modified \
-        --jpeg-ext jpg \
-        --not-hidden \
-        --retry 5 \
-        --person-keyword \
-        --skip-bursts \
-        --skip-live \
-        --skip-original-if-edited \
-        --skip-raw \
-        --theme dark \
-        --update
+    subprocess.run(
+        [
+            "rsync",
+            "--compress",
+            "--copy-links",
+            "--delete",
+            "--delete-excluded",
+            "--exclude=.DS_Store",
+            "--exclude=.Trash",
+            "--itemize-changes",
+            "--links",
+            "--modify-window=2",
+            "--numeric-ids",
+            "--omit-dir-times",
+            "--recursive",
+            "--times",
+            orig_path,
+            dest_path,
+        ],
+        check=True,
+    )
+
+
+def backup_photos(photos_library: Path, dest: Path) -> None:
+    if which("osxphotos") is None:
+        print("osxphotos not found in PATH")
+        return
+
+    photos_db = photos_library.expanduser().as_posix()
+    export_dir = dest.expanduser().as_posix()
+
+    cmd = [
+        "osxphotos",
+        "export",
+        export_dir,
+        "--cleanup",
+        "--convert-to-jpeg",
+        "--jpeg-quality",
+        "0.9",
+        "--db",
+        photos_db,
+        "--directory",
+        "{folder_album}",
+        "--download-missing",
+        "--edited-suffix",
+        "",
+        "--exiftool",
+        "--exiftool-merge-keywords",
+        "--exiftool-merge-persons",
+        "--filename",
+        "{created.strftime,%Y-%m-%d-%H%M%S}",
+        "--ignore-date-modified",
+        "--jpeg-ext",
+        "jpg",
+        "--not-hidden",
+        "--retry",
+        "5",
+        "--person-keyword",
+        "--skip-bursts",
+        "--skip-live",
+        "--skip-original-if-edited",
+        "--skip-raw",
+        "--theme",
+        "dark",
+        "--update",
+    ]
+
+    subprocess.run(cmd, check=True)
+
 
 if __name__ == "__main__":
-    backup_dirs(DIRS)
-    backup_photos()
+    backup_dirs(
+        Path("~/Library/Mobile Documents/com~apple~CloudDocs/"),
+        Path("/Volumes/Backups/Drive/"),
+    )
+
+    backup_photos(
+        Path("~/Pictures/Photos Library.photoslibrary"),
+        Path("/Volumes/Backups/Photos/"),
+    )
+
+# vim: set syntax=python:

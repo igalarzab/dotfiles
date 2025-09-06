@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Delete all the raw files (ARW/CR2) without a JPG/PNG correspondence in the
 # filesystem
@@ -6,17 +6,17 @@
 # Author: @igalarzab
 #
 
-import sys
 import subprocess
-
+import sys
 from os import listdir, path
 
-VALID_RAW_EXTENSIONS = ['.arw', '.cr2']
-VALID_COMPRESSED_EXTENSIONS = ['.jpg', '.png']
+VALID_RAW_EXTENSIONS = [".arw", ".cr2"]
+VALID_COMPRESSED_EXTENSIONS = [".jpg", ".png"]
 
 
-def delete_raw_files(directory):
-    raw_files, compressed_files = {}, set([])
+def delete_raw_files(directory: str) -> None:
+    raw_files: dict[str, str] = {}
+    compressed_files: set[str] = set()
 
     for f in listdir(directory):
         full_path = path.join(directory, f)
@@ -33,13 +33,13 @@ def delete_raw_files(directory):
 
     for name, full_path in raw_files.items():
         if name not in compressed_files:
-            print('Moving to trash: {}'.format(full_path))
-            subprocess.run(['trash', full_path])
+            print("Moving to trash: {}".format(full_path))
+            subprocess.run(["trash", full_path])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print('Usage: clean-raw <directory>')
+        print("Usage: clean-raw <directory>")
         sys.exit(0)
 
     delete_raw_files(sys.argv[1])

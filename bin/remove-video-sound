@@ -2,8 +2,6 @@
 #
 # Removes all the sound tracks of the videos in the folder
 #
-# Author: @igalarzab
-#
 
 set -e
 
@@ -11,4 +9,3 @@ for f in $1; do
     ffmpeg -i "$f" -vcodec copy -an "2.$f"
     mv "2.$f" "$f"
 done
-
