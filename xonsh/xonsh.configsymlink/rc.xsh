@@ -7,7 +7,7 @@ $UPDATE_OS_ENVIRON = True
 $XONSH_AUTOPAIR = True
 
 # Path of where the dotfiles are located
-$DOTFILES = p'~/.dotfiles'
+$DOTFILES = p'~/.config/dotfiles'
 
 # Set US English as the language 
 $LC_ALL = 'en_US.UTF-8'

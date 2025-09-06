@@ -1,4 +1,5 @@
 aliases['..'] = ['cd' , '..']
+aliases['dot'] = ['cd' , $DOTFILES]
 
 aliases['l'] = ['ls']
 aliases['ll'] = ['ls', '-l']
