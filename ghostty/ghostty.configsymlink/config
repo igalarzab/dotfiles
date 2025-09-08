@@ -1,16 +1,22 @@
+# general settings
 auto-update = download
 auto-update-channel = stable
 command = /opt/homebrew/bin/xonsh
+working-directory = home
+window-inherit-working-directory = true
 
+# OS settings
 clipboard-read = allow
 clipboard-write = allow
 confirm-close-surface = false
 copy-on-select = clipboard
 quit-after-last-window-closed = true
-working-directory = home
-window-inherit-working-directory = true
 
+# ui settings
 background-opacity = 0.95
 background-blur = 10
 font-size = 20
-theme = catppuccin-macchiato
+theme = dark: catppuccin-macchiato,light:catppuccin-latte
+
+# claude-code
+keybind = shift+enter=text:\x1b\r
