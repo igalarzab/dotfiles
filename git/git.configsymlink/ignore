@@ -3,3 +3,5 @@
 *~
 *.sw[o|p]
 *.rbc
+
+**/.claude/settings.local.json

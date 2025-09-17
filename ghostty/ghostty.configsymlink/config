@@ -16,7 +16,7 @@ quit-after-last-window-closed = true
 background-opacity = 0.95
 background-blur = 10
 font-size = 20
-theme = dark: catppuccin-macchiato,light:catppuccin-latte
+theme = dark: Catppuccin Macchiato,light:Catppuccin Latte
 
 # claude-code
 keybind = shift+enter=text:\x1b\r
