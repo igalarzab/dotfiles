@@ -4,7 +4,9 @@ import argparse
 import itertools
 import os
 import re
+import stat
 import subprocess
+import urllib.request
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
@@ -94,6 +96,8 @@ def parse_args() -> tuple[argparse.ArgumentParser, argparse.Namespace]:
         default=str("./sidot.toml"),
         help="Path to the configuration file (default: ./sidot.toml)",
     )
+
+    subparsers.add_parser("self-update", help="Self-updates the sidot script")
 
     parser_run = subparsers.add_parser("run", help="Bootstrap the dotfiles")
 
@@ -287,6 +291,7 @@ class ShellPlugin(Plugin):
 
 
 def subcommand_run(global_config: GlobalConfig) -> None:
+    """Run the steps defined in the configuration file"""
     if global_config.dry_run:
         printc("[SIDOT] Dry Run mode enabled", Color.BLUE)
 
@@ -303,6 +308,30 @@ def subcommand_run(global_config: GlobalConfig) -> None:
             printc(f"[SIDOT] Unknown plugin: {plugin_name}", Color.RED)
 
 
+def subcommand_self_update(_global_config: GlobalConfig) -> None:
+    """Self-update the sidot script by downloading last file from Github"""
+    printc("[SIDOT] Self-Updating sidot", Color.GREEN)
+    url = "https://raw.githubusercontent.com/igalarzab/dotfiles/refs/heads/main/sidot"
+
+    destination_path = Path(__file__).resolve()
+    tmp_path = destination_path.parent / (destination_path.name + ".tmp")
+
+    try:
+        with urllib.request.urlopen(url) as response:
+            if response.status != 200:
+                printc(f"[SIDOT] Self-update failed: HTTP {response.status}", Color.RED)
+                return
+
+            with open(tmp_path, "wb") as tmp_file:
+                tmp_file.write(response.read())
+
+        tmp_path.rename(destination_path)
+        destination_path.chmod(destination_path.stat().st_mode | stat.S_IEXEC)
+        printc("[SIDOT] Self-update completed successfully", Color.GREEN)
+    except Exception as e:
+        printc(f"[SIDOT] Self-update failed: {str(e)}", Color.RED)
+
+
 #
 # Entry Point
 #
@@ -317,6 +346,8 @@ if __name__ == "__main__":
 
     if args.subcommand == "run":
         subcommand_run(global_config)
+    elif args.subcommand == "self-update":
+        subcommand_self_update(global_config)
     else:
         arg_parser.print_help()
 
