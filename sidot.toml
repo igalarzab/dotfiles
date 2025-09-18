@@ -13,13 +13,20 @@ plugin        = 'shell'
 pre-condition = '! which brew >/dev/null 2>&1'
 
 [steps.commands]
-'Installing Homebrew' = '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
-'Adding it to the shell profile' = '''echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile'''
+'Installing Homebrew'          = '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+'Adding HomeBrew to the shell' = '''echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile'''
 
 [[steps]]
 plugin = 'shell'
 
 [steps.commands]
-'Set macOS config'           = './macos/defaults.sh'
-'Install Homebrew packages'  = 'brew bundle --file=./packages/Brewfile --no-upgrade && brew cleanup'
-'Install Mise packages'      = 'mise install'
+'Set macOS config'          = './macos/defaults.sh'
+'Install Homebrew packages' = 'brew bundle --no-upgrade --file=./packages/Brewfile'
+'Install Mise packages'     = 'mise install'
+
+[[steps]]
+plugin = 'shell'
+pre-condition = 'test -f ./packages/Brewfile.$(uname -n)'
+
+[steps.commands]
+'Install device-specific Homebrew packages'  = 'brew bundle --no-upgrade --file=./packages/Brewfile.$(uname -n)'

@@ -1,0 +1,8 @@
+brew "helmsman"
+
+cask "bambu-studio"
+cask "chatgpt"
+cask "claude"
+cask "cryptomator"
+cask "raycast"
+cask "voiceink"

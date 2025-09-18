@@ -227,16 +227,16 @@ class ShellPlugin(Plugin):
     @dataclass
     class Config:
         commands: dict[str, str]
+        stop_on_error: bool
         working_dir: Optional[str]
         pre_condition: Optional[str]
-        stop_on_error: bool
 
     def read_config(self, raw_config: dict[str, object]) -> Config:
         return self.Config(
             commands=cast(dict[str, str], raw_config["commands"]),
+            stop_on_error=bool(raw_config.get("stop_on_error", True)),
             working_dir=cast(Optional[str], raw_config.get("working_dir", None)),
             pre_condition=cast(Optional[str], raw_config.get("pre-condition", None)),
-            stop_on_error=bool(raw_config.get("stop_on_error", True)),
         )
 
     def run(self, plugin_config: Config) -> None:
