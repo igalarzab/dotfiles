@@ -41,10 +41,10 @@ class Color(Enum):
 def open_toml(cfg_path: Path) -> dict[str, Any]:
     """Open and parse a TOML file"""
     try:
-        import tomllib
+        import tomllib  # type: ignore
 
         with open(cfg_path, "rb") as cfg_file:
-            return tomllib.load(cfg_file)
+            return tomllib.load(cfg_file)  # type: ignore
     except ImportError:
         # For Python versions < 3.11, use the tomli package
         import pip._vendor.tomli as tomllib
