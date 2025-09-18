@@ -7,7 +7,7 @@
 
 # Dock
 defaults write com.apple.dock "orientation" -string "left"
-defaults write com.apple.dock "tilesize" -int "30"
+defaults write com.apple.dock "tilesize" -int "64"
 defaults write com.apple.dock "autohide" -bool "true"
 defaults write com.apple.dock "show-recents" -bool "false"
 
@@ -30,6 +30,9 @@ defaults write com.apple.TextEdit "SmartQuotes" -bool "false"
 
 # TimeMachine
 defaults write com.apple.TimeMachine "DoNotOfferNewDisksForBackup" -bool "true"
+
+# Clock
+defaults write com.apple.menuextra.clock "DateFormat" -string "\"HH:mm\""
 
 # Restart services
 killall Dock Finder SystemUIServer TextEdit
