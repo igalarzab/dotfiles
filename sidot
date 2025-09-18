@@ -8,9 +8,7 @@ import subprocess
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
-from typing import Any, cast
-
-import tomllib
+from typing import Any, Optional, cast
 
 NAME = "sidot"
 DESCRIPTION = "SImple DOTfiles Script"
@@ -40,25 +38,37 @@ class Color(Enum):
 #
 
 
+def open_toml(cfg_path: Path) -> dict[str, Any]:
+    """Open and parse a TOML file"""
+    try:
+        import tomllib
+
+        with open(cfg_path, "rb") as cfg_file:
+            return tomllib.load(cfg_file)
+    except ImportError:
+        # For Python versions < 3.11, use the tomli package
+        import pip._vendor.tomli as tomllib
+
+        with open(cfg_path, "r") as cfg_file:
+            return tomllib.load(cfg_file)  # type: ignore
+
+
 def parse_global_config(cfg_path: Path, args: argparse.Namespace) -> GlobalConfig:
     """Read the configuration file and return a GlobalConfig object"""
     try:
-        with open(cfg_path, "rb") as cfg_file:
-            cfg = tomllib.load(cfg_file)
+        cfg_raw = open_toml(cfg_path)
+        version = int(cfg_raw.get("version", 1))
 
-        version = int(cfg.get("version", 1))
-
-        match version:
-            case 1:
-                cfg = GlobalConfig(
-                    steps=cfg["steps"],
-                    config_path=cfg_path,
-                    dry_run=args.dry_run if hasattr(args, "dry_run") else False,
-                    force=args.force if hasattr(args, "force") else False,
-                    version=version,
-                )
-            case _:
-                raise ValueError(f"Unsupported config version: {version}")
+        if version == 1:
+            cfg = GlobalConfig(
+                steps=cfg_raw["steps"],
+                config_path=cfg_path,
+                dry_run=args.dry_run if hasattr(args, "dry_run") else False,
+                force=args.force if hasattr(args, "force") else False,
+                version=version,
+            )
+        else:
+            raise ValueError(f"Unsupported config version: {version}")
     except Exception as e:
         raise ValueError(f"Invalid config file in {cfg_path}") from e
 
@@ -106,7 +116,7 @@ def parse_args() -> tuple[argparse.ArgumentParser, argparse.Namespace]:
     return (parser, parser.parse_args())
 
 
-def printc(text: str, color: Color | None) -> None:
+def printc(text: str, color: Optional[Color]) -> None:
     """Print text in a specific color"""
     print(f"{color.value if color else Color.DEFAULT.value}{text}{Color.DEFAULT.value}")
 
@@ -217,15 +227,15 @@ class ShellPlugin(Plugin):
     @dataclass
     class Config:
         commands: dict[str, str]
-        working_dir: str | None
-        pre_condition: str | None
+        working_dir: Optional[str]
+        pre_condition: Optional[str]
         stop_on_error: bool
 
     def read_config(self, raw_config: dict[str, object]) -> Config:
         return self.Config(
             commands=cast(dict[str, str], raw_config["commands"]),
-            working_dir=cast(str | None, raw_config.get("working_dir", None)),
-            pre_condition=cast(str | None, raw_config.get("pre-condition", None)),
+            working_dir=cast(Optional[str], raw_config.get("working_dir", None)),
+            pre_condition=cast(Optional[str], raw_config.get("pre-condition", None)),
             stop_on_error=bool(raw_config.get("stop_on_error", True)),
         )
 
@@ -283,15 +293,14 @@ def subcommand_run(global_config: GlobalConfig) -> None:
     for step in global_config.steps:
         plugin_name = step.get("plugin", None)
 
-        match plugin_name:
-            case "link":
-                link_plugin = LinkPlugin(global_config)
-                link_plugin.run(link_plugin.read_config(step))
-            case "shell":
-                shell_plugin = ShellPlugin(global_config)
-                shell_plugin.run(shell_plugin.read_config(step))
-            case _:
-                printc(f"[SIDOT] Unknown plugin: {plugin_name}", Color.RED)
+        if plugin_name == "link":
+            link_plugin = LinkPlugin(global_config)
+            link_plugin.run(link_plugin.read_config(step))
+        elif plugin_name == "shell":
+            shell_plugin = ShellPlugin(global_config)
+            shell_plugin.run(shell_plugin.read_config(step))
+        else:
+            printc(f"[SIDOT] Unknown plugin: {plugin_name}", Color.RED)
 
 
 #
@@ -306,11 +315,10 @@ if __name__ == "__main__":
         print(f"{NAME}, {VERSION}, {AUTHOR}")
         exit(0)
 
-    match args.subcommand:
-        case "run":
-            subcommand_run(global_config)
-        case _:
-            arg_parser.print_help()
+    if args.subcommand == "run":
+        subcommand_run(global_config)
+    else:
+        arg_parser.print_help()
 
 
 # vim: set syntax=python:

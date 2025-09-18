@@ -14,12 +14,12 @@ pre-condition = '! which brew >/dev/null 2>&1'
 
 [steps.commands]
 'Installing Homebrew' = '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+'Adding it to the shell profile' = '''echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile'''
 
 [[steps]]
 plugin = 'shell'
 
 [steps.commands]
 'Set macOS config'           = './macos/defaults.sh'
-'Set Xonsh as default shell' = './xonsh/set-default.sh'
 'Install Homebrew packages'  = 'brew bundle --file=./packages/Brewfile --no-upgrade && brew cleanup'
 'Install Mise packages'      = 'mise install'

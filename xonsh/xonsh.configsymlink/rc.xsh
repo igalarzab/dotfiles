@@ -17,10 +17,8 @@ $LANG = 'en_US.UTF-8'
 $XONSH_HISTORY_BACKEND = 'sqlite'
 $HISTCONTROL = 'ignoredups'
 
-# Add homebrew and dotfiles to the default PATH
+# Add few extra paths to the default PATH
 $PATH.add(p'/usr/local/bin', front=True, replace=True)
-$PATH.add(p'/opt/homebrew/sbin', front=True, replace=True)
-$PATH.add(p'/opt/homebrew/bin', front=True, replace=True)
 $PATH.add($DOTFILES / 'bin', front=True, replace=True)
 
 # Load env.xsh files first
