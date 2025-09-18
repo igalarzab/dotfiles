@@ -1,4 +1,4 @@
-import builtins
+import builtins, pathlib
 
 # Update os.environ if a new env var is set
 $UPDATE_OS_ENVIRON = True
@@ -7,7 +7,7 @@ $UPDATE_OS_ENVIRON = True
 $XONSH_AUTOPAIR = True
 
 # Path of where the dotfiles are located
-$DOTFILES = p'~/.config/dotfiles'
+$DOTFILES = pathlib.Path(__file__).resolve(strict=True).parents[2]
 
 # Set US English as the language 
 $LC_ALL = 'en_US.UTF-8'
@@ -20,6 +20,7 @@ $HISTCONTROL = 'ignoredups'
 # Add few extra paths to the default PATH
 $PATH.add(p'/usr/local/bin', front=True, replace=True)
 $PATH.add($DOTFILES / 'bin', front=True, replace=True)
+
 
 # Load env.xsh files first
 for f in g`$DOTFILES/*/env.xsh`:
