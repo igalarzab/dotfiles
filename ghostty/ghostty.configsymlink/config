@@ -4,6 +4,7 @@ auto-update-channel = stable
 command = /opt/homebrew/bin/xonsh
 working-directory = home
 window-inherit-working-directory = true
+shell-integration-features = sudo, title, ssh-env, ssh-terminfo
 
 # OS settings
 clipboard-read = allow
