@@ -1,3 +1,4 @@
+brew "helm"
 brew "helmsman"
 
 cask "bambu-studio"
