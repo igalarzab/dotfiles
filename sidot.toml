@@ -30,3 +30,10 @@ pre-condition = 'test -f ./packages/Brewfile.$(uname -n | cut -d. -f1)'
 
 [steps.commands]
 'Install device-specific Homebrew packages'  = 'brew bundle --no-upgrade --file=./packages/Brewfile.$(uname -n | cut -d. -f1)'
+
+[[steps]]
+plugin = 'shell'
+pre-condition = '! grep xonsh /etc/shells >/dev/null 2>&1'
+
+[steps.commands]
+'Set xonsh as default shell'  = './xonsh/set-default.sh'
