@@ -1,1 +1,7 @@
-model = "gpt-5-codex"
+model = "gpt-5.1-codex-max"
+
+[projects."/Users/igalarzab/Developer/personal/"]
+trust_level = "trusted"
+
+[notice]
+"hide_gpt-5.1-codex-max_migration_prompt" = true
