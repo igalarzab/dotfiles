@@ -1,5 +1,9 @@
 auth.json
 version.json
 history.jsonl
+
 sessions/
+archived_sessions/
 log/
+
+codex.configsymlink/prompts/speckit.*.md
