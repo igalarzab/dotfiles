@@ -1,7 +1,10 @@
-model = "gpt-5.1-codex-max"
+model = "gpt-5.1-codex-mini"
 model_reasoning_effort = "medium"
 
 [projects."/Users/igalarzab/Developer/personal/"]
+trust_level = "trusted"
+
+[projects."/Users/igalarzab/Developer/personal/roomha"]
 trust_level = "trusted"
 
 [notice]

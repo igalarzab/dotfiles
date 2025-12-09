@@ -1,5 +1,10 @@
 {
-  "cliPluginsExtraDirs": [
-    "/opt/homebrew/lib/docker/cli-plugins"
-  ]
+	"auths": {
+		"ghcr.io": {}
+	},
+	"credsStore": "osxkeychain",
+	"currentContext": "colima",
+	"cliPluginsExtraDirs": [
+		"/opt/homebrew/lib/docker/cli-plugins"
+	]
 }

@@ -1,5 +1,6 @@
 brew "helm"
 brew "helmsman"
+brew "ngrok"
 
 cask "bambu-studio"
 cask "chatgpt"
