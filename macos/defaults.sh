@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # MacOS Defaults
 #
@@ -22,7 +23,7 @@ defaults write com.apple.finder "ShowExternalHardDrivesOnDesktop" -bool "true"
 defaults write NSGlobalDomain "ApplePressAndHoldEnabled" -bool "false"
 
 # Screenshots
-defaults write com.apple.screencapture "location" -string "~/Pictures"
+defaults write com.apple.screencapture "location" -string "~/Desktop"
 
 # TextEdit
 defaults write com.apple.TextEdit "RichText" -bool "false"

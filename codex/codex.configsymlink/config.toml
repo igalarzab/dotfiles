@@ -1,4 +1,4 @@
-model = "gpt-5.1-codex-mini"
+model = "gpt-5.2"
 model_reasoning_effort = "medium"
 
 [projects."/Users/igalarzab/Developer/personal/"]
