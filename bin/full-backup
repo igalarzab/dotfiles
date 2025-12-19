@@ -58,7 +58,9 @@ def backup_photos(photos_library: Path, dest: Path) -> None:
 
     cmd = [
         "uvx",
-        "osxphotos",
+        "--python",
+        "3.13",
+        "osxphotos@latest",
         "export",
         export_dir.as_posix() + "/",
         "--cleanup",
