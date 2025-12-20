@@ -1,9 +1,11 @@
+brew "exiftool"
 brew "helm"
 brew "helmsman"
 
 cask "bambu-studio"
 cask "chatgpt"
 cask "claude"
+cask "claude-code"
 cask "codex"
 cask "cryptomator"
 cask "ngrok"
