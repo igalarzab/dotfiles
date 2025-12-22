@@ -5,5 +5,6 @@ history.jsonl
 sessions/
 archived_sessions/
 log/
+skills/
 
 codex.configsymlink/prompts/speckit.*.md
