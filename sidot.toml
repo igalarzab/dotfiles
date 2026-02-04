@@ -21,7 +21,7 @@ plugin = 'shell'
 
 [steps.commands]
 'Set macOS config'          = './macos/defaults.sh'
-'Install Homebrew packages' = 'brew bundle --no-upgrade --file=./packages/Brewfile'
+'Install Homebrew packages' = 'brew update && brew bundle --no-upgrade --file=./packages/Brewfile'
 'Install Mise packages'     = 'mise install'
 
 [[steps]]
