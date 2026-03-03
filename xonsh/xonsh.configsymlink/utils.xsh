@@ -2,7 +2,7 @@ import os
 import subprocess
 
 
-def export_env_to_launchctl(baseline_env: set[str]) -> None:
+def __export_env_to_launchctl(baseline_env: set[str]) -> None:
     """Export custom env vars to launchctl for graphical apps (macOS).
 
     Build args: launchctl setenv KEY1 val1 KEY2 val2 ...
