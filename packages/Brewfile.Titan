@@ -1,3 +1,5 @@
+tap "steipete/tap"
+
 brew "exiftool"
 brew "helm"
 brew "helmsman"
@@ -9,4 +11,5 @@ cask "cryptomator"
 cask "ngrok"
 cask "obsidian"
 cask "raycast"
+cask "steipete/tap/codexbar"
 cask "voiceink"
