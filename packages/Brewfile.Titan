@@ -1,14 +1,9 @@
-tap "steipete/tap"
-
-brew "exiftool"
 brew "helm"
 brew "helmsman"
 
 cask "bambu-studio"
-cask "chatgpt"
 cask "claude"
 cask "cryptomator"
 cask "ngrok"
 cask "obsidian"
-cask "raycast"
 cask "steipete/tap/codexbar"
