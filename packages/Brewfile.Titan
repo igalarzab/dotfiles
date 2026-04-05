@@ -1,3 +1,4 @@
+brew "exiftool"
 brew "helm"
 brew "helmsman"
 

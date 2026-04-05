@@ -50,7 +50,7 @@ if p'~/.local.xsh'.exists():
 # Export custom env vars to launchctl for graphical apps (macOS)
 # Not ideal because it requires me to open a shell first, but better than nothing
 __perf_mark("exporting env to launchctl")
-__export_env_to_launchctl(__baseline_env - {'PATH'})
+__export_env_to_launchctl(__baseline_env)
 
 # Make JSON parsable... a bit hacky, but super convenient to paste JSON in the shell
 builtins.true = True

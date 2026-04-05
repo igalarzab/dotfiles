@@ -1,1 +1,3 @@
 docker.symlink/contexts
+docker.symlink/buildx/
+docker.symlink/.token_seed*
