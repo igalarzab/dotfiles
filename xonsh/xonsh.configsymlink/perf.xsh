@@ -23,7 +23,11 @@ def __perf_mark(label: str) -> None:
     step = now - _LAST
     _LAST = now
 
-    print(f"[+{total:0.4f}s | +{step:0.4f}s] {label}", file=sys.stderr, flush=True)
+    print(
+        "[+{:.4f}s | +{:.4f}s] {}".format(total, step, label),
+        file=sys.stderr,
+        flush=True,
+    )
 
 
 @events.on_post_init
