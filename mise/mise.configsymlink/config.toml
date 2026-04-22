@@ -1,7 +1,7 @@
 [tools]
 go = "1.25"
 node = "lts"
-python = "3.13"
+python = "3.14"
 
 [settings]
 experimental = true
