@@ -16,7 +16,7 @@ aliases:
         default: "true"
       - name: since
         default: 24h
-  - name: runx 
+  - name: runx
     command: run
     options:
       - name: stdin
@@ -44,8 +44,4 @@ defaults:
   - command: apply
     options:
       - name: server-side
-        default: "true"
-  - command: delete
-    options:
-      - name: interactive
         default: "true"
