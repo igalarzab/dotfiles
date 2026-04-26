@@ -3,7 +3,7 @@
 		"ghcr.io": {}
 	},
 	"credsStore": "osxkeychain",
-	"currentContext": "colima",
+	"currentContext": "orbstack",
 	"cliPluginsExtraDirs": [
 		"/opt/homebrew/lib/docker/cli-plugins"
 	]

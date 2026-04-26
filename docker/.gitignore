@@ -1,3 +1,4 @@
+docker.symlink/buildx
+docker.symlink/cli-plugins
 docker.symlink/contexts
-docker.symlink/buildx/
 docker.symlink/.token_seed*
