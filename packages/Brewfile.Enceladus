@@ -2,7 +2,6 @@ brew "helm"
 brew "helmsman"
 
 cask "bambu-studio"
-cask "claude"
 cask "cryptomator"
 cask "elgato-stream-deck"
 cask "ngrok"
