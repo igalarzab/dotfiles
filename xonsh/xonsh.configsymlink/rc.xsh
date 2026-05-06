@@ -19,6 +19,9 @@ $XONSH_AUTOPAIR = True
 # Path of where the dotfiles are located
 $DOTFILES = pathlib.Path(__file__).resolve(strict=True).parents[2]
 
+# Search through dot files too when globbing
+$DOTGLOB=True
+
 # Set US English as the language 
 $LC_ALL = 'en_US.UTF-8'
 $LANG = 'en_US.UTF-8'
@@ -32,6 +35,7 @@ $PATH.add(p'/usr/local/bin', front=True, replace=True)
 $PATH.add($DOTFILES / 'bin', front=True, replace=True)
 
 # Load env.xsh files first
+
 for f in g`$DOTFILES/*/env.xsh`:
     __perf_mark(f"loading env file: {f}")
     source @(f)
