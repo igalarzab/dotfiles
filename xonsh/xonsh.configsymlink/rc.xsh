@@ -7,6 +7,9 @@ from perf import __perf_mark
 
 __perf_mark("xonshrc start")
 
+# Enable vi mode
+$VI_MODE = True
+
 # Update os.environ if a new env var is set
 $UPDATE_OS_ENVIRON = True
 
