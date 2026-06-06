@@ -1,10 +1,11 @@
 [tools]
-go     = "1.26"
-node   = "24.15"
+go = "1.26"
+node = "24.15"
+pnpm = "11.4.0"
 python = "3.14"
 
 [settings]
-experimental                        = true
+experimental = true
 idiomatic_version_file_enable_tools = ["python", "node"]
 
 [settings.python]
