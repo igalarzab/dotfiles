@@ -9,7 +9,7 @@ user = TODO
 
 [core]
 editor = nvim
-pager = delta
+pager = hunk pager
 
 [delta]
 line-numbers = true

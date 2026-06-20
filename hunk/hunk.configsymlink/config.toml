@@ -1,0 +1,5 @@
+theme = "auto"
+mode = "auto"
+line_numbers = true
+wrap_lines = false
+transparent_background = false

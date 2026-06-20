@@ -1,17 +1,20 @@
+tap "modem-dev/tap"
+tap "rsteube/tap"
+
 brew "bat"
 brew "coreutils"
 brew "fd"
 brew "fzf"
 brew "gh"
 brew "git"
-brew "git-delta"
 brew "gnu-sed"
 brew "mise"
+brew "modem-dev/tap/hunk", trusted: true
 brew "neovim"
 brew "pinentry-mac"
 brew "pstree"
 brew "ripgrep"
-brew "rsteube/tap/carapace"
+brew "rsteube/tap/carapace", trusted: true
 brew "tree"
 brew "uv"
 brew "watch"

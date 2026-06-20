@@ -1,3 +1,6 @@
+tap "steipete/tap"
+
+brew "helm"
 brew "helmsman"
 
 cask "bambu-studio"
