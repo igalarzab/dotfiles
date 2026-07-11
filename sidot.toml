@@ -23,6 +23,7 @@ plugin = 'shell'
 'Set macOS config'          = './macos/defaults.sh'
 'Install Homebrew packages' = 'brew update && brew bundle --no-upgrade --file=./packages/Brewfile'
 'Install Mise packages'     = 'mise install'
+'Install agent skills'      = './agents/install.sh'
 
 [[steps]]
 plugin = 'shell'
