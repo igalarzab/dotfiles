@@ -25,6 +25,7 @@ co = checkout
 st = status -s
 ci = commit
 br = branch
+wt = worktree
 
 grep = grep -Ii
 ignored = ls-files --others -i --exclude-standard
