@@ -1,0 +1,332 @@
+# dcg configuration
+# https://github.com/Dicklesworthstone/destructive_command_guard
+
+[general]
+# Color output: "auto" | "always" | "never"
+color = "auto"
+
+# Log blocked commands to file (optional)
+# log_file = "~/.local/share/dcg/blocked.log"
+
+# Verbose output
+verbose = false
+
+# Check for updates in the background (shows a notice if available)
+check_updates = true
+
+# Self-heal hook registration in settings.json on every invocation.
+# Protects against Claude Code overwriting settings.json mid-session.
+# self_heal_hook = true
+
+# Hook evaluation budget override (milliseconds)
+# hook_timeout_ms = 200
+
+#─────────────────────────────────────────────────────────────
+# OUTPUT CONFIGURATION
+#─────────────────────────────────────────────────────────────
+
+[output]
+# Enable span highlighting in denial output.
+# Shows caret-style markers under the matched portion.
+# highlight_enabled = true
+
+# Enable explanations in denial output.
+# Shows detailed explanations for why patterns are dangerous.
+# explanations_enabled = true
+
+# High-contrast mode (ASCII borders + black/white palette).
+# high_contrast = false
+
+#─────────────────────────────────────────────────────────────
+# THEME CONFIGURATION
+#─────────────────────────────────────────────────────────────
+
+[theme]
+# Palette: "default" | "colorblind" | "high-contrast"
+# palette = "default"
+
+# Whether Unicode box drawing is allowed.
+# use_unicode = true
+
+# Whether colors are allowed (false forces monochrome).
+# use_color = true
+
+#─────────────────────────────────────────────────────────────
+# PACK CONFIGURATION
+#─────────────────────────────────────────────────────────────
+
+[packs]
+# Enable entire categories or specific sub-packs.
+# `core` is always enabled implicitly (cannot be disabled).
+# `system.disk` is also enabled by default (catastrophic disk ops);
+# opt out with `disabled = ["system.disk"]` if you genuinely need
+# `mkfs`/`dd`-to-device unblocked.
+#
+# Available packs:
+#   core                  - Git and filesystem protections (always on)
+#   system.disk           - Disk operations: mkfs, dd-to-device, fdisk, parted, mdadm, lvm, wipefs (default-on, opt-out-able)
+#   database.postgresql   - PostgreSQL destructive commands
+#   database.mysql        - MySQL destructive commands
+#   database.mongodb      - MongoDB destructive commands
+#   database.redis        - Redis FLUSH commands
+#   database.sqlite       - SQLite destructive commands
+#   containers.docker     - Docker destructive commands
+#   containers.compose    - Docker Compose destructive commands
+#   containers.podman     - Podman destructive commands
+#   kubernetes.kubectl    - kubectl delete commands
+#   kubernetes.helm       - Helm uninstall commands
+#   kubernetes.kustomize  - Kustomize delete commands
+#   cloud.aws             - AWS CLI destructive commands
+#   cloud.gcp             - GCP CLI destructive commands
+#   cloud.azure           - Azure CLI destructive commands
+#   infrastructure.terraform - Terraform destroy commands
+#   infrastructure.ansible   - Ansible state=absent patterns
+#   infrastructure.pulumi    - Pulumi destroy commands
+#   infrastructure.atmos     - Atmos terraform deploy/clean, helmfile destroy
+#   system.permissions    - Dangerous permission changes
+#   system.services       - Service management commands
+#   strict_git            - Extra paranoid git protections
+#   package_managers      - npm unpublish, cargo yank, etc.
+
+enabled = [
+  "cloud.aws",
+  "containers.docker",
+  "database.postgresql",
+  "database.redis",
+  "dns.cloudflare",
+  "infrastructure.ansible",
+  "infrastructure.terraform",
+  "kubernetes",
+  "monitoring.datadog",
+  "package_managers",
+  "payment.stripe",
+  "platform.github",
+  "remote.ssh",
+  "secrets.onepassword",
+  "system",
+]
+
+# Explicitly disable specific sub-packs
+disabled = [
+  # "kubernetes.kustomize",  # Example: disable kustomize if you don't use it
+]
+
+# Load custom packs from YAML files.
+# Supports glob patterns, ~ for home directory, and ${repo_root} for the
+# nearest ancestor of cwd containing a .git directory. ${repo_root} entries
+# are silently skipped when cwd is outside any repo, so a config that
+# auto-discovers repo-local packs is safe to deploy via MDM.
+# See docs/custom-packs.md for pack authoring guide.
+custom_paths = [
+  # "~/.config/dcg/packs/*.yaml",         # User packs
+  # "${repo_root}/.dcg/packs/*.yaml",     # Repo-local packs (auto-discovered)
+  # "/etc/dcg/packs/*.yaml",              # System-wide packs
+]
+
+#─────────────────────────────────────────────────────────────
+# DECISION MODE POLICY
+#─────────────────────────────────────────────────────────────
+
+[policy]
+# Optional global override for how matched rules are handled:
+# - "deny": block (default)
+# - "warn": allow but print a warning to stderr (no hook JSON deny)
+# - "log": allow silently (no stderr/stdout; optional log_file history)
+#
+# If unset, dcg uses severity defaults:
+# - critical/high => deny
+# - medium => warn
+# - low => log
+#
+# default_mode = "deny"
+#
+# Optional observe-mode window end timestamp.
+# When set and before the timestamp, `default_mode` applies (defaulting to "warn" when unset).
+# When set and after the timestamp, `default_mode` is ignored and severity defaults apply.
+# observe_until = "2026-02-01T00:00:00Z"
+
+[policy.packs]
+# Override mode for an entire pack (pack_id => mode).
+# Examples:
+# "core.git" = "warn"                # warn-first rollout for git pack
+# "containers.docker" = "deny"       # keep docker destructive ops as hard blocks
+
+[policy.rules]
+# Override mode for a specific rule (rule_id => mode).
+# Examples:
+# "core.git:push-force-long" = "warn"
+# "core.git:reset-hard" = "deny"     # keep critical rules as hard blocks
+#
+# Safety: Critical rules are only loosened via explicit per-rule overrides.
+
+#─────────────────────────────────────────────────────────────
+# INTERACTIVE MODE
+#─────────────────────────────────────────────────────────────
+
+[interactive]
+# Master switch for terminal prompts. Disabled by default for agent safety.
+enabled = false
+
+# Verification method: "code" | "command" | "none".
+verification = "code"
+
+# Prompt timeout and code length. Values are clamped at runtime.
+timeout_seconds = 5
+code_length = 4
+max_attempts = 3
+
+# Keep prompts disabled for non-TTY agent traffic and CI by default.
+allow_non_tty_fallback = true
+disable_in_ci = true
+
+# Optional env var gate; uncomment to require explicit opt-in per shell.
+# require_env = "DCG_INTERACTIVE"
+
+#─────────────────────────────────────────────────────────────
+# GIT BRANCH AWARENESS
+#─────────────────────────────────────────────────────────────
+
+[git_awareness]
+# Enable branch-aware strictness.
+enabled = false
+
+# Branches that receive extra protection.
+protected_branches = ["main", "production", "release/*"]
+protected_strictness = "all"
+
+# Branches that can use a lower strictness level.
+relaxed_branches = ["feature/*", "experiment/*", "sandbox/*"]
+relaxed_strictness = "critical"
+
+# Strictness when no branch pattern matches.
+default_strictness = "high"
+
+# Packs to disable only on relaxed branches.
+relaxed_disabled_packs = []
+
+# Include branch context in human-facing output.
+show_branch_in_output = true
+
+# Warn when git awareness is enabled outside a git repository.
+warn_if_not_git = false
+
+#─────────────────────────────────────────────────────────────
+# CUSTOM OVERRIDES
+#─────────────────────────────────────────────────────────────
+
+[overrides]
+# Allow specific patterns that would otherwise be blocked.
+# Supports simple strings or conditional objects.
+allow = [
+  # Example: Allow deleting test namespaces
+  # "kubectl delete namespace test-.*",
+
+  # Example: Allow dropping test databases
+  # "dropdb test_.*",
+
+  # Example: Conditional - only in CI
+  # { pattern = "docker system prune", when = "CI=true" },
+]
+
+# Block additional patterns not covered by any pack.
+block = [
+  # Example: Block a custom dangerous script
+  # { pattern = "deploy-to-prod\\.sh.*--force", reason = "Never force-deploy to production" },
+
+  # Example: Block piping curl to shell
+  # { pattern = "curl.*\\| ?sh", reason = "Piping curl to shell is dangerous" },
+]
+
+#─────────────────────────────────────────────────────────────
+# ALLOWLIST FILES
+#─────────────────────────────────────────────────────────────
+
+[allowlist]
+# Keep expired entries by default so allowlist files preserve audit history.
+# Set to true to prune expired entries before allowlist CLI operations.
+auto_prune_expired = false
+
+#─────────────────────────────────────────────────────────────
+# HEREDOC / INLINE SCRIPT SCANNING
+#─────────────────────────────────────────────────────────────
+
+[heredoc]
+# Enable scanning for heredocs and inline scripts (python -c, bash -c, etc.).
+enabled = true
+
+# Extraction timeout budget (milliseconds). Parsing/matching has its own budget.
+timeout_ms = 50
+
+# Resource limits for extracted bodies (Tier 2).
+max_body_bytes = 1048576
+max_body_lines = 10000
+max_heredocs = 10
+
+# Optional language filter (scan only these languages). Omit for "all".
+# languages = ["python", "bash", "javascript", "typescript", "ruby", "perl"]
+
+# Graceful degradation (hook defaults are fail-open).
+fallback_on_parse_error = true
+fallback_on_timeout = true
+
+#─────────────────────────────────────────────────────────────
+# HISTORY
+#─────────────────────────────────────────────────────────────
+
+[history]
+# Enable command history (opt-in).
+enabled = false
+
+# Redaction mode for stored commands: "pattern" | "full" | "none"
+redaction_mode = "pattern"
+
+# Retention window and database size limits.
+retention_days = 90
+max_size_mb = 500
+
+# Optional database path override.
+# database_path = "~/.config/dcg/history.db"
+
+#─────────────────────────────────────────────────────────────
+# GRADUATED RESPONSE SYSTEM
+#─────────────────────────────────────────────────────────────
+
+[response]
+# Enable the graduated response system.
+# When enabled, repeated occurrences of the same command escalate
+# from warning → soft block → hard block.
+enabled = false
+
+# Global graduation mode: "paranoid" | "strict" | "standard" | "lenient" | "warning_only" | "disabled"
+mode = "standard"
+
+# Session thresholds (within current process).
+session_warning_count = 1
+session_soft_block = 2
+
+# History thresholds (across sessions within history_window).
+history_soft_block = 3
+history_hard_block = 5
+history_window = "24h"
+
+# Per-severity overrides (uncomment to customize).
+# [response.severity_overrides]
+# critical = "paranoid"
+# high = "strict"
+# medium = "standard"
+# low = "warning_only"
+
+#─────────────────────────────────────────────────────────────
+# PROJECT-SPECIFIC OVERRIDES
+#─────────────────────────────────────────────────────────────
+
+# Override settings for specific project directories.
+# The key is the absolute path to the project.
+
+# [projects."/path/to/database-project"]
+# packs.enabled = ["database"]
+# packs.disabled = []
+# overrides.allow = ["dropdb test_.*"]
+
+# [projects."/path/to/k8s-infra"]
+# packs.enabled = ["kubernetes", "cloud.aws", "infrastructure.terraform"]

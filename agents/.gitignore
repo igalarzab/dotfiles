@@ -1,0 +1,4 @@
+codex.symlink/*
+!codex.symlink/.gitkeep
+!codex.symlink/AGENTS.md
+!codex.symlink/hooks.json
