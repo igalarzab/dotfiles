@@ -1,2 +1,4 @@
-if !(which mise all> /dev/null):
+import shutil
+
+if shutil.which("mise"):
     execx($(mise activate xonsh))

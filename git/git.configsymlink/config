@@ -9,7 +9,6 @@ user = TODO
 
 [core]
 editor = nvim
-pager = hunk pager
 
 [delta]
 line-numbers = true
@@ -53,6 +52,8 @@ allowedSignersFile = ~/.config/git/allowed-signers
 
 [pager]
 difftool = true
+diff = hunk pager
+log = less
 
 [color]
 ui = true

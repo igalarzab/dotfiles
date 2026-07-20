@@ -1,3 +1,7 @@
-#if !(which carapace all> /dev/null):
-#   $CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
-#   exec($(carapace _carapace xonsh))
+# TODO: Freezes the shell
+# import shutil
+#
+# if shutil.which("carapace"):
+#    $CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+#    $COMPLETIONS_CONFIRM=True
+#    exec($(carapace _carapace))

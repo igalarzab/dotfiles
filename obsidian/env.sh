@@ -1,0 +1,1 @@
+export OBSIDIAN_VAULT="$HOME/Obsidian"

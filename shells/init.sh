@@ -1,0 +1,1 @@
+. "$DOTFILES/shells/aliases.sh"

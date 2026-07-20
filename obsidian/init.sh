@@ -1,0 +1,1 @@
+alias ob='cd "$OBSIDIAN_VAULT"'

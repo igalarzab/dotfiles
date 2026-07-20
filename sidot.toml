@@ -10,7 +10,7 @@ regex  = true
 
 [[steps]]
 plugin        = 'shell'
-pre-condition = '! which brew >/dev/null 2>&1'
+pre-condition = '! command -v brew >/dev/null 2>&1'
 
 [steps.commands]
 'Installing Homebrew'          = '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'

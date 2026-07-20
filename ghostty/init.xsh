@@ -13,7 +13,7 @@ class Codes:
 
 
 def on_changedir(olddir: str, newdir: str) -> None:
-    """Notify ghostty of directory change"""
+    "Notify ghostty of directory change."
     sys.stdout.write(f'{Codes.OSC}7;file://{HOSTNAME}/{newdir}{Codes.BEL}')
     sys.stdout.flush()
 

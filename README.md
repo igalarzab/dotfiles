@@ -17,7 +17,7 @@ cd ~/.config/dotfiles
 ## 📦 What's Included
 
 ### Development Tools
-- **Shell**: `xonsh` with custom configurations
+- **Shell**: `xonsh` as the primary interactive shell, with parallel Bash/zsh configuration
 - **Editor**: Neovim with optimized settings
 - **Terminal**: iTerm2 configurations
 - **Version Control**: Git with helpful aliases and configurations
@@ -58,6 +58,17 @@ Each topic area has its own directory with relevant configurations:
 - **mise/**: Runtime version management
 - **vim/**: Neovim configuration
 - **xonsh/**: Shell configuration and custom functions
+- **zsh/**: zsh startup used by interactive shells and Codex
+
+App-specific shell configuration stays with the app and is loaded by extension:
+
+- `env.sh` and `init.sh`: shared by xonsh, zsh, and Bash
+- `*.xsh`: xonsh-specific setup
+- `*.zsh`: zsh-specific setup
+- `*.bash`: Bash-specific setup
+
+Xonsh and zsh load this configuration automatically. The shared files are ready
+for Bash too, but Bash does not have its own startup loader yet.
 
 ## 🎨 Customization
 
