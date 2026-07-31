@@ -8,6 +8,7 @@
 * Favor readability and maintainability over cleverness.
 * Reuse existing patterns and conventions before introducing new ones.
 * When requirements are ambiguous, state your assumptions instead of guessing.
+* Use only the ASCII hyphen-minus (`-`) in prose. Never use em dashes or en dashes.
 
 ## Code Quality
 
