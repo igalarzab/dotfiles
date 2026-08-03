@@ -13,6 +13,11 @@ $UPDATE_OS_ENVIRON = True
 # Capture baseline env vars before sourcing dotfiles
 __baseline_env = set(os.environ.keys())
 
+# Path where dotfiles are stored
+$DOTFILES = pathlib.Path(__file__).resolve(strict=True).parents[2]
+
+source-bash --overwrite-aliases @($DOTFILES / 'shells' / 'pre-init.sh')
+
 # Auto-pair symbols (parenthesis, brackets, ...)
 $XONSH_AUTOPAIR = True
 
@@ -22,9 +27,6 @@ $DOTGLOB=True
 # Configure history
 $XONSH_HISTORY_BACKEND = 'sqlite'
 $HISTCONTROL = 'ignoredups'
-
-# Path where dotfiles are stored
-$DOTFILES = pathlib.Path(__file__).resolve(strict=True).parents[2]
 
 # Load shared environment files through Bash.
 for f in sorted($DOTFILES.glob('*/env.sh')):

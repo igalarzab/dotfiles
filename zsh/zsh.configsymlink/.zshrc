@@ -10,6 +10,8 @@ typeset dotfiles_zshrc_path="${(%):-%N}"
 export DOTFILES="${DOTFILES:-${dotfiles_zshrc_path:A:h:h:h}}"
 unset dotfiles_zshrc_path
 
+source "$DOTFILES/shells/pre-init.sh"
+
 # Include hidden files in glob expansions.
 setopt GLOB_DOTS
 
