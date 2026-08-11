@@ -1,0 +1,69 @@
+#!/bin/bash
+
+set -u
+
+usage() {
+  echo "Usage: git br-nuke [-f] <pattern>" >&2
+}
+
+force=false
+
+if [[ "${1:-}" == "-f" ]]; then
+  force=true
+  shift
+fi
+
+if [[ $# -ne 1 ]]; then
+  usage
+  exit 2
+fi
+
+pattern=$1
+
+printf '' | grep -E -- "$pattern" >/dev/null 2>&1
+grep_status=$?
+if [[ $grep_status -gt 1 ]]; then
+  echo "git br-nuke: invalid pattern: $pattern" >&2
+  exit 2
+fi
+
+branches=()
+while IFS= read -r branch; do
+  if printf '%s\n' "$branch" | grep -Eq -- "$pattern"; then
+    branches+=("$branch")
+  fi
+done < <(git for-each-ref --format='%(refname:short)' refs/heads/)
+
+if [[ ${#branches[@]} -eq 0 ]]; then
+  echo "git br-nuke: no local branches match: $pattern" >&2
+  exit 1
+fi
+
+for branch in "${branches[@]}"; do
+  if [[ "$branch" == "main" || "$branch" == "master" ]]; then
+    echo "git br-nuke: refusing to delete protected branch: $branch" >&2
+    exit 1
+  fi
+done
+
+current_branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null || true)
+delete_flag=-d
+if $force; then
+  delete_flag=-D
+fi
+
+delete_failed=false
+for branch in "${branches[@]}"; do
+  if [[ "$branch" == "$current_branch" ]]; then
+    echo "git br-nuke: skipping current branch: $branch" >&2
+    continue
+  fi
+
+  if ! git branch "$delete_flag" -- "$branch"; then
+    delete_failed=true
+  fi
+done
+
+if $delete_failed; then
+  exit 1
+fi

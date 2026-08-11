@@ -36,11 +36,11 @@ please = push --force-with-lease
 commend = commit --amend --no-edit
 cammend = commit --amend --no-edit --all
 
-ls = !$DOTFILES/git/functions/git-ls
-ll = !$DOTFILES/git/functions/git-ll
-wtf = !$DOTFILES/git/functions/git-wtf
+ls      = !$DOTFILES/git/functions/git-ls
+ll      = !$DOTFILES/git/functions/git-ll
+br-nuke = !$DOTFILES/git/functions/git-br-nuke
 
-pr = !gh pr create
+pr  = !gh pr create
 prd = !gh pr create --draft
 
 [gpg]
