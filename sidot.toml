@@ -2,39 +2,40 @@ version = 1
 
 [[steps]]
 plugin = 'link'
-regex  = true
+regex = true
 
 [steps.links]
-'.*/(.*)\.configsymlink' = '~/.config/\1' # Any file/folder ending in .configsymlink goes in ~/.config
-'.*/(.*)\.symlink'       = '~/.\1'        # Any file/folder ending in .symlink goes in home directory (hidden)
+'.*/(.*)\.configsymlink' = '~/.config/\1'  # Any file/folder ending in .configsymlink goes in ~/.config
+'.*/(.*)\.codexsymlink'  = '~/.codex/\1'   # Any file/folder ending in .codexsymlink goes in home directory (hidden)
+'.*/(.*)\.symlink'       = '~/.\1'         # Any file/folder ending in .symlink goes in home directory (hidden)
 
 [[steps]]
-plugin        = 'shell'
+plugin = 'shell'
 pre-condition = '! command -v brew >/dev/null 2>&1'
 
 [steps.commands]
-'Installing Homebrew'          = '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+'Installing Homebrew' = '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
 'Adding HomeBrew to the shell' = '''echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile'''
 
 [[steps]]
 plugin = 'shell'
 
 [steps.commands]
-'Set macOS config'          = './macos/defaults.sh'
+'Set macOS config' = './macos/defaults.sh'
 'Install Homebrew packages' = 'brew update && brew bundle --no-upgrade --file=./packages/Brewfile'
-'Install Mise packages'     = 'mise install'
-'Install agent skills'      = './agents/install.sh'
+'Install Mise packages' = 'mise install'
+'Install agent skills' = './agents/install.sh'
 
 [[steps]]
 plugin = 'shell'
 pre-condition = 'test -f ./packages/Brewfile.$(uname -n | cut -d. -f1)'
 
 [steps.commands]
-'Install device-specific Homebrew packages'  = 'brew bundle --no-upgrade --file=./packages/Brewfile.$(uname -n | cut -d. -f1)'
+'Install device-specific Homebrew packages' = 'brew bundle --no-upgrade --file=./packages/Brewfile.$(uname -n | cut -d. -f1)'
 
 [[steps]]
 plugin = 'shell'
 pre-condition = '! grep xonsh /etc/shells >/dev/null 2>&1'
 
 [steps.commands]
-'Set xonsh as default shell'  = './xonsh/set-default.sh'
+'Set xonsh as default shell' = './xonsh/set-default.sh'
