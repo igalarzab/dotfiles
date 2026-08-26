@@ -3,16 +3,94 @@
 # Full backup of several paths to an external drive
 #
 
+import fcntl
+import os
+import signal
 import subprocess
-from collections.abc import Iterable
+import sys
+import time
+from collections.abc import Iterable, Sequence
 from pathlib import Path
-from shutil import which
+from shutil import copy2, which
+
+BACKUP_ROOT = Path("/Volumes/Backups")
+BACKUP_MARKER = ".full-backup-target"
+STATE_DIR = Path("~/.local/state/full-backup").expanduser()
 
 
-def backup_dirs(origs: Iterable[Path], dest: Path) -> None:
+def run_command(command: Sequence[str], lock_fd: int) -> None:
+    process = subprocess.Popen(
+        command,
+        pass_fds=(lock_fd,),
+        start_new_session=True,
+    )
+
+    try:
+        return_code = process.wait()
+    except KeyboardInterrupt:
+        print(f"\nStopping {Path(command[0]).name}...")
+        previous_sigint_handler = signal.signal(signal.SIGINT, signal.SIG_IGN)
+
+        try:
+            try:
+                os.killpg(process.pid, signal.SIGTERM)
+            except ProcessLookupError:
+                pass
+
+            deadline = time.monotonic() + 5
+
+            while time.monotonic() < deadline:
+                process.poll()
+                try:
+                    os.killpg(process.pid, 0)
+                except ProcessLookupError:
+                    break
+                time.sleep(0.1)
+            else:
+                try:
+                    os.killpg(process.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+
+            process.wait()
+        finally:
+            signal.signal(signal.SIGINT, previous_sigint_handler)
+
+        raise
+
+    if return_code != 0:
+        raise subprocess.CalledProcessError(return_code, command)
+
+
+def validate_backup_destination() -> None:
+    if not BACKUP_ROOT.is_dir():
+        raise RuntimeError(
+            f"Backup destination is not mounted: {BACKUP_ROOT}. "
+            "Mount the Backups SMB share and try again."
+        )
+
+    backup_root = BACKUP_ROOT.resolve(strict=True)
+    mount_prefix = f" on {backup_root} (smbfs,"
+    mounts = subprocess.run(
+        ["mount"], check=True, capture_output=True, text=True
+    ).stdout.splitlines()
+
+    if not any(mount_prefix in mount for mount in mounts):
+        raise RuntimeError(f"Backup destination is not an SMB mount: {backup_root}")
+
+    marker = backup_root / BACKUP_MARKER
+    if not marker.is_file():
+        raise RuntimeError(f"Backup destination marker is missing: {marker}")
+
+
+def backup_dirs(
+    origs: Iterable[Path],
+    dest: Path,
+    lock_fd: int,
+    exclusions: Iterable[str] = (),
+) -> None:
     if which("rsync") is None:
-        print("rsync not found in PATH")
-        return
+        raise RuntimeError("rsync not found in PATH")
 
     sources_paths: list[str] = []
     dest_path = dest.expanduser().resolve(strict=True).as_posix() + "/"
@@ -27,7 +105,7 @@ def backup_dirs(origs: Iterable[Path], dest: Path) -> None:
 
     print(f"Backing up {sources_paths} → {dest_path}")
 
-    subprocess.run(
+    run_command(
         [
             "rsync",
             "--compress",
@@ -36,9 +114,8 @@ def backup_dirs(origs: Iterable[Path], dest: Path) -> None:
             "--delete-excluded",
             "--exclude=.DS_Store",
             "--exclude=.Trash",
-            "--exclude=.obsidian/",
+            *(f"--exclude={exclusion}" for exclusion in exclusions),
             "--itemize-changes",
-            "--links",
             "--modify-window=2",
             "--numeric-ids",
             "--omit-dir-times",
@@ -47,13 +124,20 @@ def backup_dirs(origs: Iterable[Path], dest: Path) -> None:
             *sources_paths,
             dest_path,
         ],
-        check=True,
+        lock_fd,
     )
 
 
-def backup_photos(photos_library: Path, dest: Path) -> None:
+def backup_photos(
+    photos_library: Path, dest: Path, state_backup_dir: Path, lock_fd: int
+) -> None:
     photos_db = photos_library.expanduser().resolve(strict=True)
     export_dir = dest.expanduser().resolve(strict=True)
+    state_backup_dir.mkdir(parents=True, exist_ok=True)
+
+    export_db = STATE_DIR / "photos-export.db"
+    backup_export_db = state_backup_dir / "photos-export.db"
+    previous_export_db = export_dir / ".osxphotos_export.db"
 
     print(f"Backing up Photos DB {photos_db} → {export_dir}")
 
@@ -78,6 +162,8 @@ def backup_photos(photos_library: Path, dest: Path) -> None:
         "--exiftool",
         "--exiftool-merge-keywords",
         "--exiftool-merge-persons",
+        "--exportdb",
+        export_db.as_posix(),
         "--filename",
         "{created.strftime,%Y-%m-%d-%H%M%S}",
         "--ignore-date-modified",
@@ -96,17 +182,48 @@ def backup_photos(photos_library: Path, dest: Path) -> None:
         "--update",
     ]
 
-    subprocess.run(cmd, check=True)
+    if not export_db.exists():
+        for previous_db in (backup_export_db, previous_export_db):
+            if not previous_db.exists():
+                continue
+
+            print(f"Copying Photos export state from {previous_db} to {export_db}")
+            temporary_export_db = export_db.with_suffix(".tmp")
+            copy2(previous_db, temporary_export_db)
+            temporary_export_db.replace(export_db)
+            break
+
+    run_command(cmd, lock_fd)
+
+    print(f"Backing up Photos export state to {backup_export_db}")
+    temporary_backup_db = backup_export_db.with_suffix(".tmp")
+    copy2(export_db, temporary_backup_db)
+    temporary_backup_db.replace(backup_export_db)
 
 
-if __name__ == "__main__":
+def main() -> None:
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    lock_path = STATE_DIR / "full-backup.lock"
+
+    with lock_path.open("a+") as lock_file:
+        try:
+            fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            raise RuntimeError("A full backup is already running") from None
+
+        validate_backup_destination()
+        run_backups(lock_file.fileno())
+
+
+def run_backups(lock_fd: int) -> None:
     # Hidden files in repos
     backup_dirs(
         [
             Path("~/.config/dotfiles/git/git.configsymlink/config-local"),
             Path("~/.config/dotfiles/git/git.configsymlink/allowed-signers"),
         ],
-        Path("/Volumes/Backups/Ignored/git/"),
+        BACKUP_ROOT / "Ignored/git",
+        lock_fd,
     )
 
     backup_dirs(
@@ -115,25 +232,42 @@ if __name__ == "__main__":
             Path("~/Developer/personal/homelab/ansible/vars.yaml"),
             Path("~/Developer/personal/homelab/kubernetes/.env"),
         ],
-        Path("/Volumes/Backups/Ignored/homelab/"),
+        BACKUP_ROOT / "Ignored/homelab",
+        lock_fd,
     )
 
     # iCloud Drive
     backup_dirs(
         [Path("~/Library/Mobile Documents/com~apple~CloudDocs/")],
-        Path("/Volumes/Backups/Drive/"),
+        BACKUP_ROOT / "Drive",
+        lock_fd,
     )
 
     # Obsidian
     backup_dirs(
         [Path("~/Library/Mobile Documents/iCloud~md~obsidian")],
-        Path("/Volumes/Backups/Obsidian/"),
+        BACKUP_ROOT / "Obsidian",
+        lock_fd,
+        exclusions=(".obsidian/",),
     )
 
     # Apple Photos
     backup_photos(
         Path("~/Pictures/Photos Library.photoslibrary"),
-        Path("/Volumes/Backups/Photos/"),
+        BACKUP_ROOT / "Photos",
+        BACKUP_ROOT / "Ignored/full-backup",
+        lock_fd,
     )
 
-# vim: set syntax=python:
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        raise SystemExit(130) from None
+    except RuntimeError as error:
+        print(f"Error: {error}", file=sys.stderr)
+        raise SystemExit(1) from None
+
+
+# vim: set textwidth=120 syntax=python:
