@@ -36,6 +36,7 @@ def backup_dirs(origs: Iterable[Path], dest: Path) -> None:
             "--delete-excluded",
             "--exclude=.DS_Store",
             "--exclude=.Trash",
+            "--exclude=.obsidian/",
             "--itemize-changes",
             "--links",
             "--modify-window=2",
