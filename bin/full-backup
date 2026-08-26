@@ -60,7 +60,7 @@ def backup_photos(photos_library: Path, dest: Path) -> None:
     cmd = [
         "uvx",
         "--python",
-        "3.13",
+        "3.14",
         "osxphotos@latest",
         "export",
         export_dir.as_posix() + "/",
