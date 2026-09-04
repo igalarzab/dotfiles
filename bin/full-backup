@@ -162,6 +162,8 @@ def backup_photos(
         "--exiftool",
         "--exiftool-merge-keywords",
         "--exiftool-merge-persons",
+        "--exiftool-option",
+        "-m",
         "--exportdb",
         export_db.as_posix(),
         "--filename",

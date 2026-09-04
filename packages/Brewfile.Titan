@@ -1,11 +1,5 @@
-tap "steipete/tap"
-
 brew "helm"
 brew "helmsman"
 
-cask "bambu-studio"
-cask "cryptomator"
-cask "elgato-stream-deck"
 cask "ngrok"
-cask "obsidian"
-cask "steipete/tap/codexbar"
+cask "orbstack"
