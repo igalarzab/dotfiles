@@ -1,0 +1,5 @@
+interface:
+  display_name: Unslop
+  short_description: Removes slop from AI writing. Use always
+policy:
+  allow_implicit_invocation: true

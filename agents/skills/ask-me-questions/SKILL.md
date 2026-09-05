@@ -1,6 +1,8 @@
 ---
 name: ask-me-questions
 description: Clarify the minimum blocking requirements before implementing an underspecified request. Use only when explicitly invoked, especially when the objective, done criteria, scope, constraints, environment, or safety requirements are unclear.
+metadata:
+  author: thsottiaux
 ---
 
 # Ask Me Questions
