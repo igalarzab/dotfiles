@@ -1,5 +1,10 @@
+tap "steipete/tap", trusted: true
+
 brew "helm"
 brew "helmsman"
+brew "steipete/tap/gogcli"
+brew "steipete/tap/remindctl"
+brew "steipete/tap/wacli"
 
 cask "ngrok"
 cask "orbstack"
