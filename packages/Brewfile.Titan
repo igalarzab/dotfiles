@@ -6,5 +6,6 @@ brew "steipete/tap/gogcli"
 brew "steipete/tap/remindctl"
 brew "steipete/tap/wacli"
 
+cask "google-chrome"
 cask "ngrok"
 cask "orbstack"
