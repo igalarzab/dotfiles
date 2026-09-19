@@ -2,7 +2,8 @@
 
 Your dotfiles are how you personalize your system. These are mine.
 
-This repository contains configuration files and automation scripts for setting up a development environment on macOS with modern command-line tools, applications, and personalized settings.
+This repository contains configuration files and automation scripts for setting up a development
+environment on macOS with modern command-line tools, applications, and personalized settings.
 
 ## 🚀 Quick Start
 
@@ -11,8 +12,13 @@ Just run the following commands in your system:
 ```sh
 git clone https://github.com/igalarzab/dotfiles ~/.config/dotfiles
 cd ~/.config/dotfiles
-./sidot run
+./install
 ```
+
+Day to day, `./install links` is enough — symlinks only, offline, about a
+second. The bare `./install` also does packages, runtimes and system defaults,
+which is what a new machine or a changed Brewfile needs. Add `--dry-run` to
+either, or see `./install --help`.
 
 ## 📦 What's Included
 
@@ -37,13 +43,26 @@ Automatically installs productivity and development applications via Homebrew Ca
 
 ## ⚙️ How It Works
 
-The setup is managed by `sidot` (SImple DOTfiles Script), a custom Python tool that:
+Setup is managed by [dotbot](https://github.com/anishathalye/dotbot), pinned as
+a submodule. Everything setup-related lives in `dotbot/`:
 
-1. **Installs Homebrew** and all packages defined in `packages/Brewfile`
-2. **Symlinks configuration files** using pattern-based rules:
-   - `*.symlink` files → `~/.*` (hidden files in home directory)
-   - `*.configsymlink` files → `~/.config/*` (XDG config directory)
-3. **Sets up development tools** via `mise` (version manager)
+- `dotbot/dotbot/` — the vendored tool, pinned to a tagged release.
+- `dotbot/links.conf.yaml` — symlinks only. Fast and offline.
+- `dotbot/bootstrap.conf.yaml` — Homebrew, `mise`, macOS defaults, agent skills.
+- `dotbot/hosts/<hostname>.conf.yaml` — optional, picked up automatically on that machine.
+
+The `regexlink` plugin in `dotbot/plugins/regexlink.py` creates symlinks by
+pattern rather than listing them one by one:
+
+- `*.symlink` → `~/.*` (hidden files in home directory)
+- `*.configsymlink` → `~/.config/*` (XDG config directory)
+- `*.codexsymlink` → `~/.codex/*`
+
+Adding a config means giving the file or directory one of those suffixes. No
+config edit needed.
+
+Note that dotbot only reports changes and problems, so a run with nothing to do
+is quiet by design. Pass `-v` to see every link it checked.
 
 ## 📁 Directory Structure
 
@@ -95,7 +114,7 @@ Create local configuration files that won't be tracked by git:
 
 1. **Add new topic directories**: Create a new directory (e.g., `python/`) and add configuration files
 2. **Install additional packages**: Edit `packages/Brewfile` to add more Homebrew formulas or casks
-3. **Modify automation**: Update `sidot.toml` to add custom setup steps
+3. **Modify automation**: Add steps to `dotbot/bootstrap.conf.yaml`, or to `dotbot/hosts/<hostname>.conf.yaml` for one machine only
 
 ## 📋 Requirements
 
@@ -105,10 +124,11 @@ Create local configuration files that won't be tracked by git:
 
 ## 🔧 Troubleshooting
 
-- Run `./sidot run` again to retry failed installations
+- Run `./install` again to retry failed installations, or `./install --dry-run` to inspect the plan without changing anything
 - Check `packages/Brewfile` if specific packages fail to install
 - Verify symlinks with `ls -la ~/.*` and `ls -la ~/.config/`
 
 ---
 
-**Note**: Fork this repository and customize it for your own needs. These configurations are tailored to my personal workflow and preferences.
+**Note**: Fork this repository and customize it for your own needs. These configurations are
+tailored to my personal workflow and preferences.

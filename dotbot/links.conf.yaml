@@ -1,0 +1,22 @@
+# Run by: ./install links
+#
+# Symlinks only. Fast, offline, safe to run any time.
+
+- plugins:
+    - dotbot/plugins/regexlink.py
+
+- defaults:
+    regexlink:
+      create: true
+      relink: true
+    link:
+      create: true
+      relink: true
+
+- clean: ["~", "~/.config", "~/.codex"]
+
+# Any file or directory ending in one of these suffixes is linked by convention
+- regexlink:
+    '.*/(.*)\.configsymlink': '~/.config/\1'
+    '.*/(.*)\.codexsymlink': '~/.codex/\1'
+    '.*/(.*)\.symlink': '~/.\1'

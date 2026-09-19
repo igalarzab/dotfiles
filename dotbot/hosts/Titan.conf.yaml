@@ -1,0 +1,11 @@
+# Run by: ./install bootstrap, on Titan only
+
+- defaults:
+    shell:
+      stdin: true
+      stdout: true
+      stderr: true
+
+- shell:
+    - description: Install Titan Homebrew packages
+      command: /opt/homebrew/bin/brew bundle --no-upgrade --file=./packages/Brewfile.Titan

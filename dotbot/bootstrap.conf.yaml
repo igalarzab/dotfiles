@@ -1,0 +1,29 @@
+# Run by: ./install bootstrap
+#
+# Machine setup: packages, runtimes, system defaults.
+
+- defaults:
+    shell:
+      # sudo is needed, so these commands need the terminal
+      stdin: true
+      stdout: true
+      stderr: true
+
+- shell:
+    - description: Install Homebrew if missing
+      command: test -x /opt/homebrew/bin/brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    - description: Apply macOS defaults
+      command: ./macos/defaults.sh
+
+    - description: Install Homebrew packages
+      command: /opt/homebrew/bin/brew update && /opt/homebrew/bin/brew bundle --no-upgrade --file=./packages/Brewfile
+
+    - description: Install mise runtimes
+      command: /opt/homebrew/bin/mise install
+
+    - description: Install agent skills
+      command: /opt/homebrew/bin/mise exec -- ./agents/install.sh
+
+    - description: Set xonsh as the default shell
+      command: PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH" ./xonsh/set-default.sh

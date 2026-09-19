@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+#
+# Set up the dotfiles. See ./install --help.
+#
+
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+
+ROOT="$PWD"
+SETUP=dotbot
+HOST="$(uname -n | cut -d. -f1)"
+
+DOTBOT="$SETUP/dotbot/bin/dotbot"
+
+# dotbot runs shell commands with `executable=$SHELL`, so the configs would
+# otherwise be interpreted by whatever the login shell happens to be — xonsh
+# here, which cannot parse the bash they are written in. Pin it.
+export SHELL=/bin/bash
+
+usage() {
+  cat <<'EOF'
+Usage: ./install [task] [dotbot options]
+
+Tasks, each named after the dotbot config it runs:
+  all         both of the below (default)
+  links       links.conf.yaml — symlinks only, offline and about a second
+  bootstrap   bootstrap.conf.yaml, then hosts/<hostname>.conf.yaml if it
+              exists — packages, runtimes and system defaults
+
+Configs live in dotbot/, next to the vendored tool and the regexlink plugin.
+
+Any other arguments go straight to dotbot, so these work with every task:
+  --dry-run   report what would change without changing it
+  -v          also log the links that were already correct
+
+Examples:
+  ./install                 # new machine, or after changing a Brewfile
+  ./install links           # day to day
+  ./install links --dry-run
+EOF
+}
+
+task=all
+
+case "${1:-}" in
+  all | links | bootstrap)
+    task="$1"
+    shift
+    ;;
+  -h | --help)
+    usage
+    exit 0
+    ;;
+esac
+
+dotbot() {
+  "$DOTBOT" -d "$ROOT" -c "$1" "${@:2}"
+}
+
+git -C "$SETUP/dotbot" submodule sync --quiet --recursive
+git submodule update --init --recursive "$SETUP/dotbot"
+
+if [ "$task" != bootstrap ]; then
+  dotbot "$SETUP/links.conf.yaml" "$@"
+  echo "dotfiles: links up to date"
+fi
+
+if [ "$task" != links ]; then
+  dotbot "$SETUP/bootstrap.conf.yaml" "$@"
+
+  if [ -f "$SETUP/hosts/$HOST.conf.yaml" ]; then
+    dotbot "$SETUP/hosts/$HOST.conf.yaml" "$@"
+  else
+    echo "dotfiles: no host config for $HOST, skipping"
+  fi
+fi
