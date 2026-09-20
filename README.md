@@ -57,9 +57,11 @@ pattern rather than listing them one by one:
 - `*.symlink` → `~/.*` (hidden files in home directory)
 - `*.configsymlink` → `~/.config/*` (XDG config directory)
 - `*.codexsymlink` → `~/.codex/*`
+- `*.launchagent` → `~/Library/LaunchAgents/*.plist`
 
 Adding a config means giving the file or directory one of those suffixes. No
-config edit needed.
+config edit needed. `./install links` also bootstraps the launch agents managed
+by this repository into the current user's GUI session.
 
 Note that dotbot only reports changes and problems, so a run with nothing to do
 is quiet by design. Pass `-v` to see every link it checked.
