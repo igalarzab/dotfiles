@@ -1,3 +1,5 @@
-https://github.com/anthropics/skills/tree/main/skills/frontend-design/
-https://github.com/igalarzab/dotfiles/tree/main/agents/skills/
-https://github.com/github/gh-stack
+anthropics/skills/skills/frontend-design
+igalarzab/dotfiles/agents/skills
+github/gh-stack
+anthropics/claude-plugins-community@html-plan
+openclaw/remindctl
