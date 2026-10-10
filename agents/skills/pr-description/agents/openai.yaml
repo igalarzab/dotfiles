@@ -1,0 +1,5 @@
+interface:
+  display_name: Write PR descriptions
+  short_description: Write good PR descriptions
+policy:
+  allow_implicit_invocation: true
