@@ -2,14 +2,9 @@ tap "steipete/tap", trusted: true
 
 brew "helm"
 brew "helmsman"
-brew "steipete/tap/remindctl"
-brew "steipete/tap/wacli"
 
-cask "1password"
-cask "1password-cli@beta"
 cask "bambu-studio"
 cask "arc"
-cask "claude-code"
 cask "cryptomator"
 cask "elgato-stream-deck"
 cask "fantastical"

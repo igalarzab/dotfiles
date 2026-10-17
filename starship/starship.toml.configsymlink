@@ -1,0 +1,13 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+right_format = '$kubernetes'
+
+[docker_context]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[kubernetes]
+disabled = false
+format = '[$symbol$cluster]($style)'
