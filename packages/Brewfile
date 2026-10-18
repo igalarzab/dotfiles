@@ -9,6 +9,7 @@ brew "gh"
 brew "git"
 brew "gnu-sed"
 brew "gnupg"
+brew "kubectx"
 brew "mise"
 brew "modem-dev/tap/hunk", trusted: true
 brew "neovim"
