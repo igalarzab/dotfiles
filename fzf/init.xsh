@@ -9,5 +9,5 @@ if $XONSH_INTERACTIVE and shutil.which("fzf"):
 
     xontrib load fzf-widgets
 
-    $fzf_history_binding = "c-r"
+    $fzf_history_binding = "" if shutil.which("atuin") else "c-r"
     $fzf_file_binding = "c-p"

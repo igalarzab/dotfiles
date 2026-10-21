@@ -1,0 +1,6 @@
+# https://docs.atuin.sh/latest/configuration/config/
+
+style = "full"
+
+[search]
+shells = "all"
