@@ -63,9 +63,6 @@ git submodule update --init --recursive "$SETUP/dotbot"
 
 if [ "$task" != bootstrap ]; then
   dotbot "$SETUP/links.conf.yaml" "$@"
-  if [ "$(uname -s)" = Darwin ]; then
-    dotbot "$SETUP/links.macos.conf.yaml" "$@"
-  fi
   echo "dotfiles: links up to date"
 fi
 

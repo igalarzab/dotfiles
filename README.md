@@ -49,7 +49,6 @@ a submodule. Everything setup-related lives in `dotbot/`:
 - `dotbot/dotbot/` — the vendored tool, pinned to a tagged release.
 - `dotbot/links.conf.yaml` — symlinks only. Fast and offline.
 - `dotbot/bootstrap.conf.yaml` — Homebrew, `mise`, macOS defaults, agent skills.
-- `dotbot/links.macos.conf.yaml` — macOS-only Docker links.
 - `dotbot/hosts/<hostname>.conf.yaml` — optional, picked up automatically on that machine.
 
 The `regexlink` plugin in `dotbot/plugins/regexlink.py` creates symlinks by

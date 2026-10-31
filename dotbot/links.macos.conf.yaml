@@ -1,8 +1,0 @@
-# Run by ./install links on macOS only.
-- defaults:
-    link:
-      create: true
-      relink: true
-
-- link:
-    ~/.config/docker: docker/docker.configsymlink

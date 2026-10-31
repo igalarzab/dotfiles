@@ -15,9 +15,13 @@
 
 - clean: ["~", "~/.config", "~/.codex"]
 
-# Docker is linked separately on macOS: its config selects OrbStack and Keychain.
 # Any file or directory ending in one of these suffixes is linked by convention
 - regexlink:
     '(?!docker/).*/(.*)\.configsymlink': '~/.config/\1'
     '.*/(.*)\.codexsymlink': '~/.codex/\1'
     '.*/(.*)\.symlink': '~/.\1'
+
+- link:
+    ~/.config/docker:
+      path: docker/docker.configsymlink
+      if: '[ "$(uname -s)" = Darwin ]'
