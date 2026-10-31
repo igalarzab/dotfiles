@@ -27,7 +27,7 @@ either, or see `./install --help`.
 - **Editor**: Neovim with optimized settings
 - **Terminal**: iTerm2 configurations
 - **Version Control**: Git with helpful aliases and configurations
-- **Package Management**: Homebrew bundle with essential tools
+- **Package Management**: Homebrew on macOS; APT and mise on Linux
 
 ### Command Line Utilities
 - Modern replacements: `bat`, `fd`, `fzf`, `ripgrep`, `delta`, `zoxide`
@@ -113,14 +113,14 @@ Create local configuration files that won't be tracked by git:
 ### Extending the Setup
 
 1. **Add new topic directories**: Create a new directory (e.g., `python/`) and add configuration files
-2. **Install additional packages**: Edit `packages/Brewfile` to add more Homebrew formulas or casks
+2. **Install additional packages**: Edit `packages/Brewfile` (macOS), `packages/Aptfile` (Linux), or the mise config
 3. **Modify automation**: Add steps to `dotbot/bootstrap.conf.yaml`, or to `dotbot/hosts/<hostname>.conf.yaml` for one machine only
 
 ## 📋 Requirements
 
 - macOS or Linux
 - Python 3
-- On Linux, [Homebrew prerequisites](https://docs.brew.sh/Homebrew-on-Linux)
+- On Linux, an APT-based distribution
 - 🌐 Internet connection for downloading packages
 - 🔑 Administrative privileges for some installations
 

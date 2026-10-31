@@ -10,14 +10,11 @@
       stderr: true
 
 - shell:
-    - description: Install Homebrew if missing
-      command: ./homebrew/install.sh
+    - description: Install system packages
+      command: ./packages/install.sh
 
     - description: Apply macOS defaults
       command: if [ "$(uname -s)" = Darwin ]; then ./macos/defaults.sh; fi
-
-    - description: Install Homebrew packages
-      command: . ./homebrew/env.sh && brew update && brew bundle --no-upgrade --file=./packages/Brewfile
 
     - description: Install mise runtimes
       command: . ./homebrew/env.sh && mise install
