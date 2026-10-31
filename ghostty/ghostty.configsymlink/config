@@ -1,7 +1,6 @@
 # general settings
 auto-update = download
 auto-update-channel = stable
-# Use the login shell selected by xonsh/set-default.sh.
 working-directory = home
 window-inherit-working-directory = true
 shell-integration-features = sudo, title, ssh-env, ssh-terminfo

@@ -16,7 +16,6 @@ Give the file or directory a suffix and it is linked automatically.
 * `*.symlink` to `~/.*`
 * `*.configsymlink` to `~/.config/*`
 * `*.codexsymlink` to `~/.codex/*`
-* `*.launchagent` to `~/Library/LaunchAgents/*.plist` (macOS only)
 
 Docker is linked explicitly on macOS only; its config selects OrbStack and Keychain.
 

@@ -29,7 +29,7 @@ Install Homebrew's [Ubuntu prerequisites](https://docs.brew.sh/Homebrew-on-Linux
 sudo apt-get install build-essential procps curl file git
 ```
 
-macOS defaults, desktop casks, LaunchAgents, and the OrbStack/Keychain Docker
+macOS defaults, desktop casks, and the OrbStack/Keychain Docker
 configuration are applied only on macOS. Linux Docker configuration stays local;
 install Docker and desktop applications separately if needed. Ghostty uses the
 system login shell rather than a platform-specific xonsh path.
@@ -74,7 +74,7 @@ a submodule. Everything setup-related lives in `dotbot/`:
 - `dotbot/dotbot/` — the vendored tool, pinned to a tagged release.
 - `dotbot/links.conf.yaml` — symlinks only. Fast and offline.
 - `dotbot/bootstrap.conf.yaml` — Homebrew, `mise`, macOS defaults, agent skills.
-- `dotbot/links.macos.conf.yaml` — macOS-only Docker links and LaunchAgents.
+- `dotbot/links.macos.conf.yaml` — macOS-only Docker links.
 - `dotbot/hosts/<hostname>.conf.yaml` — optional, picked up automatically on that machine.
 
 The `regexlink` plugin in `dotbot/plugins/regexlink.py` creates symlinks by
@@ -83,12 +83,9 @@ pattern rather than listing them one by one:
 - `*.symlink` → `~/.*` (hidden files in home directory)
 - `*.configsymlink` → `~/.config/*` (XDG config directory)
 - `*.codexsymlink` → `~/.codex/*`
-- `*.launchagent` → `~/Library/LaunchAgents/*.plist` (macOS only)
 
 Adding a config means giving the file or directory one of those suffixes. No
-config edit needed. Docker is an explicit macOS-only exception. On macOS,
-`./install links` also bootstraps the launch agents managed
-by this repository into the current user's GUI session.
+config edit needed. Docker is an explicit macOS-only exception.
 
 Note that dotbot only reports changes and problems, so a run with nothing to do
 is quiet by design. Pass `-v` to see every link it checked.
