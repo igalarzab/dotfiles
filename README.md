@@ -152,12 +152,6 @@ Create local configuration files that won't be tracked by git:
 - 🌐 Internet connection for downloading packages
 - 🔑 Administrative privileges for some installations
 
-## Validation
-
-Run `python3 -m unittest discover -s tests -v` for isolated link installation,
-platform routing, and environment checks. The tests use temporary homes and mock
-macOS commands; they do not install packages or change the login shell.
-
 ## 🔧 Troubleshooting
 
 - Run `./install` again to retry failed installations, or `./install --dry-run` to inspect the plan without changing anything
