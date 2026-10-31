@@ -20,31 +20,6 @@ second. The bare `./install` also does packages, runtimes and system defaults,
 which is what a new machine or a changed Brewfile needs. Add `--dry-run` to
 either, or see `./install --help`.
 
-### Ubuntu / Pandora
-
-The same `./install` command installs shared CLI tools through Homebrew on Linux.
-Install Homebrew's [Ubuntu prerequisites](https://docs.brew.sh/Homebrew-on-Linux) first:
-
-```sh
-sudo apt-get install build-essential procps curl file git
-```
-
-macOS defaults, desktop casks, and the OrbStack/Keychain Docker
-configuration are applied only on macOS. Linux Docker configuration stays local;
-install Docker and desktop applications separately if needed. Ghostty uses the
-system login shell rather than a platform-specific xonsh path.
-
-Before installing on an existing machine, run `./install links --dry-run`.
-Dotbot refuses to overwrite real files or directories. On Pandora, `~/.ssh` and
-`~/.config/mise` already exist: back them up, merge the settings you need, and
-move the original directories aside before linking. Preserve SSH keys,
-`known_hosts`, and mise settings; do not use force to discard them. Keep this
-checkout at a permanent location because the links point into it.
-
-Provide Git identity and SSH signing settings in `~/.config/git/config-local`,
-as described below, before making signed commits. `./install` also registers
-xonsh and sets it as the login shell; sudo or a password prompt may be needed.
-
 ## 📦 What's Included
 
 ### Development Tools
@@ -60,7 +35,7 @@ xonsh and sets it as the login shell; sudo or a password prompt may be needed.
 - System utilities: `coreutils`, `gnu-sed`, `watch`, `tree`, `pstree`
 
 ### Applications
-Automatically installs productivity and development applications via Homebrew Cask including:
+On macOS, installs productivity and development applications via Homebrew Cask including:
 - **Browsers**: Arc
 - **Development**: Visual Studio Code, ChatGPT, Claude
 - **Productivity**: Raycast, Rectangle Pro, Fantastical, Notion
@@ -85,7 +60,7 @@ pattern rather than listing them one by one:
 - `*.codexsymlink` → `~/.codex/*`
 
 Adding a config means giving the file or directory one of those suffixes. No
-config edit needed. Docker is an explicit macOS-only exception.
+config edit needed.
 
 Note that dotbot only reports changes and problems, so a run with nothing to do
 is quiet by design. Pass `-v` to see every link it checked.
@@ -144,8 +119,9 @@ Create local configuration files that won't be tracked by git:
 
 ## 📋 Requirements
 
-- macOS or Linux (Ubuntu on Pandora)
-- Python 3 to run the vendored dotbot installer
+- macOS or Linux
+- Python 3
+- On Linux, [Homebrew prerequisites](https://docs.brew.sh/Homebrew-on-Linux)
 - 🌐 Internet connection for downloading packages
 - 🔑 Administrative privileges for some installations
 
