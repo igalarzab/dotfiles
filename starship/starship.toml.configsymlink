@@ -11,3 +11,6 @@ disabled = true
 [kubernetes]
 disabled = false
 format = '[$symbol$cluster]($style)'
+
+[package]
+disabled = true
