@@ -10,20 +10,17 @@
       stderr: true
 
 - shell:
-    - description: Install Homebrew if missing
-      command: test -x /opt/homebrew/bin/brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    - description: Install system packages
+      command: ./packages/install.sh
 
     - description: Apply macOS defaults
-      command: ./macos/defaults.sh
-
-    - description: Install Homebrew packages
-      command: /opt/homebrew/bin/brew update && /opt/homebrew/bin/brew bundle --no-upgrade --file=./packages/Brewfile
+      command: if [ "$(uname -s)" = Darwin ]; then ./macos/defaults.sh; fi
 
     - description: Install mise runtimes
-      command: /opt/homebrew/bin/mise install
+      command: . ./homebrew/env.sh && mise install
 
     - description: Install agent skills
-      command: /opt/homebrew/bin/mise exec -- ./agents/install.sh
+      command: . ./homebrew/env.sh && mise exec -- ./agents/install.sh
 
     - description: Set xonsh as the default shell
-      command: PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH" ./xonsh/set-default.sh
+      command: . ./homebrew/env.sh && ./xonsh/set-default.sh

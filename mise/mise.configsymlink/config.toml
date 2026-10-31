@@ -5,6 +5,11 @@ pnpm = "12.3.4"
 python = "3.14"
 rust = "1.99"
 
+hunk = { version = "latest", os = ["linux"] }
+carapace = { version = "latest", os = ["linux"] }
+uv = { version = "latest", os = ["linux"] }
+yq = { version = "latest", os = ["linux"] }
+
 [settings]
 experimental = true
 idiomatic_version_file_enable_tools = ["python", "node"]

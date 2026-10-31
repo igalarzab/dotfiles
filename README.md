@@ -3,7 +3,7 @@
 Your dotfiles are how you personalize your system. These are mine.
 
 This repository contains configuration files and automation scripts for setting up a development
-environment on macOS with modern command-line tools, applications, and personalized settings.
+environment on macOS and Linux with modern command-line tools, applications, and personalized settings.
 
 ## 🚀 Quick Start
 
@@ -27,7 +27,7 @@ either, or see `./install --help`.
 - **Editor**: Neovim with optimized settings
 - **Terminal**: iTerm2 configurations
 - **Version Control**: Git with helpful aliases and configurations
-- **Package Management**: Homebrew bundle with essential tools
+- **Package Management**: Homebrew on macOS; APT and mise on Linux
 
 ### Command Line Utilities
 - Modern replacements: `bat`, `fd`, `fzf`, `ripgrep`, `delta`, `zoxide`
@@ -35,7 +35,7 @@ either, or see `./install --help`.
 - System utilities: `coreutils`, `gnu-sed`, `watch`, `tree`, `pstree`
 
 ### Applications
-Automatically installs productivity and development applications via Homebrew Cask including:
+On macOS, installs productivity and development applications via Homebrew Cask including:
 - **Browsers**: Arc
 - **Development**: Visual Studio Code, ChatGPT, Claude
 - **Productivity**: Raycast, Rectangle Pro, Fantastical, Notion
@@ -57,11 +57,9 @@ pattern rather than listing them one by one:
 - `*.symlink` → `~/.*` (hidden files in home directory)
 - `*.configsymlink` → `~/.config/*` (XDG config directory)
 - `*.codexsymlink` → `~/.codex/*`
-- `*.launchagent` → `~/Library/LaunchAgents/*.plist`
 
 Adding a config means giving the file or directory one of those suffixes. No
-config edit needed. `./install links` also bootstraps the launch agents managed
-by this repository into the current user's GUI session.
+config edit needed.
 
 Note that dotbot only reports changes and problems, so a run with nothing to do
 is quiet by design. Pass `-v` to see every link it checked.
@@ -115,12 +113,14 @@ Create local configuration files that won't be tracked by git:
 ### Extending the Setup
 
 1. **Add new topic directories**: Create a new directory (e.g., `python/`) and add configuration files
-2. **Install additional packages**: Edit `packages/Brewfile` to add more Homebrew formulas or casks
+2. **Install additional packages**: Edit `packages/Brewfile` (macOS), `packages/Aptfile` (Linux), or the mise config
 3. **Modify automation**: Add steps to `dotbot/bootstrap.conf.yaml`, or to `dotbot/hosts/<hostname>.conf.yaml` for one machine only
 
 ## 📋 Requirements
 
-- 🍎 macOS (tested on recent versions)
+- macOS or Linux
+- Python 3
+- On Linux, an APT-based distribution
 - 🌐 Internet connection for downloading packages
 - 🔑 Administrative privileges for some installations
 
