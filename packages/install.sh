@@ -23,12 +23,12 @@ case "$(uname -s)" in
     sudo apt-get update
 
     if ! apt-cache show mise >/dev/null 2>&1; then
-      sudo apt-get install -y --no-install-recommends extrepo
+      sudo apt-get install -y extrepo
       sudo extrepo enable mise
       sudo apt-get update
     fi
 
-    xargs -r -a packages/Aptfile sudo apt-get install -y --no-install-recommends
+    xargs -r -a packages/Aptfile sudo apt-get install -y
 
     mkdir -p "$HOME/.local/bin"
 
