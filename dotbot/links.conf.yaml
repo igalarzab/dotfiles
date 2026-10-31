@@ -15,20 +15,9 @@
 
 - clean: ["~", "~/.config", "~/.codex"]
 
+# Docker is linked separately on macOS: its config selects OrbStack and Keychain.
 # Any file or directory ending in one of these suffixes is linked by convention
 - regexlink:
-    '.*/(.*)\.configsymlink': '~/.config/\1'
+    '(?!docker/).*/(.*)\.configsymlink': '~/.config/\1'
     '.*/(.*)\.codexsymlink': '~/.codex/\1'
-    '.*/(.*)\.launchagent': '~/Library/LaunchAgents/\1.plist'
     '.*/(.*)\.symlink': '~/.\1'
-
-- shell:
-    - description: Load managed LaunchAgents
-      quiet: true
-      command: |
-        find . -type f -name '*.launchagent' -not -path './.git/*' -print0 |
-        while IFS= read -r -d '' source; do
-          agent="$HOME/Library/LaunchAgents/$(basename "${source%.launchagent}").plist"
-          launchctl bootout "gui/$(id -u)" "$agent" 2>/dev/null || true
-          launchctl bootstrap "gui/$(id -u)" "$agent"
-        done

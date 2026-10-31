@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 
 
 def __export_env_to_launchctl(baseline_env: set[str]) -> None:
@@ -10,6 +11,9 @@ def __export_env_to_launchctl(baseline_env: set[str]) -> None:
     Args:
         baseline_env: Set of env var names that existed before dotfiles loaded.
     """
+    if sys.platform != "darwin":
+        return
+
     for var in set(os.environ.keys()) - baseline_env:
         if var.startswith('_'):
             continue

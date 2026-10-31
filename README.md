@@ -3,7 +3,7 @@
 Your dotfiles are how you personalize your system. These are mine.
 
 This repository contains configuration files and automation scripts for setting up a development
-environment on macOS with modern command-line tools, applications, and personalized settings.
+environment on macOS and Linux with modern command-line tools, applications, and personalized settings.
 
 ## 🚀 Quick Start
 
@@ -19,6 +19,31 @@ Day to day, `./install links` is enough — symlinks only, offline, about a
 second. The bare `./install` also does packages, runtimes and system defaults,
 which is what a new machine or a changed Brewfile needs. Add `--dry-run` to
 either, or see `./install --help`.
+
+### Ubuntu / Pandora
+
+The same `./install` command installs shared CLI tools through Homebrew on Linux.
+Install Homebrew's [Ubuntu prerequisites](https://docs.brew.sh/Homebrew-on-Linux) first:
+
+```sh
+sudo apt-get install build-essential procps curl file git
+```
+
+macOS defaults, desktop casks, LaunchAgents, and the OrbStack/Keychain Docker
+configuration are applied only on macOS. Linux Docker configuration stays local;
+install Docker and desktop applications separately if needed. Ghostty uses the
+system login shell rather than a platform-specific xonsh path.
+
+Before installing on an existing machine, run `./install links --dry-run`.
+Dotbot refuses to overwrite real files or directories. On Pandora, `~/.ssh` and
+`~/.config/mise` already exist: back them up, merge the settings you need, and
+move the original directories aside before linking. Preserve SSH keys,
+`known_hosts`, and mise settings; do not use force to discard them. Keep this
+checkout at a permanent location because the links point into it.
+
+Provide Git identity and SSH signing settings in `~/.config/git/config-local`,
+as described below, before making signed commits. `./install` also registers
+xonsh and sets it as the login shell; sudo or a password prompt may be needed.
 
 ## 📦 What's Included
 
@@ -49,6 +74,7 @@ a submodule. Everything setup-related lives in `dotbot/`:
 - `dotbot/dotbot/` — the vendored tool, pinned to a tagged release.
 - `dotbot/links.conf.yaml` — symlinks only. Fast and offline.
 - `dotbot/bootstrap.conf.yaml` — Homebrew, `mise`, macOS defaults, agent skills.
+- `dotbot/links.macos.conf.yaml` — macOS-only Docker links and LaunchAgents.
 - `dotbot/hosts/<hostname>.conf.yaml` — optional, picked up automatically on that machine.
 
 The `regexlink` plugin in `dotbot/plugins/regexlink.py` creates symlinks by
@@ -57,10 +83,11 @@ pattern rather than listing them one by one:
 - `*.symlink` → `~/.*` (hidden files in home directory)
 - `*.configsymlink` → `~/.config/*` (XDG config directory)
 - `*.codexsymlink` → `~/.codex/*`
-- `*.launchagent` → `~/Library/LaunchAgents/*.plist`
+- `*.launchagent` → `~/Library/LaunchAgents/*.plist` (macOS only)
 
 Adding a config means giving the file or directory one of those suffixes. No
-config edit needed. `./install links` also bootstraps the launch agents managed
+config edit needed. Docker is an explicit macOS-only exception. On macOS,
+`./install links` also bootstraps the launch agents managed
 by this repository into the current user's GUI session.
 
 Note that dotbot only reports changes and problems, so a run with nothing to do
@@ -120,9 +147,16 @@ Create local configuration files that won't be tracked by git:
 
 ## 📋 Requirements
 
-- 🍎 macOS (tested on recent versions)
+- macOS or Linux (Ubuntu on Pandora)
+- Python 3 to run the vendored dotbot installer
 - 🌐 Internet connection for downloading packages
 - 🔑 Administrative privileges for some installations
+
+## Validation
+
+Run `python3 -m unittest discover -s tests -v` for isolated link installation,
+platform routing, and environment checks. The tests use temporary homes and mock
+macOS commands; they do not install packages or change the login shell.
 
 ## 🔧 Troubleshooting
 
