@@ -17,8 +17,6 @@ Give the file or directory a suffix and it is linked automatically.
 * `*.configsymlink` to `~/.config/*`
 * `*.codexsymlink` to `~/.codex/*`
 
-Docker is linked explicitly on macOS only; its config selects OrbStack and Keychain.
-
 ## Never run `git clean -x` in this repo
 
 `~/.ssh`, `~/.kube` and `~/.config/git` are symlinks into this working tree, so live
