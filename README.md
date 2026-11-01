@@ -79,14 +79,3 @@ zsh is the default. The xonsh config stays in the repository, so you can switch:
 ./shells/set-default.sh xonsh
 ./shells/set-default.sh zsh
 ```
-
-## Coding agents
-
-`agents/` holds the Codex and Claude Code settings, plus the skills they share.
-Claude Code's `CLAUDE.md` is a symlink to Codex's `AGENTS.md`, so both follow the same
-instructions.
-`agents/skills/` has my own and `agents/skills.txt` lists the ones to download.
-
-Both agents run shell commands through
-[dcg](https://github.com/Dicklesworthstone/destructive_command_guard), which blocks
-destructive ones. mise installs it.
