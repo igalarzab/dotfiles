@@ -5,16 +5,6 @@ fi
 
 typeset -g DOTFILES_ZSH_LOADED=1
 
-typeset -a dotfiles_baseline_env
-dotfiles_baseline_env=(${(k)parameters[(R)*export*]})
-
-# Resolve the dotfiles repository from this file's real path.
-typeset dotfiles_zshrc_path="${(%):-%N}"
-export DOTFILES="${DOTFILES:-${dotfiles_zshrc_path:A:h:h:h}}"
-unset dotfiles_zshrc_path
-
-source "$DOTFILES/shells/pre-init.sh"
-
 # Include hidden files in glob expansions.
 setopt GLOB_DOTS
 

@@ -1,6 +1,20 @@
 # Keep zsh configuration under ~/.config/zsh.
 export ZDOTDIR="$HOME/.config/zsh"
 
+typeset -ga dotfiles_baseline_env
+dotfiles_baseline_env=(${(k)parameters[(R)*export*]})
+
+export DOTFILES="${DOTFILES:-${${(%):-%x}:A:h:h}}"
+typeset -U PATH path
+
+source "$DOTFILES/shells/pre-init.sh"
+
+# Agents run non-interactive zsh, so .zshrc is too late for the shared environment.
+for dotfiles_file in "$DOTFILES"/*/env.sh(N); do
+  source "$dotfiles_file"
+done
+unset dotfiles_file
+
 # Codex runs non-login, non-interactive zsh, so .zshrc is skipped.
 if [[ -n "${CODEX_SHELL:-}" ]]; then
   source "$ZDOTDIR/.zshrc"
