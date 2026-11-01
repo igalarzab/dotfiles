@@ -1,10 +1,11 @@
+tap "openclaw/tap", trusted: true
 tap "steipete/tap", trusted: true
 
 brew "helm"
 brew "helmsman"
-brew "steipete/tap/gogcli"
+brew "openclaw/tap/gogcli"
+brew "openclaw/tap/wacli"
 brew "steipete/tap/remindctl"
-brew "steipete/tap/wacli"
 
 cask "codex"
 cask "google-chrome"
