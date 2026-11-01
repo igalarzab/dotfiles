@@ -22,6 +22,9 @@ either, or see `./install --help`.
 
 Personal tools and runtime versions are managed here;
 [homelab](https://github.com/igalarzab/homelab) handles server provisioning.
+Homelab never runs this installer. It only manages a marked block in
+`~/.config/local.sh` and runs T3's agents under zsh, which reads its `PATH`
+from this repository's zsh setup.
 
 ## 📦 What's Included
 

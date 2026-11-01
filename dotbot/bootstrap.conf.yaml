@@ -16,6 +16,7 @@
     - description: Apply macOS defaults
       command: if [ "$(uname -s)" = Darwin ]; then ./macos/defaults.sh; fi
 
+    # homebrew/env.sh puts brew's tools on PATH on macOS and is a no-op on Linux
     - description: Install mise runtimes
       command: . ./homebrew/env.sh && mise install
 
