@@ -3,7 +3,7 @@
 Your dotfiles are how you personalize your system. These are mine.
 
 This repository contains configuration files and automation scripts for setting up a development
-environment on macOS with modern command-line tools, applications, and personalized settings.
+environment on macOS and Linux with modern command-line tools, applications, and personalized settings.
 
 ## 🚀 Quick Start
 
@@ -20,14 +20,21 @@ second. The bare `./install` also does packages, runtimes and system defaults,
 which is what a new machine or a changed Brewfile needs. Add `--dry-run` to
 either, or see `./install --help`.
 
+Personal tools and runtime versions are managed here;
+[homelab](https://github.com/igalarzab/homelab) handles server provisioning.
+Homelab never runs this installer. It only manages a marked block in
+`~/.config/local.sh` and runs T3's agents under zsh, which reads its `PATH`
+from this repository's zsh setup.
+
 ## 📦 What's Included
 
 ### Development Tools
-- **Shell**: `xonsh` as the primary interactive shell, with parallel Bash/zsh configuration
+- **Shell**: zsh as the login shell, with a parallel xonsh configuration. Switch with
+  `./shells/set-default.sh xonsh` or back with `./shells/set-default.sh zsh`
 - **Editor**: Neovim with optimized settings
 - **Terminal**: iTerm2 configurations
 - **Version Control**: Git with helpful aliases and configurations
-- **Package Management**: Homebrew bundle with essential tools
+- **Package Management**: Homebrew on macOS; APT and mise on Linux
 
 ### Command Line Utilities
 - Modern replacements: `bat`, `fd`, `fzf`, `ripgrep`, `delta`, `zoxide`
@@ -35,7 +42,7 @@ either, or see `./install --help`.
 - System utilities: `coreutils`, `gnu-sed`, `watch`, `tree`, `pstree`
 
 ### Applications
-Automatically installs productivity and development applications via Homebrew Cask including:
+On macOS, installs productivity and development applications via Homebrew Cask including:
 - **Browsers**: Arc
 - **Development**: Visual Studio Code, ChatGPT, Claude
 - **Productivity**: Raycast, Rectangle Pro, Fantastical, Notion
@@ -57,11 +64,9 @@ pattern rather than listing them one by one:
 - `*.symlink` → `~/.*` (hidden files in home directory)
 - `*.configsymlink` → `~/.config/*` (XDG config directory)
 - `*.codexsymlink` → `~/.codex/*`
-- `*.launchagent` → `~/Library/LaunchAgents/*.plist`
 
 Adding a config means giving the file or directory one of those suffixes. No
-config edit needed. `./install links` also bootstraps the launch agents managed
-by this repository into the current user's GUI session.
+config edit needed.
 
 Note that dotbot only reports changes and problems, so a run with nothing to do
 is quiet by design. Pass `-v` to see every link it checked.
@@ -78,8 +83,9 @@ Each topic area has its own directory with relevant configurations:
 - **macos/**: macOS-specific settings
 - **mise/**: Runtime version management
 - **vim/**: Neovim configuration
-- **xonsh/**: Shell configuration and custom functions
-- **zsh/**: zsh startup used by interactive shells and Codex
+- **shells/**: Shared shell startup, aliases, and the login shell switcher
+- **xonsh/**: xonsh configuration and custom functions
+- **zsh/**: zsh startup used by interactive shells, Codex, and T3
 
 App-specific shell configuration stays with the app and is loaded by extension:
 
@@ -88,7 +94,7 @@ App-specific shell configuration stays with the app and is loaded by extension:
 - `*.zsh`: zsh-specific setup
 - `*.bash`: Bash-specific setup
 
-Xonsh and zsh load this configuration automatically. The shared files are ready
+zsh and xonsh load this configuration automatically. The shared files are ready
 for Bash too, but Bash does not have its own startup loader yet.
 
 ## 🎨 Customization
@@ -115,12 +121,14 @@ Create local configuration files that won't be tracked by git:
 ### Extending the Setup
 
 1. **Add new topic directories**: Create a new directory (e.g., `python/`) and add configuration files
-2. **Install additional packages**: Edit `packages/Brewfile` to add more Homebrew formulas or casks
+2. **Install additional packages**: Edit `packages/Brewfile` (macOS), `packages/Aptfile` (Linux), or the mise config
 3. **Modify automation**: Add steps to `dotbot/bootstrap.conf.yaml`, or to `dotbot/hosts/<hostname>.conf.yaml` for one machine only
 
 ## 📋 Requirements
 
-- 🍎 macOS (tested on recent versions)
+- macOS or Linux
+- Python 3
+- On Linux, an APT-based distribution
 - 🌐 Internet connection for downloading packages
 - 🔑 Administrative privileges for some installations
 

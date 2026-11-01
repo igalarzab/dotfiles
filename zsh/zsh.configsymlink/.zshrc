@@ -5,6 +5,9 @@ fi
 
 typeset -g DOTFILES_ZSH_LOADED=1
 
+typeset -a dotfiles_baseline_env
+dotfiles_baseline_env=(${(k)parameters[(R)*export*]})
+
 # Resolve the dotfiles repository from this file's real path.
 typeset dotfiles_zshrc_path="${(%):-%N}"
 export DOTFILES="${DOTFILES:-${dotfiles_zshrc_path:A:h:h:h}}"
@@ -58,4 +61,16 @@ if [[ -r "$HOME/.config/local.sh" ]]; then
   source "$HOME/.config/local.sh"
 fi
 
-unset dotfiles_file
+if [[ $OSTYPE == darwin* && -o interactive ]]; then
+  typeset -a dotfiles_env
+  dotfiles_env=(${(k)parameters[(R)*export*]})
+
+  for dotfiles_var in ${dotfiles_env:|dotfiles_baseline_env}; do
+    [[ $dotfiles_var == _* ]] && continue
+    launchctl setenv "$dotfiles_var" "${(P)dotfiles_var}"
+  done
+
+  launchctl setenv PATH "$PATH"
+fi
+
+unset dotfiles_file dotfiles_var dotfiles_env dotfiles_baseline_env
