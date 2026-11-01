@@ -1,0 +1,5 @@
+docker.configsymlink/.token_seed*
+docker.configsymlink/buildx/
+docker.configsymlink/cli-plugins/
+docker.configsymlink/config.json
+docker.configsymlink/contexts/
