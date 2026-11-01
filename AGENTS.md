@@ -16,6 +16,7 @@ Give the file or directory a suffix and it is linked automatically.
 * `*.symlink` to `~/.*`
 * `*.configsymlink` to `~/.config/*`
 * `*.codexsymlink` to `~/.codex/*`
+* `*.claudesymlink` to `~/.claude/*`
 
 ## Never run `git clean -x` in this repo
 

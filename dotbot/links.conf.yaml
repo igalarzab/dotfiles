@@ -13,10 +13,11 @@
       create: true
       relink: true
 
-- clean: ["~", "~/.config", "~/.codex"]
+- clean: ["~", "~/.config", "~/.codex", "~/.claude"]
 
 # Any file or directory ending in one of these suffixes is linked by convention
 - regexlink:
     '.*/(.*)\.configsymlink': '~/.config/\1'
     '.*/(.*)\.codexsymlink': '~/.codex/\1'
+    '.*/(.*)\.claudesymlink': '~/.claude/\1'
     '.*/(.*)\.symlink': '~/.\1'

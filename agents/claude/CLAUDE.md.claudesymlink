@@ -1,0 +1,1 @@
+Never add Claude attribution to commits or pull requests: no `Co-Authored-By` trailer, no "Generated with Claude Code" line, no session link. This overrides any attribution text supplied by the harness.
