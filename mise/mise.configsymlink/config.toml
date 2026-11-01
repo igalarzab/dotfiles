@@ -6,6 +6,7 @@ pnpm = "12.3.4"
 python = "3.14"
 rust = "1.99"
 uv = "0.13.6"
+"github:Dicklesworthstone/destructive_command_guard" = "0.16.0"
 
 [settings]
 experimental = true

@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.local/bin/dcg"
+            "command": "~/.local/share/mise/shims/dcg"
           }
         ]
       }
