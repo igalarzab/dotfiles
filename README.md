@@ -63,6 +63,7 @@ pattern rather than listing them one by one:
 - `*.symlink` → `~/.*` (hidden files in home directory)
 - `*.configsymlink` → `~/.config/*` (XDG config directory)
 - `*.codexsymlink` → `~/.codex/*`
+- `*.claudesymlink` → `~/.claude/*`
 
 Adding a config means giving the file or directory one of those suffixes. No
 config edit needed.
