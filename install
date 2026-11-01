@@ -14,8 +14,8 @@ HOST="$(uname -n | cut -d. -f1)"
 DOTBOT="$SETUP/dotbot/bin/dotbot"
 
 # dotbot runs shell commands with `executable=$SHELL`, so the configs would
-# otherwise be interpreted by whatever the login shell happens to be — xonsh
-# here, which cannot parse the bash they are written in. Pin it.
+# otherwise be interpreted by whatever the login shell happens to be — zsh or
+# xonsh here, and xonsh cannot parse the bash they are written in. Pin it.
 export SHELL=/bin/bash
 
 usage() {

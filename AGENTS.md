@@ -38,6 +38,6 @@ confusing ways:
 * `-d <repo root>`. Configs live in `dotbot/`, and without `-d` dotbot bases itself on
   the config's own directory, so `regexlink` walks `dotbot/` and matches nothing.
 * `SHELL=/bin/bash`. dotbot passes `executable=$SHELL` to `subprocess`. The login shell
-  here is xonsh, which cannot parse bash `if/fi` blocks or `VAR=x cmd` prefixes.
+  can be xonsh, which cannot parse bash `if/fi` blocks or `VAR=x cmd` prefixes.
 
 Plugins are Python 3.14. Lint with `uvx ruff check --select UP,F,E,W,I,B,SIM dotbot/plugins/`

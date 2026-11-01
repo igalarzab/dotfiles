@@ -1,4 +1,4 @@
-# Keep zsh configuration under ~/.config/zsh, matching the xonsh layout.
+# Keep zsh configuration under ~/.config/zsh.
 export ZDOTDIR="$HOME/.config/zsh"
 
 # Codex runs non-login, non-interactive zsh, so .zshrc is skipped.
