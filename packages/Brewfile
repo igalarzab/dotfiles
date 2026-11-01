@@ -1,4 +1,3 @@
-tap "modem-dev/tap"
 tap "rsteube/tap"
 
 brew "bat"
@@ -11,7 +10,6 @@ brew "gnu-sed"
 brew "gnupg"
 brew "kubectx"
 brew "mise"
-brew "modem-dev/tap/hunk", trusted: true
 brew "neovim"
 brew "pinentry-mac"
 brew "pstree"

@@ -1,12 +1,11 @@
 [tools]
 go = "1.27"
+hunk = "latest"
 node = "24.21"
 pnpm = "12.3.4"
 python = "3.14"
 rust = "1.99"
 uv = "0.13.6"
-
-hunk = { version = "latest", os = ["linux"] }
 
 [settings]
 experimental = true
