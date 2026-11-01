@@ -23,5 +23,5 @@
     - description: Install agent skills
       command: . ./homebrew/env.sh && mise exec -- ./agents/install.sh
 
-    - description: Set xonsh as the default shell
-      command: . ./homebrew/env.sh && ./xonsh/set-default.sh
+    - description: Set zsh as the default shell
+      command: . ./homebrew/env.sh && ./shells/set-default.sh zsh

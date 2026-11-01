@@ -29,7 +29,8 @@ from this repository's zsh setup.
 ## 📦 What's Included
 
 ### Development Tools
-- **Shell**: `xonsh` as the primary interactive shell, with parallel Bash/zsh configuration
+- **Shell**: zsh as the login shell, with a parallel xonsh configuration. Switch with
+  `./shells/set-default.sh xonsh` or back with `./shells/set-default.sh zsh`
 - **Editor**: Neovim with optimized settings
 - **Terminal**: iTerm2 configurations
 - **Version Control**: Git with helpful aliases and configurations
@@ -82,8 +83,9 @@ Each topic area has its own directory with relevant configurations:
 - **macos/**: macOS-specific settings
 - **mise/**: Runtime version management
 - **vim/**: Neovim configuration
-- **xonsh/**: Shell configuration and custom functions
-- **zsh/**: zsh startup used by interactive shells and Codex
+- **shells/**: Shared shell startup, aliases, and the login shell switcher
+- **xonsh/**: xonsh configuration and custom functions
+- **zsh/**: zsh startup used by interactive shells, Codex, and T3
 
 App-specific shell configuration stays with the app and is loaded by extension:
 
@@ -92,7 +94,7 @@ App-specific shell configuration stays with the app and is loaded by extension:
 - `*.zsh`: zsh-specific setup
 - `*.bash`: Bash-specific setup
 
-Xonsh and zsh load this configuration automatically. The shared files are ready
+zsh and xonsh load this configuration automatically. The shared files are ready
 for Bash too, but Bash does not have its own startup loader yet.
 
 ## 🎨 Customization
