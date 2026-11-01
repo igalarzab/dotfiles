@@ -20,6 +20,9 @@ second. The bare `./install` also does packages, runtimes and system defaults,
 which is what a new machine or a changed Brewfile needs. Add `--dry-run` to
 either, or see `./install --help`.
 
+Personal tools and runtime versions are managed here;
+[homelab](https://github.com/igalarzab/homelab) handles server provisioning.
+
 ## 📦 What's Included
 
 ### Development Tools
