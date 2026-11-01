@@ -28,6 +28,12 @@ case "$(uname -s)" in
       sudo apt-get update
     fi
 
+    if ! apt-cache show carapace-bin >/dev/null 2>&1; then
+      curl -fsSL https://apt.fury.io/rsteube/gpg.key | sudo gpg --dearmor --yes -o /usr/share/keyrings/rsteube.gpg
+      echo 'deb [signed-by=/usr/share/keyrings/rsteube.gpg] https://apt.fury.io/rsteube/ /' | sudo tee /etc/apt/sources.list.d/fury.list >/dev/null
+      sudo apt-get update
+    fi
+
     xargs -r -a packages/Aptfile sudo apt-get install -y
 
     mkdir -p "$HOME/.local/bin"
