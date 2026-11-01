@@ -7,8 +7,6 @@ rust = "1.99"
 uv = "0.13.6"
 
 hunk = { version = "latest", os = ["linux"] }
-carapace = { version = "latest", os = ["linux"] }
-yq = { version = "latest", os = ["linux"] }
 
 [settings]
 experimental = true
