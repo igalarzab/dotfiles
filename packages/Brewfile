@@ -19,7 +19,6 @@ brew "ripgrep"
 brew "rsteube/tap/carapace", trusted: true
 brew "starship"
 brew "tree"
-brew "uv"
 brew "watch"
 brew "wget"
 brew "xonsh"
