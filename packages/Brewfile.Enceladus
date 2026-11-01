@@ -5,6 +5,7 @@ brew "helmsman"
 
 cask "bambu-studio"
 cask "arc"
+cask "chatgpt"
 cask "cryptomator"
 cask "elgato-stream-deck"
 cask "fantastical"
