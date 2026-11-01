@@ -5,7 +5,6 @@ fi
 
 typeset -g DOTFILES_ZSH_LOADED=1
 
-# Remember the inherited environment so only dotfiles' variables reach launchctl.
 typeset -a dotfiles_baseline_env
 dotfiles_baseline_env=(${(k)parameters[(R)*export*]})
 
@@ -62,8 +61,6 @@ if [[ -r "$HOME/.config/local.sh" ]]; then
   source "$HOME/.config/local.sh"
 fi
 
-# Export dotfiles' variables to launchctl for graphical apps (macOS).
-# This needs an interactive shell to run first, which is good enough.
 if [[ $OSTYPE == darwin* && -o interactive ]]; then
   typeset -a dotfiles_env
   dotfiles_env=(${(k)parameters[(R)*export*]})
@@ -73,7 +70,6 @@ if [[ $OSTYPE == darwin* && -o interactive ]]; then
     launchctl setenv "$dotfiles_var" "${(P)dotfiles_var}"
   done
 
-  # Finish with $PATH, which existed before dotfiles loaded
   launchctl setenv PATH "$PATH"
 fi
 

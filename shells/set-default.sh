@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-#
-# Make zsh the login shell, or the shell given as the first argument:
-#   ./shells/set-default.sh xonsh
-#
 set -euo pipefail
 
 SHELL_NAME="${1:-zsh}"
