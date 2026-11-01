@@ -1,13 +1,9 @@
-# 🏠 igalarzab dotfiles
+# dotfiles
 
-Your dotfiles are how you personalize your system. These are mine.
+My setup for macOS and Linux. Each tool gets a directory, and
+[dotbot](https://github.com/anishathalye/dotbot) links the files into place.
 
-This repository contains configuration files and automation scripts for setting up a development
-environment on macOS and Linux with modern command-line tools, applications, and personalized settings.
-
-## 🚀 Quick Start
-
-Just run the following commands in your system:
+## Install
 
 ```sh
 git clone https://github.com/igalarzab/dotfiles ~/.config/dotfiles
@@ -15,130 +11,80 @@ cd ~/.config/dotfiles
 ./install
 ```
 
-Day to day, `./install links` is enough — symlinks only, offline, about a
-second. The bare `./install` also does packages, runtimes and system defaults,
-which is what a new machine or a changed Brewfile needs. Add `--dry-run` to
-either, or see `./install --help`.
+This installs packages and runtimes, links the configs, applies the macOS defaults
+and makes zsh the login shell. It needs Python 3 and sudo. On Linux it only supports
+APT-based distributions.
 
-Personal tools and runtime versions are managed here;
-[homelab](https://github.com/igalarzab/homelab) handles server provisioning.
-Homelab never runs this installer. It only manages a marked block in
-`~/.config/local.sh`. T3 reads its agents' `PATH` from your login shell.
+After that, `./install links` is usually enough. It only refreshes the symlinks,
+works offline and takes about a second. Run the full `./install` when the package
+lists change. Add `--dry-run` to preview either one.
 
-## 📦 What's Included
+dotbot only prints changes and problems, so a quiet run means nothing needed doing.
+Pass `-v` to see every link it checked.
 
-### Development Tools
-- **Shell**: zsh as the login shell, with a parallel xonsh configuration. Switch with
-  `./shells/set-default.sh xonsh` or back with `./shells/set-default.sh zsh`
-- **Editor**: Neovim with optimized settings
-- **Terminal**: iTerm2 configurations
-- **Version Control**: Git with helpful aliases and configurations
-- **Package Management**: Homebrew on macOS; APT and mise on Linux
+## Adding a config
 
-### Command Line Utilities
-- Modern replacements: `bat`, `fd`, `fzf`, `ripgrep`, `delta`, `zoxide`
-- Development tools: `gh`, `jq`, `mise`, `uv`, `llm`
-- System utilities: `coreutils`, `gnu-sed`, `watch`, `tree`, `pstree`
+Name a file or directory with one of these suffixes and `./install links` picks it up.
 
-### Applications
-On macOS, installs productivity and development applications via Homebrew Cask including:
-- **Browsers**: Arc
-- **Development**: Visual Studio Code, ChatGPT, Claude
-- **Productivity**: Raycast, Rectangle Pro, Fantastical, Notion
-- **Utilities**: 1Password, AppCleaner, The Unarchiver, Cryptomator
+| Suffix | Links to |
+| --- | --- |
+| `*.symlink` | `~/.*` |
+| `*.configsymlink` | `~/.config/*` |
+| `*.codexsymlink` | `~/.codex/*` |
+| `*.claudesymlink` | `~/.claude/*` |
 
-## ⚙️ How It Works
+Shell setup also goes by filename, in any top-level directory. zsh and xonsh both
+load `env.sh` and `init.sh`. zsh also loads `init.zsh`, and xonsh loads `*.xsh`.
 
-Setup is managed by [dotbot](https://github.com/anishathalye/dotbot), pinned as
-a submodule. Everything setup-related lives in `dotbot/`:
+## Adding a package
 
-- `dotbot/dotbot/` — the vendored tool, pinned to a tagged release.
-- `dotbot/links.conf.yaml` — symlinks only. Fast and offline.
-- `dotbot/bootstrap.conf.yaml` — Homebrew, `mise`, macOS defaults, agent skills.
-- `dotbot/hosts/<hostname>.conf.yaml` — optional, picked up automatically on that machine.
+- `mise/mise.configsymlink/config.toml` has the runtimes and tools that should match
+  on every machine.
+- `packages/Brewfile` is for macOS and `packages/Aptfile` is for Linux.
+- `packages/Brewfile.<hostname>` and `dotbot/hosts/<hostname>.conf.yaml` are for a
+  single machine.
 
-The `regexlink` plugin in `dotbot/plugins/regexlink.py` creates symlinks by
-pattern rather than listing them one by one:
+## Machine-local settings
 
-- `*.symlink` → `~/.*` (hidden files in home directory)
-- `*.configsymlink` → `~/.config/*` (XDG config directory)
-- `*.codexsymlink` → `~/.codex/*`
-- `*.claudesymlink` → `~/.claude/*`
+These files stay out of git.
 
-Adding a config means giving the file or directory one of those suffixes. No
-config edit needed.
+- `~/.config/local.sh` is loaded last by zsh and xonsh. Secrets go here.
+- `~/.config/git/config-local` holds your identity and signing key. The tracked config
+  has placeholders and signs every commit, so git can't commit without this file.
+  On a machine with no signing key, turn signing off:
 
-Note that dotbot only reports changes and problems, so a run with nothing to do
-is quiet by design. Pass `-v` to see every link it checked.
+  ```ini
+  [user]
+      name = Your Name
+      email = you@example.com
+  [commit]
+      gpgsign = false
+  [tag]
+      gpgsign = false
+  [log]
+      showSignature = false
+  ```
 
-## 📁 Directory Structure
+- `~/.ssh/config.d/local.cfg` holds extra SSH hosts.
 
-Each topic area has its own directory with relevant configurations:
+`~/.ssh`, `~/.kube` and `~/.config/git` are symlinks into this repository, so their
+private files live here too, gitignored. Never run `git clean -x` in this repository.
+It deletes them and there is no backup.
 
-- **aws/**: AWS CLI configurations
-- **bin/**: Custom scripts added to `$PATH`
-- **git/**: Git configuration and aliases
-- **gnupg/**: GPG settings for commit signing
-- **kubernetes/**: kubectl and k8s tool configurations
-- **macos/**: macOS-specific settings
-- **mise/**: Runtime version management
-- **vim/**: Neovim configuration
-- **shells/**: Shared shell startup, aliases, and the login shell switcher
-- **xonsh/**: xonsh configuration and custom functions
-- **zsh/**: zsh startup used by interactive shells, Codex, and T3
+## Login shell
 
-App-specific shell configuration stays with the app and is loaded by extension:
+zsh is the default. The xonsh config stays in the repository, so you can switch:
 
-- `env.sh` and `init.sh`: shared by xonsh, zsh, and Bash
-- `*.xsh`: xonsh-specific setup
-- `*.zsh`: zsh-specific setup
-- `*.bash`: Bash-specific setup
-
-zsh and xonsh load this configuration automatically. The shared files are ready
-for Bash too, but Bash does not have its own startup loader yet.
-
-## 🎨 Customization
-
-### Adding Your Own Configurations
-
-Create local configuration files that won't be tracked by git:
-
-**Git Configuration** (`~/.config/git/config-local`):
-```ini
-[user]
-    name         = Your Name
-    email        = your.email@example.com
-    signingkey   = your-gpg-key-id
-[github]
-    user         = your-github-username
+```sh
+./shells/set-default.sh xonsh
+./shells/set-default.sh zsh
 ```
 
-**SSH Configuration** (`~/.ssh/config-local`):
-```
-# Add your custom SSH configurations here
-```
+## Coding agents
 
-### Extending the Setup
+`agents/` holds the Codex and Claude Code settings, plus the skills they share.
+`agents/skills/` has my own and `agents/skills.txt` lists the ones to download.
 
-1. **Add new topic directories**: Create a new directory (e.g., `python/`) and add configuration files
-2. **Install additional packages**: Edit `packages/Brewfile` (macOS), `packages/Aptfile` (Linux), or the mise config
-3. **Modify automation**: Add steps to `dotbot/bootstrap.conf.yaml`, or to `dotbot/hosts/<hostname>.conf.yaml` for one machine only
-
-## 📋 Requirements
-
-- macOS or Linux
-- Python 3
-- On Linux, an APT-based distribution
-- 🌐 Internet connection for downloading packages
-- 🔑 Administrative privileges for some installations
-
-## 🔧 Troubleshooting
-
-- Run `./install` again to retry failed installations, or `./install --dry-run` to inspect the plan without changing anything
-- Check `packages/Brewfile` if specific packages fail to install
-- Verify symlinks with `ls -la ~/.*` and `ls -la ~/.config/`
-
----
-
-**Note**: Fork this repository and customize it for your own needs. These configurations are
-tailored to my personal workflow and preferences.
+Both agents run shell commands through
+[dcg](https://github.com/Dicklesworthstone/destructive_command_guard), which blocks
+destructive ones. mise installs it.
