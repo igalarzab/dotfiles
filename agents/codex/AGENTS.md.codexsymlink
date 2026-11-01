@@ -26,3 +26,4 @@
 ### Pull Requests
 
 * Create pull requests as ready for review by default. Never create a draft pull request unless explicitly instructed.
+* Never credit AI tools in commits or pull requests: no `Co-Authored-By` trailers, generated-by lines or session links.
