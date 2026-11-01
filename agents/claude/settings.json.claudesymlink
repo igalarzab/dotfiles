@@ -11,12 +11,25 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.local/share/mise/shims/dcg"
+            "command": "dcg"
           }
         ]
       }
     ]
   },
   "theme": "auto",
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "sandbox": {
+    "enabled": true
+  },
+  "model": "opus",
+  "enableWorkflows": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "enabledPlugins": {
+    "swift-lsp@claude-plugins-official": true
+  }
 }
