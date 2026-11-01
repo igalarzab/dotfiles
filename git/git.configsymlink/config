@@ -10,15 +10,6 @@ user = TODO
 [core]
 editor = nvim
 
-[delta]
-line-numbers = true
-navigate = true
-hyperlinks = true
-hyperlinks-file-link-format = "vscode://file/{path}:{line}"
-
-[interactive]
-diffFilter = delta --color-only
-
 [alias]
 co = checkout
 st = status -s
