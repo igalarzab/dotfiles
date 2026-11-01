@@ -16,7 +16,7 @@ check_updates = true
 
 # Self-heal hook registration in settings.json on every invocation.
 # Protects against Claude Code overwriting settings.json mid-session.
-# self_heal_hook = true
+self_heal_hook = false
 
 # Hook evaluation budget override (milliseconds)
 # hook_timeout_ms = 200
