@@ -1,10 +1,3 @@
-# Avoid loading the configuration twice when Codex sources this file from .zshenv.
-if [[ -n "${DOTFILES_ZSH_LOADED:-}" ]]; then
-  return 0
-fi
-
-typeset -g DOTFILES_ZSH_LOADED=1
-
 # Include hidden files in glob expansions.
 setopt GLOB_DOTS
 
@@ -25,11 +18,6 @@ autoload -Uz compinit
 compinit -d "$zsh_cache_home/zsh/zcompdump"
 
 unset zsh_state_home zsh_cache_home
-
-# Load environment variables shared by all shells.
-for dotfiles_file in "$DOTFILES"/*/env.sh(N); do
-  source "$dotfiles_file"
-done
 
 # Load setup shared by all shells.
 for dotfiles_file in "$DOTFILES"/*/init.sh(N); do
