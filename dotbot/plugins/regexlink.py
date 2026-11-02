@@ -20,10 +20,15 @@ class RegexLink(Plugin):
       create  create parent directories of the link   (default: true)
       relink  replace an existing symlink             (default: false)
       force   replace an existing file or directory   (default: false)
+      skip    leave existing paths alone and continue (default: false)
+
+    REGEXLINK_EXISTING=force or REGEXLINK_EXISTING=skip turns on that option
+    for every rule.
     """
 
     supports_dry_run = True
     _directive = "regexlink"
+    _existing_env = "REGEXLINK_EXISTING"
 
     def can_handle(self, directive: str) -> bool:
         return directive == self._directive
@@ -34,6 +39,13 @@ class RegexLink(Plugin):
             raise ValueError(msg)
 
         defaults = self._context.defaults().get(self._directive, {})
+        existing = os.environ.get(self._existing_env)
+        if existing not in (None, "", "force", "skip"):
+            self._log.error(
+                f"{self._existing_env} must be force or skip, got {existing!r}"
+            )
+            return False
+
         base = self._context.base_directory()
         candidates = self._walk(base)
 
@@ -46,6 +58,8 @@ class RegexLink(Plugin):
                 template = options.pop("path")
             else:
                 template = value
+            if existing:
+                options[existing] = True
 
             matches = self._match(pattern, template, candidates)
             if not matches:
@@ -100,6 +114,7 @@ class RegexLink(Plugin):
         create = options.get("create", True)
         relink = options.get("relink", False)
         force = options.get("force", False)
+        skip = options.get("skip", False)
         dry_run = self._context.dry_run()
         absolute_source = os.path.join(base, source)
 
@@ -108,6 +123,9 @@ class RegexLink(Plugin):
                 self._log.info(f"Link exists {dest} -> {source}")
                 return True
             if not (relink or force):
+                if skip:
+                    self._log.warning(f"Skipping {dest}, it points elsewhere")
+                    return True
                 self._log.warning(f"{dest} points elsewhere, set relink to replace it")
                 return False
             if dry_run:
@@ -116,6 +134,9 @@ class RegexLink(Plugin):
                 os.unlink(dest)
         elif os.path.exists(dest):
             if not force:
+                if skip:
+                    self._log.warning(f"Skipping {dest}, it exists and is not a link")
+                    return True
                 self._log.warning(
                     f"{dest} exists and is not a link, set force to replace it"
                 )

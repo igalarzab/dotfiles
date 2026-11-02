@@ -22,6 +22,10 @@ lists change. Add `--dry-run` to preview either one.
 dotbot only prints changes and problems, so a quiet run means nothing needed doing.
 Pass `-v` to see every link it checked.
 
+If a link's target is already a regular file, or a symlink to somewhere else, the run
+stops. Pass `--force` to replace those files, or `--skip` to leave them alone and
+carry on.
+
 ## Adding a config
 
 Name a file or directory with one of these suffixes and `./install links` picks it up.
