@@ -1,0 +1,11 @@
+# Run by: ./install bootstrap, on LWNLW27TP9 only
+
+- defaults:
+    shell:
+      stdin: true
+      stdout: true
+      stderr: true
+
+- shell:
+    - description: Install LWNLW27TP9 Homebrew packages
+      command: /opt/homebrew/bin/brew bundle --no-upgrade --file=./packages/Brewfile.LWNLW27TP9
