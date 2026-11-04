@@ -1,6 +1,6 @@
 # Run by: ./install bootstrap
 #
-# Machine setup: packages, runtimes, system defaults.
+# Machine setup: packages, runtimes, login shell.
 
 - defaults:
     shell:
@@ -12,9 +12,6 @@
 - shell:
     - description: Install system packages
       command: ./packages/install.sh
-
-    - description: Apply macOS defaults
-      command: if [ "$(uname -s)" = Darwin ]; then ./macos/defaults.sh; fi
 
     - description: Install mise runtimes
       command: . ./homebrew/env.sh && mise install

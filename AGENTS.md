@@ -6,7 +6,7 @@ the suffixes, package lists and machine-local files.
 ## Commands
 
 - `./install links` refreshes the symlinks. It works offline.
-- `./install` also installs packages and runtimes and applies macOS defaults. It uses
+- `./install` also installs packages and runtimes and sets the login shell. It uses
   the network and sudo, and changes the machine.
 - `--dry-run` previews either one, and `-v` also logs links that were already correct.
 - A link whose target is already a file stops the run. `--force` replaces it and

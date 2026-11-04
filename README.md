@@ -11,9 +11,8 @@ cd ~/.config/dotfiles
 ./install
 ```
 
-This installs packages and runtimes, links the configs, applies the macOS defaults
-and makes zsh the login shell. It needs Python 3 and sudo. On Linux it only supports
-APT-based distributions.
+This installs packages and runtimes, links the configs and makes zsh the login
+shell. It needs Python 3 and sudo. On Linux it only supports APT-based distributions.
 
 After that, `./install links` is usually enough. It only refreshes the symlinks,
 works offline and takes about a second. Run the full `./install` when the package
