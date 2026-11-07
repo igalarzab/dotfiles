@@ -17,6 +17,9 @@ bindkey -v
 autoload -Uz compinit
 compinit -d "$zsh_cache_home/zsh/zcompdump"
 
+# Color file types in completion lists with zsh's default palette.
+zstyle ':completion:*' list-colors ''
+
 unset zsh_state_home zsh_cache_home
 
 # Load setup shared by all shells.

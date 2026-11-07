@@ -1,6 +1,12 @@
 alias ..='cd ..'
 alias dot='cd "$DOTFILES"'
 
+if [[ $OSTYPE == darwin* ]]; then
+  alias ls='ls -G'
+else
+  alias ls='ls --color=auto'
+fi
+
 alias l='ls'
 alias ll='ls -l'
 alias la='ls -a'
